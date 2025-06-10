@@ -7,9 +7,49 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  # Quality checks and testing job
+  test:
     runs-on: ubuntu-latest
-    
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: TypeScript Check
+      run: npx tsc --noEmit
+
+    - name: Build Test
+      run: npm run build
+      env:
+        NODE_ENV: production
+
+    - name: Check build output
+      run: |
+        if [ ! -d "dist" ]; then
+          echo "Build failed: dist directory not found"
+          exit 1
+        fi
+        if [ ! -f "dist/index.html" ]; then
+          echo "Build failed: index.html not found"
+          exit 1
+        fi
+        echo "Build verification passed"
+
+  # Deployment job (only runs on main branch push)
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
     permissions:
       contents: read
       pages: write
@@ -32,7 +72,7 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Build
+    - name: Build for production
       run: npm run build
       env:
         NODE_ENV: production
