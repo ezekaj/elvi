@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elvi Zekaj - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body, #root {
+        min-height: 100vh;
+      }
+      /* Custom scrollbar for a cleaner look */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #2d3748; /* brand-dark-secondary */
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #4299e1; /* brand-accent */
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #2b6cb0; /* brand-accent-hover */
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              'brand-dark': '#1a202c', // Very dark blue/gray
+              'brand-dark-secondary': '#2d3748', // Darker gray
+              'brand-light': '#f7fafc', // Off-white
+              'brand-accent': '#4299e1', // Blue accent (similar to Europass)
+              'brand-accent-hover': '#2b6cb0', // Darker blue for hover
+              'brand-secondary-accent': '#38b2ac', // Teal accent
+              'desk-surface': '#252e3d', // Slightly lighter than brand-dark-secondary
+              'desk-object': '#3a475a', // For objects on the desk (fallback if glassmorphism fails or as a base)
+            },
+            animation: {
+              'float': 'float 3s ease-in-out infinite',
+              'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
+              'subtle-pulse': 'subtle-pulse 1.5s infinite ease-in-out',
+              'grow-line': 'grow-line 0.5s ease-out forwards',
+            },
+            keyframes: {
+              'float': {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              'fade-in-up': {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              'subtle-pulse': {
+                '0%, 100%': { transform: 'scale(1)' }, /* Removed boxShadow from animation */
+                '50%': { transform: 'scale(1.02)' }, /* Slightly increased scale for effect */
+              },
+              'grow-line': {
+                '0%': { transform: 'scaleY(0)' },
+                '100%': { transform: 'scaleY(1)' },
+              }
+            },
+            boxShadow: {
+              'brand-accent/30': '0 0 15px 5px rgba(66, 153, 225, 0.3)',
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-brand-dark text-brand-light font-sans">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
