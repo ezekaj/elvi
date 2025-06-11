@@ -177,9 +177,9 @@ const App: React.FC = () => {
 
             <div className="relative z-10">
               <img
-                src="https://picsum.photos/seed/elvi_zekaj_profile/150/150"
-                alt="Elvi Zekaj"
-                className="w-40 h-40 rounded-3xl border-4 border-transparent bg-gradient-to-br from-brand-accent to-brand-secondary-accent p-1 shadow-2xl mb-8 float-right ml-8 animate-glass-morph hover:animate-micro-bounce transition-transform duration-300"
+                src="/assets/images/IMG_2898.png"
+                alt="Elvi Zekaj - Professional portrait"
+                className="w-40 h-40 rounded-3xl border-4 border-transparent bg-gradient-to-br from-brand-accent to-brand-secondary-accent p-1 shadow-2xl mb-8 float-right ml-8 animate-glass-morph hover:animate-micro-bounce transition-transform duration-300 object-cover"
                 style={{animationDelay: '100ms'}}
               />
               <div className="w-40 h-40 rounded-3xl bg-gradient-to-br from-brand-accent/20 to-brand-secondary-accent/20 blur-xl absolute top-10 right-8 opacity-60 animate-glow-pulse"></div>
