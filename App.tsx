@@ -125,7 +125,7 @@ const App: React.FC = () => {
                 <img
                   src="/assets/images/Zekaj.png"
                   alt="Zekaj Technologies Logo - Modern dotted sphere design representing innovation and technology solutions"
-                  className="w-16 h-16 sm:w-20 sm:h-20 object-contain animate-glass-morph hover:animate-micro-bounce transition-transform duration-300 mr-4 border-0 outline-none"
+                  className="w-12 h-12 sm:w-14 sm:h-14 object-contain animate-glass-morph hover:animate-micro-bounce transition-transform duration-300 mr-4 border-0 outline-none"
                   style={{
                     animationDelay: '50ms',
                     border: 'none',
