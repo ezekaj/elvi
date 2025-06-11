@@ -125,6 +125,10 @@ const App: React.FC = () => {
                 alt="Zekaj Technologies Logo - Modern dotted sphere design representing innovation and technology solutions"
                 className="w-12 h-12 sm:w-14 sm:h-14 object-contain animate-glass-morph hover:animate-micro-bounce transition-transform duration-300"
                 style={{animationDelay: '50ms'}}
+                onError={(e) => {
+                  // Hide image if it fails to load, graceful degradation
+                  e.currentTarget.style.display = 'none';
+                }}
               />
               <h1 className="text-3xl font-extrabold text-brand-light bg-gradient-to-r from-brand-light via-brand-accent to-brand-secondary-accent bg-clip-text text-transparent animate-liquid-shimmer bg-[length:200%_100%]">
                 Elvi Zekaj
