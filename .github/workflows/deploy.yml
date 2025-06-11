@@ -32,7 +32,8 @@ jobs:
     - name: TypeScript Check
       run: |
         echo "Running TypeScript compilation check..."
-        npx tsc --noEmit --verbose
+        npx tsc --noEmit
+        echo "TypeScript compilation check completed successfully"
 
     - name: Build Test
       run: npm run build
