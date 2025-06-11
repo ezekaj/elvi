@@ -6,24 +6,31 @@ A modern, interactive portfolio website showcasing my skills, experience, and pr
 
 ## ✨ Features
 
-- **🖥️ Interactive Desk Interface**: Navigate through different sections with an engaging 3D-style desk
-- **📱 Responsive Design**: Optimized for all device sizes and screen resolutions
-- **🎨 Smooth Animations**: Professional fade-in and timeline animations throughout
-- **⚡ Modern Tech Stack**: Built with React 19, TypeScript, and Tailwind CSS
-- **🚀 Fast Performance**: Powered by Vite for lightning-fast development and builds
+- **🖥️ Interactive Desk Interface**: Navigate through different sections with an engaging 3D-style desk enhanced with Liquid Glass effects
+- **📱 Responsive Design**: Optimized for all device sizes and screen resolutions with adaptive animations
+- **🎨 Apple Liquid Glass Design**: Sophisticated glassmorphism effects inspired by Apple's design language
+- **✨ Advanced Micro-interactions**: Subtle hover effects, shimmer animations, and micro-bounces throughout
+- **🌟 Floating Particles**: Ambient animated particles for enhanced visual depth
+- **⚡ Modern Tech Stack**: Built with React 19, TypeScript, and Tailwind CSS with advanced CSS effects
+- **🚀 Fast Performance**: Powered by Vite with optimized animations running at 60fps
 - **🔧 API Integration**: Configured with Gemini API for enhanced functionality
-- **📄 Timeline Components**: Interactive work experience and education timelines
-- **🎯 Project Showcase**: Dynamic project cards with detailed information
+- **📄 Enhanced Timeline Components**: Interactive work experience and education timelines with glass morphism
+- **🎯 Premium Project Showcase**: Dynamic project cards with gradient effects and sophisticated interactions
+- **🎭 Advanced Animation System**: Custom keyframe animations with staggered timing and easing functions
+- **🎨 Dynamic Gradients**: Responsive gradient text and background effects that react to user interaction
 
 ## 🛠️ Technology Stack
 
 - **Frontend**: React 19.1.0, TypeScript 5.7.2
 - **Build Tool**: Vite 6.2.0
-- **Styling**: Tailwind CSS (configured via classes)
-- **Icons**: Heroicons integration
+- **Styling**: Tailwind CSS with custom Liquid Glass effects and advanced CSS animations
+- **Design System**: Apple Liquid Glass inspired glassmorphism with backdrop-filter effects
+- **Icons**: Heroicons integration with enhanced micro-interactions
+- **Animations**: Custom keyframe animations with cubic-bezier easing and staggered timing
 - **Deployment**: GitHub Pages with GitHub Actions
 - **API**: Gemini API integration
 - **Package Manager**: npm
+- **Performance**: Hardware-accelerated animations with 60fps optimization
 
 ## 🚀 Quick Start
 
