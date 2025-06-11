@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CONTACT_INFO, WORK_EXPERIENCE, EDUCATION_HISTORY, SKILLS_DATA, PROJECTS_DATA, GitHubIcon, LinkedInIcon, ExternalLinkIcon, DownloadIcon, UserCircleIcon, BriefcaseIcon as ExperienceIcon, AcademicCapIcon as EducationIconConst, CodeBracketIcon as SkillsIconConst, FolderOpenIcon, PhoneIcon as ContactIconConst } from './constants';
 import { WorkExperienceItem, EducationItem } from './types';
 import InteractiveProject from './components/InteractiveProject';
@@ -81,11 +81,32 @@ const TimelineItem: React.FC<{ item: WorkExperienceItem | EducationItem, isExper
 const App: React.FC = () => {
   const headerRef = React.useRef<HTMLElement>(null);
   const [logoLoaded, setLogoLoaded] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
   const aboutMeText = "Z.E Digital Systems specializes in innovative technology solutions, combining strong problem-solving capabilities with cutting-edge digital expertise. We deliver comprehensive IT services, software development, and digital transformation solutions. Our commitment to excellence and continuous innovation drives successful outcomes for businesses seeking reliable technology partnerships.";
 
   const getHeaderHeight = () => {
     return headerRef.current ? headerRef.current.offsetHeight : 0;
   };
+
+  // Scroll detection for dynamic header
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const scrollThreshold = 50; // Pixels to scroll before header changes
+      setIsScrolled(scrollPosition > scrollThreshold);
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Check initial scroll position
+    handleScroll();
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -129,15 +150,30 @@ const App: React.FC = () => {
       <FloatingParticles />
 
       {/* Enhanced Liquid Glass Header */}
-      <header ref={headerRef} className="liquid-glass-header py-6 px-4 sm:px-8 sticky top-0 z-50 transition-all duration-300">
+      <header
+        ref={headerRef}
+        className={`liquid-glass-header sticky top-0 z-50 transition-all duration-500 ease-out ${
+          isScrolled
+            ? 'py-3 px-4 sm:px-6 backdrop-blur-xl bg-slate-900/95 shadow-lg shadow-slate-900/20'
+            : 'py-6 px-4 sm:px-8 backdrop-blur-md bg-slate-900/80'
+        }`}
+      >
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
-          <div className="text-center sm:text-left mb-4 sm:mb-0 animate-slide-in-left">
-            <div className={`flex items-center justify-center sm:justify-start mb-2 ${logoLoaded ? '' : 'justify-center sm:justify-start'}`}>
+          <div className={`text-center sm:text-left animate-slide-in-left transition-all duration-500 ${
+            isScrolled ? 'mb-0' : 'mb-4 sm:mb-0'
+          }`}>
+            <div className={`flex items-center justify-center sm:justify-start ${
+              isScrolled ? 'mb-0' : 'mb-2'
+            } ${logoLoaded ? '' : 'justify-center sm:justify-start'}`}>
               {logoLoaded && (
                 <img
                   src="/assets/images/Zekaj.png"
                   alt="Zekaj Technologies Logo - Modern dotted sphere design representing innovation and technology solutions"
-                  className="w-12 h-12 sm:w-14 sm:h-14 object-contain animate-glass-morph hover:animate-micro-bounce transition-transform duration-300 mr-4 border-0 outline-none"
+                  className={`object-contain animate-glass-morph hover:animate-micro-bounce transition-all duration-500 border-0 outline-none ${
+                    isScrolled
+                      ? 'w-8 h-8 sm:w-10 sm:h-10 mr-3'
+                      : 'w-12 h-12 sm:w-14 sm:h-14 mr-4'
+                  }`}
                   style={{
                     animationDelay: '50ms',
                     border: 'none',
@@ -147,29 +183,43 @@ const App: React.FC = () => {
                   onError={() => setLogoLoaded(false)}
                 />
               )}
-              <h1 className="text-3xl font-extrabold text-brand-light bg-gradient-to-r from-brand-light via-brand-accent to-brand-secondary-accent bg-clip-text text-transparent animate-liquid-shimmer bg-[length:200%_100%]">
+              <h1 className={`font-extrabold text-brand-light bg-gradient-to-r from-brand-light via-brand-accent to-brand-secondary-accent bg-clip-text text-transparent animate-liquid-shimmer bg-[length:200%_100%] transition-all duration-500 ${
+                isScrolled
+                  ? 'text-xl sm:text-2xl'
+                  : 'text-3xl'
+              }`}>
                 Z.E Digital Systems
               </h1>
             </div>
           </div>
-          <div className="flex space-x-5 animate-slide-in-right">
+          <div className={`flex animate-slide-in-right transition-all duration-500 ${
+            isScrolled ? 'space-x-3' : 'space-x-5'
+          }`}>
             <a
               href={CONTACT_INFO.github}
               target="_blank"
               rel="noopener noreferrer"
               title="GitHub"
-              className="text-slate-400 hover:text-brand-accent transition-all duration-300 micro-bounce micro-glow p-2 rounded-lg"
+              className={`text-slate-400 hover:text-brand-accent transition-all duration-500 micro-bounce micro-glow rounded-lg ${
+                isScrolled ? 'p-1.5' : 'p-2'
+              }`}
             >
-              <GitHubIcon className="w-7 h-7" />
+              <GitHubIcon className={`transition-all duration-500 ${
+                isScrolled ? 'w-5 h-5' : 'w-7 h-7'
+              }`} />
             </a>
             <a
               href={CONTACT_INFO.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               title="LinkedIn"
-              className="text-slate-400 hover:text-brand-accent transition-all duration-300 micro-bounce micro-glow p-2 rounded-lg"
+              className={`text-slate-400 hover:text-brand-accent transition-all duration-500 micro-bounce micro-glow rounded-lg ${
+                isScrolled ? 'p-1.5' : 'p-2'
+              }`}
             >
-              <LinkedInIcon className="w-7 h-7" />
+              <LinkedInIcon className={`transition-all duration-500 ${
+                isScrolled ? 'w-5 h-5' : 'w-7 h-7'
+              }`} />
             </a>
           </div>
         </div>
