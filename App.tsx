@@ -81,7 +81,7 @@ const TimelineItem: React.FC<{ item: WorkExperienceItem | EducationItem, isExper
 const App: React.FC = () => {
   const headerRef = React.useRef<HTMLElement>(null);
   const [logoLoaded, setLogoLoaded] = useState(true);
-  const aboutMeText = "Strong problem-solving skills, enabling me to navigate challenges with resilience and creativity. Highly organized and detail-oriented, with a commitment to delivering results. Dedicated to self-improvement and contributing to the success of the team.";
+  const aboutMeText = "Z.E Digital Systems specializes in innovative technology solutions, combining strong problem-solving capabilities with cutting-edge digital expertise. We deliver comprehensive IT services, software development, and digital transformation solutions. Our commitment to excellence and continuous innovation drives successful outcomes for businesses seeking reliable technology partnerships.";
 
   const getHeaderHeight = () => {
     return headerRef.current ? headerRef.current.offsetHeight : 0;
@@ -103,7 +103,19 @@ const App: React.FC = () => {
 
   const deskItems = [
     { id: 'desk-about', label: 'About Me', icon: <UserCircleIcon className="w-10 h-10 mx-auto mb-2 group-hover:scale-110 transition-transform duration-200" />, action: () => scrollToSection('about') },
-    { id: 'desk-cv', label: 'Download CV', icon: <DownloadIcon className="w-10 h-10 mx-auto mb-2 group-hover:scale-110 transition-transform duration-200" />, action: () => { window.open('/Elvi_Zekaj_CV.pdf', '_blank'); } },
+    { id: 'desk-cv', label: 'Download CV', icon: <DownloadIcon className="w-10 h-10 mx-auto mb-2 group-hover:scale-110 transition-transform duration-200" />, action: () => {
+      // Check if CV file exists, otherwise show contact info
+      const cvUrl = '/ZE_Digital_Systems_CV.pdf';
+      const link = document.createElement('a');
+      link.href = cvUrl;
+      link.download = 'ZE_Digital_Systems_CV.pdf';
+      link.onerror = () => {
+        alert('CV download will be available soon. Please contact us at elvizekaj02@gmail.com for more information.');
+      };
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } },
     { id: 'desk-experience', label: 'Experience', icon: <ExperienceIcon className="w-10 h-10 mx-auto mb-2 group-hover:scale-110 transition-transform duration-200" />, action: () => scrollToSection('experience') },
     { id: 'desk-education', label: 'Education', icon: <EducationIconConst className="w-10 h-10 mx-auto mb-2 group-hover:scale-110 transition-transform duration-200" />, action: () => scrollToSection('education') },
     { id: 'desk-skills', label: 'Skills', icon: <SkillsIconConst className="w-10 h-10 mx-auto mb-2 group-hover:scale-110 transition-transform duration-200" />, action: () => scrollToSection('skills') },
@@ -329,8 +341,8 @@ const App: React.FC = () => {
         </section>
 
         <footer className="text-center py-10 text-slate-500 border-t border-slate-600 mt-16">
-          <p>&copy; {new Date().getFullYear()} Elvi Zekaj. All rights reserved.</p>
-          <p className="text-sm">Crafted with React, TypeScript, and Tailwind CSS. Inspired by creativity.</p>
+          <p>&copy; {new Date().getFullYear()} Z.E Digital Systems. All rights reserved.</p>
+          <p className="text-sm">Crafted with React, TypeScript, and Tailwind CSS. Powered by innovation.</p>
         </footer>
       </main>
     </div>

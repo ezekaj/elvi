@@ -168,7 +168,7 @@ export const PROJECTS_DATA: Project[] = [
     tags: ['React', 'TypeScript', 'TailwindCSS', 'UX/UI', 'Interactive Design'],
     status: 'live',
     icon: <SparklesIcon className="w-12 h-12 text-brand-accent"/>,
-    projectUrl: '#' // Current site
+    projectUrl: 'https://github.com/ezekaj/elvi' // GitHub repository
   },
   {
     id: 'proj2',
@@ -177,7 +177,7 @@ export const PROJECTS_DATA: Project[] = [
     tags: ['Gemini API', 'Node.js', 'React', 'AI/ML'],
     status: 'soon',
     icon: <CodeBracketIcon className="w-12 h-12 text-brand-secondary-accent"/>,
-    projectUrl: '#project-ai-generator' // Placeholder link
+    projectUrl: 'mailto:elvizekaj02@gmail.com?subject=AI Content Generator Project Inquiry&body=Hi, I am interested in learning more about your AI Content Generator project.'
   },
   {
     id: 'proj3',
@@ -186,7 +186,7 @@ export const PROJECTS_DATA: Project[] = [
     tags: ['Backend', 'API Design', 'Scalability', 'E-commerce'],
     status: 'in-progress',
     icon: <BriefcaseIcon className="w-12 h-12 text-yellow-400"/>,
-    projectUrl: '#project-ecommerce-module' // Placeholder link
+    projectUrl: 'mailto:elvizekaj02@gmail.com?subject=E-commerce Platform Module Inquiry&body=Hi, I am interested in learning more about your E-commerce Platform Module project.'
   },
    {
     id: 'proj4',
@@ -195,6 +195,6 @@ export const PROJECTS_DATA: Project[] = [
     tags: ['EdTech', 'React Native', 'Firebase', 'Gamification'],
     status: 'soon',
     icon: <AcademicCapIcon className="w-12 h-12 text-purple-400"/>,
-    projectUrl: '#project-learning-tool' // Placeholder link
+    projectUrl: 'mailto:elvizekaj02@gmail.com?subject=Interactive Learning Tool Project Inquiry&body=Hi, I am interested in learning more about your Interactive Learning Tool project.'
   }
 ];
