@@ -3,47 +3,76 @@ import { CONTACT_INFO, WORK_EXPERIENCE, EDUCATION_HISTORY, SKILLS_DATA, PROJECTS
 import { WorkExperienceItem, EducationItem } from './types';
 import InteractiveProject from './components/InteractiveProject';
 import InteractiveDesk from './components/InteractiveDesk';
+import FloatingParticles from './components/FloatingParticles';
 
 const SectionTitle: React.FC<{ children: React.ReactNode, id: string }> = ({ children, id }) => (
-  <h2 id={id} className="text-3xl font-bold text-brand-accent mb-12 relative inline-block"> {/* Increased mb for more space */}
-    {children}
-    <span className="absolute bottom-[-12px] left-1/2 transform -translate-x-1/2 w-1/4 h-[3px] bg-brand-secondary-accent rounded-full"></span>
+  <h2 id={id} className="text-4xl font-bold mb-16 relative inline-block animate-fade-in-up">
+    <span className="bg-gradient-to-r from-brand-accent via-brand-secondary-accent to-brand-accent bg-clip-text text-transparent animate-liquid-shimmer bg-[length:200%_100%]">
+      {children}
+    </span>
+    <div className="absolute bottom-[-16px] left-1/2 transform -translate-x-1/2 w-1/3 h-1 bg-gradient-to-r from-transparent via-brand-accent to-transparent rounded-full animate-glow-pulse"></div>
+    <div className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 w-1/4 h-[2px] bg-gradient-to-r from-transparent via-brand-secondary-accent to-transparent rounded-full opacity-60"></div>
   </h2>
 );
 
 const TimelineItem: React.FC<{ item: WorkExperienceItem | EducationItem, isExperience?: boolean, animationDelay: string }> = ({ item, isExperience, animationDelay }) => (
-  <div className="mb-8 flex animate-fade-in-up" style={{ animationDelay }}>
-    <div className="flex flex-col items-center mr-6">
-      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-dark-secondary border-2 border-brand-accent flex items-center justify-center text-brand-accent">
-        {item.icon}
+  <div className="mb-10 flex animate-glass-morph group" style={{ animationDelay }}>
+    <div className="flex flex-col items-center mr-8">
+      <div className="flex-shrink-0 w-14 h-14 rounded-2xl liquid-glass-interactive flex items-center justify-center text-brand-accent relative overflow-hidden group-hover:animate-micro-bounce">
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/20 to-brand-secondary-accent/20 rounded-2xl"></div>
+        <div className="relative z-10 p-2">
+          {item.icon}
+        </div>
       </div>
-      {/* Animated Connector Line */}
-      <div 
-        className="w-px h-full bg-slate-600 animate-grow-line origin-top"
-        style={{ animationDelay: `calc(${animationDelay} + 0.2s)` }} // Delay line animation slightly after item fades in
-      ></div>
+      {/* Enhanced Animated Connector Line */}
+      <div className="relative w-px h-full mt-4">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-brand-accent via-brand-secondary-accent to-transparent animate-grow-line origin-top"
+          style={{ animationDelay: `calc(${animationDelay} + 0.3s)` }}
+        ></div>
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-brand-accent/50 to-transparent blur-sm animate-grow-line origin-top"
+          style={{ animationDelay: `calc(${animationDelay} + 0.3s)` }}
+        ></div>
+      </div>
     </div>
-    <div className="bg-brand-dark-secondary p-6 rounded-lg shadow-lg w-full">
-      <h3 className="text-xl font-semibold text-brand-light mb-1">{isExperience ? (item as WorkExperienceItem).role : (item as EducationItem).degree}</h3>
-      <p className="text-brand-secondary-accent font-medium mb-1">{isExperience ? (item as WorkExperienceItem).company : (item as EducationItem).institution}</p>
-      <p className="text-sm text-slate-400 mb-1">{item.period} | {item.location}</p>
-      {isExperience && (
-        <ul className="list-disc list-inside text-slate-400 space-y-1 mt-2">
-          {(item as WorkExperienceItem).responsibilities.map((resp, index) => (
-            <li key={index}>{resp}</li>
-          ))}
-        </ul>
-      )}
-      {(item as EducationItem).website && (
-        <a 
-          href={(item as EducationItem).website} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="inline-flex items-center text-sm text-brand-accent hover:text-brand-accent-hover mt-2"
-        >
-          Visit Website <ExternalLinkIcon className="ml-1 w-4 h-4" />
-        </a>
-      )}
+    <div className="liquid-glass-card p-8 rounded-2xl w-full group-hover:liquid-glass-interactive transition-all duration-500 relative overflow-hidden">
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/5 via-transparent to-brand-secondary-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+      <div className="relative z-10">
+        <h3 className="text-2xl font-bold text-brand-light mb-2 group-hover:bg-gradient-to-r group-hover:from-brand-accent group-hover:to-brand-secondary-accent group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+          {isExperience ? (item as WorkExperienceItem).role : (item as EducationItem).degree}
+        </h3>
+        <p className="text-brand-secondary-accent font-semibold mb-2 text-lg">{isExperience ? (item as WorkExperienceItem).company : (item as EducationItem).institution}</p>
+        <p className="text-sm text-slate-300 mb-3 font-medium">{item.period} | {item.location}</p>
+        {isExperience && (
+          <ul className="list-none text-slate-300 space-y-2 mt-4">
+            {(item as WorkExperienceItem).responsibilities.map((resp, index) => (
+              <li key={index} className="flex items-start">
+                <span className="w-2 h-2 bg-gradient-to-r from-brand-accent to-brand-secondary-accent rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                <span className="leading-relaxed">{resp}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {(item as EducationItem).website && (
+          <a
+            href={(item as EducationItem).website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-sm font-semibold mt-4 px-4 py-2 rounded-lg liquid-glass hover:liquid-glass-interactive transition-all duration-300 group/link"
+          >
+            <span className="bg-gradient-to-r from-brand-accent to-brand-secondary-accent bg-clip-text text-transparent">
+              Visit Website
+            </span>
+            <ExternalLinkIcon className="ml-2 w-4 h-4 text-brand-accent group-hover/link:translate-x-1 transition-transform duration-300" />
+          </a>
+        )}
+      </div>
+
+      {/* Shimmer effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
     </div>
   </div>
 );
@@ -82,19 +111,36 @@ const App: React.FC = () => {
   ];
   
   return (
-    <div className="flex flex-col min-h-screen bg-brand-dark">
-      {/* Header */}
-      <header ref={headerRef} className="py-6 px-4 sm:px-8 bg-brand-dark-secondary shadow-lg sticky top-0 z-50">
+    <div className="flex flex-col min-h-screen bg-brand-dark relative">
+      {/* Floating Particles Background */}
+      <FloatingParticles />
+
+      {/* Enhanced Liquid Glass Header */}
+      <header ref={headerRef} className="liquid-glass-header py-6 px-4 sm:px-8 sticky top-0 z-50 transition-all duration-300">
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
-          <div className="text-center sm:text-left mb-4 sm:mb-0">
-            <h1 className="text-3xl font-extrabold text-brand-light">Elvi Zekaj</h1>
-            <p className="text-lg text-brand-accent">IT Specialist & Software Developer</p>
+          <div className="text-center sm:text-left mb-4 sm:mb-0 animate-slide-in-left">
+            <h1 className="text-3xl font-extrabold text-brand-light bg-gradient-to-r from-brand-light via-brand-accent to-brand-secondary-accent bg-clip-text text-transparent animate-liquid-shimmer bg-[length:200%_100%]">
+              Elvi Zekaj
+            </h1>
+            <p className="text-lg text-brand-accent font-medium tracking-wide">IT Specialist & Software Developer</p>
           </div>
-          <div className="flex space-x-5">
-            <a href={CONTACT_INFO.github} target="_blank" rel="noopener noreferrer" title="GitHub" className="text-slate-400 hover:text-brand-accent transition-colors">
+          <div className="flex space-x-5 animate-slide-in-right">
+            <a
+              href={CONTACT_INFO.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="GitHub"
+              className="text-slate-400 hover:text-brand-accent transition-all duration-300 micro-bounce micro-glow p-2 rounded-lg"
+            >
               <GitHubIcon className="w-7 h-7" />
             </a>
-            <a href={CONTACT_INFO.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn" className="text-slate-400 hover:text-brand-accent transition-colors">
+            <a
+              href={CONTACT_INFO.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="LinkedIn"
+              className="text-slate-400 hover:text-brand-accent transition-all duration-300 micro-bounce micro-glow p-2 rounded-lg"
+            >
               <LinkedInIcon className="w-7 h-7" />
             </a>
           </div>
@@ -108,19 +154,29 @@ const App: React.FC = () => {
       <main className="container mx-auto p-4 sm:p-8 space-y-16 flex-grow">
         <section id="about">
           <SectionTitle id="about-title">About Me</SectionTitle>
-          <div className="bg-brand-dark-secondary p-6 rounded-lg shadow-xl">
-            <img 
-              src="https://picsum.photos/seed/elvi_zekaj_profile/150/150" 
-              alt="Elvi Zekaj" 
-              className="w-32 h-32 rounded-full border-4 border-brand-accent shadow-lg mb-6 float-right ml-6 animate-fade-in-up"
-              style={{animationDelay: '100ms'}}
-            />
-            <p 
-              className="text-lg text-slate-300 leading-relaxed clear-left animate-fade-in-up"
-              style={{animationDelay: '200ms'}}
-            >
-              {aboutMeText}
-            </p>
+          <div className="liquid-glass-card p-10 rounded-3xl relative overflow-hidden group">
+            {/* Background gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/5 via-transparent to-brand-secondary-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
+
+            <div className="relative z-10">
+              <img
+                src="https://picsum.photos/seed/elvi_zekaj_profile/150/150"
+                alt="Elvi Zekaj"
+                className="w-40 h-40 rounded-3xl border-4 border-transparent bg-gradient-to-br from-brand-accent to-brand-secondary-accent p-1 shadow-2xl mb-8 float-right ml-8 animate-glass-morph hover:animate-micro-bounce transition-transform duration-300"
+                style={{animationDelay: '100ms'}}
+              />
+              <div className="w-40 h-40 rounded-3xl bg-gradient-to-br from-brand-accent/20 to-brand-secondary-accent/20 blur-xl absolute top-10 right-8 opacity-60 animate-glow-pulse"></div>
+
+              <p
+                className="text-xl text-slate-200 leading-relaxed clear-left animate-glass-morph font-medium"
+                style={{animationDelay: '200ms'}}
+              >
+                {aboutMeText}
+              </p>
+            </div>
+
+            {/* Shimmer effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
           </div>
         </section>
 
@@ -153,16 +209,47 @@ const App: React.FC = () => {
 
         <section id="skills">
           <SectionTitle id="skills-title">Skills</SectionTitle>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {SKILLS_DATA.map((skill, index) => (
-              <div 
-                key={skill.id} 
-                className="bg-brand-dark-secondary p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1 animate-fade-in-up"
-                style={{ animationDelay: `${index * 75}ms` }} // Adjusted stagger
+              <div
+                key={skill.id}
+                className="liquid-glass-card p-6 rounded-2xl group hover:liquid-glass-interactive transition-all duration-500 relative overflow-hidden animate-glass-morph"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <h4 className="font-semibold text-brand-light text-lg">{skill.name}</h4>
-                {skill.level && <p className="text-sm text-brand-accent">{skill.level}</p>}
-                <p className="text-xs text-slate-500 capitalize mt-1">{skill.category}</p>
+                {/* Background gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/5 via-transparent to-brand-secondary-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+                <div className="relative z-10">
+                  {/* Category indicator */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-3 h-3 rounded-full bg-gradient-to-r from-brand-accent to-brand-secondary-accent animate-glow-pulse"></div>
+                    <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">{skill.category}</span>
+                  </div>
+
+                  <h4 className="font-bold text-brand-light text-lg mb-2 group-hover:bg-gradient-to-r group-hover:from-brand-accent group-hover:to-brand-secondary-accent group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                    {skill.name}
+                  </h4>
+
+                  {skill.level && (
+                    <p className="text-sm text-brand-secondary-accent font-medium leading-relaxed">
+                      {skill.level}
+                    </p>
+                  )}
+
+                  {/* Skill level indicator bar */}
+                  <div className="mt-4 w-full h-1 bg-slate-700 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-brand-accent to-brand-secondary-accent rounded-full animate-liquid-shimmer bg-[length:200%_100%]"
+                      style={{
+                        width: skill.level ? '90%' : '75%',
+                        animationDelay: `${index * 100 + 500}ms`
+                      }}
+                    ></div>
+                  </div>
+                </div>
+
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
               </div>
             ))}
           </div>
@@ -185,17 +272,37 @@ const App: React.FC = () => {
 
         <section id="contact">
           <SectionTitle id="contact-title">Get In Touch</SectionTitle>
-          <div className="bg-brand-dark-secondary p-8 rounded-lg shadow-xl text-center animate-fade-in-up" style={{animationDelay: '100ms'}}>
-            <p className="text-slate-300 mb-6 max-w-xl mx-auto text-lg">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of something great.
-              Feel free to reach out via email or connect with me on LinkedIn.
-            </p>
-            <a 
-              href={`mailto:${CONTACT_INFO.email}`}
-              className="bg-gradient-to-r from-brand-secondary-accent to-teal-600 hover:from-teal-500 hover:to-teal-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 inline-block text-lg"
-            >
-              Say Hello
-            </a>
+          <div className="liquid-glass-card p-12 rounded-3xl text-center animate-glass-morph group relative overflow-hidden" style={{animationDelay: '100ms'}}>
+            {/* Background gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/10 via-transparent to-brand-secondary-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
+
+            <div className="relative z-10">
+              <p className="text-slate-200 mb-8 max-w-2xl mx-auto text-xl leading-relaxed font-medium">
+                I'm always open to discussing new projects, creative ideas, or opportunities to be part of something great.
+                Feel free to reach out via email or connect with me on LinkedIn.
+              </p>
+
+              <a
+                href={`mailto:${CONTACT_INFO.email}`}
+                className="liquid-glass-interactive px-10 py-4 rounded-2xl font-bold text-lg inline-flex items-center group/button relative overflow-hidden"
+              >
+                {/* Button gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-accent to-brand-secondary-accent opacity-20 group-hover/button:opacity-30 transition-opacity duration-300 rounded-2xl"></div>
+
+                <span className="relative z-10 bg-gradient-to-r from-brand-accent to-brand-secondary-accent bg-clip-text text-transparent group-hover/button:from-brand-secondary-accent group-hover/button:to-brand-accent transition-all duration-300">
+                  Say Hello
+                </span>
+
+                {/* Button glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-accent to-brand-secondary-accent opacity-0 group-hover/button:opacity-20 blur-xl transition-opacity duration-300 rounded-2xl"></div>
+
+                {/* Button shimmer */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/button:translate-x-full transition-transform duration-700 ease-out"></div>
+              </a>
+            </div>
+
+            {/* Section shimmer effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
           </div>
         </section>
 
