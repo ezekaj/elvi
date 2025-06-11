@@ -175,21 +175,27 @@ const App: React.FC = () => {
             {/* Background gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/5 via-transparent to-brand-secondary-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
 
-            <div className="relative z-10">
-              <img
-                src="/assets/images/IMG_2898.png"
-                alt="Elvi Zekaj - Professional portrait"
-                className="w-40 h-40 rounded-3xl border-4 border-transparent bg-gradient-to-br from-brand-accent to-brand-secondary-accent p-1 shadow-2xl mb-8 float-right ml-8 animate-glass-morph hover:animate-micro-bounce transition-transform duration-300 object-cover"
-                style={{animationDelay: '100ms'}}
-              />
-              <div className="w-40 h-40 rounded-3xl bg-gradient-to-br from-brand-accent/20 to-brand-secondary-accent/20 blur-xl absolute top-10 right-8 opacity-60 animate-glow-pulse"></div>
+            <div className="relative z-10 flex flex-col lg:flex-row lg:items-start lg:gap-8">
+              {/* Profile Image Container */}
+              <div className="relative flex-shrink-0 mb-8 lg:mb-0 mx-auto lg:mx-0">
+                <img
+                  src="/assets/images/IMG_2898.png"
+                  alt="Elvi Zekaj - Professional portrait"
+                  className="w-40 h-40 rounded-3xl border-4 border-transparent bg-gradient-to-br from-brand-accent to-brand-secondary-accent p-1 shadow-2xl animate-glass-morph hover:animate-micro-bounce transition-transform duration-300 object-cover"
+                  style={{animationDelay: '100ms'}}
+                />
+                <div className="w-40 h-40 rounded-3xl bg-gradient-to-br from-brand-accent/20 to-brand-secondary-accent/20 blur-xl absolute top-0 left-0 opacity-60 animate-glow-pulse -z-10"></div>
+              </div>
 
-              <p
-                className="text-xl text-slate-200 leading-relaxed clear-left animate-glass-morph font-medium"
-                style={{animationDelay: '200ms'}}
-              >
-                {aboutMeText}
-              </p>
+              {/* Text Content */}
+              <div className="flex-1">
+                <p
+                  className="text-xl text-slate-200 leading-relaxed animate-glass-morph font-medium"
+                  style={{animationDelay: '200ms'}}
+                >
+                  {aboutMeText}
+                </p>
+              </div>
             </div>
 
             {/* Shimmer effect */}
