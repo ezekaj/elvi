@@ -124,7 +124,7 @@ const App: React.FC = () => {
               {logoLoaded && (
                 <img
                   src="/assets/images/Zekaj.png"
-                  alt="Zekaj Technologies Logo - Modern dotted sphere design representing innovation and technology solutions"
+                  alt="Zekaj Technologies Logo - Modern stylized Z design with gradient effects"
                   className="w-12 h-12 sm:w-14 sm:h-14 object-contain animate-glass-morph hover:animate-micro-bounce transition-transform duration-300 mr-4"
                   style={{animationDelay: '50ms'}}
                   onError={() => setLogoLoaded(false)}
