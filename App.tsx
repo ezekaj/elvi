@@ -136,10 +136,10 @@ const App: React.FC = () => {
                 />
               )}
               <h1 className="text-3xl font-extrabold text-brand-light bg-gradient-to-r from-brand-light via-brand-accent to-brand-secondary-accent bg-clip-text text-transparent animate-liquid-shimmer bg-[length:200%_100%]">
-                Elvi Zekaj
+                Z.E
               </h1>
             </div>
-            <p className="text-lg text-brand-accent font-medium tracking-wide">IT Specialist & Software Developer</p>
+            <p className="text-lg text-brand-accent font-medium tracking-wide">Z.E Digital Systems</p>
           </div>
           <div className="flex space-x-5 animate-slide-in-right">
             <a
