@@ -182,7 +182,7 @@ const App: React.FC = () => {
       <main className="container mx-auto p-4 sm:p-8 space-y-16 flex-grow">
         <section id="about">
           <SectionTitle id="about-title">About Me</SectionTitle>
-          <div className="liquid-glass-card p-10 rounded-3xl relative overflow-hidden group">
+          <div className="liquid-glass-deep p-10 rounded-3xl relative overflow-hidden group">
             {/* Background gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/5 via-transparent to-brand-secondary-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
 
@@ -306,7 +306,7 @@ const App: React.FC = () => {
 
         <section id="contact">
           <SectionTitle id="contact-title">Get In Touch</SectionTitle>
-          <div className="liquid-glass-card p-12 rounded-3xl text-center animate-glass-morph group relative overflow-hidden" style={{animationDelay: '100ms'}}>
+          <div className="glass-live-sample p-12 rounded-3xl text-center animate-glass-morph group relative overflow-hidden" style={{animationDelay: '100ms'}}>
             {/* Background gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/10 via-transparent to-brand-secondary-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
 

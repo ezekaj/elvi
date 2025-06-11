@@ -19,7 +19,7 @@ const InteractiveProject: React.FC<InteractiveProjectProps> = ({ project }) => {
       href={project.projectUrl || '#'}
       target={project.projectUrl && project.projectUrl.startsWith('http') ? '_blank' : '_self'}
       rel="noopener noreferrer"
-      className="relative group liquid-glass-card p-8 rounded-3xl flex flex-col items-center text-center animate-glass-morph overflow-hidden"
+      className="relative group glass-live-sample p-8 rounded-3xl flex flex-col items-center text-center animate-glass-morph overflow-hidden"
       style={{animationDelay: `${parseInt(project.id.slice(-1)) * 200}ms`}}
     >
       {/* Enhanced background gradient overlay */}
@@ -66,7 +66,7 @@ const InteractiveProject: React.FC<InteractiveProjectProps> = ({ project }) => {
         {project.tags.map((tag, index) => (
           <span
             key={tag}
-            className="text-xs liquid-glass px-3 py-2 rounded-full text-brand-accent font-medium backdrop-blur-sm border border-brand-accent/20 hover:border-brand-accent/40 transition-all duration-300"
+            className="text-xs liquid-glass-subtle px-3 py-2 rounded-full text-brand-accent font-medium border border-brand-accent/20 hover:border-brand-accent/40 transition-all duration-300"
             style={{animationDelay: `${index * 100}ms`}}
           >
             {tag}
