@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CONTACT_INFO, WORK_EXPERIENCE, EDUCATION_HISTORY, SKILLS_DATA, PROJECTS_DATA, GitHubIcon, LinkedInIcon, ExternalLinkIcon, DownloadIcon, UserCircleIcon, BriefcaseIcon as ExperienceIcon, AcademicCapIcon as EducationIconConst, CodeBracketIcon as SkillsIconConst, FolderOpenIcon, PhoneIcon as ContactIconConst } from './constants';
 import { WorkExperienceItem, EducationItem } from './types';
 import InteractiveProject from './components/InteractiveProject';
@@ -80,6 +80,7 @@ const TimelineItem: React.FC<{ item: WorkExperienceItem | EducationItem, isExper
 
 const App: React.FC = () => {
   const headerRef = React.useRef<HTMLElement>(null);
+  const [logoLoaded, setLogoLoaded] = useState(true);
   const aboutMeText = "Strong problem-solving skills, enabling me to navigate challenges with resilience and creativity. Highly organized and detail-oriented, with a commitment to delivering results. Dedicated to self-improvement and contributing to the success of the team.";
 
   const getHeaderHeight = () => {
@@ -119,17 +120,16 @@ const App: React.FC = () => {
       <header ref={headerRef} className="liquid-glass-header py-6 px-4 sm:px-8 sticky top-0 z-50 transition-all duration-300">
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
           <div className="text-center sm:text-left mb-4 sm:mb-0 animate-slide-in-left">
-            <div className="flex items-center justify-center sm:justify-start space-x-4 mb-2">
-              <img
-                src="/assets/images/Zekaj.png"
-                alt="Zekaj Technologies Logo - Modern dotted sphere design representing innovation and technology solutions"
-                className="w-12 h-12 sm:w-14 sm:h-14 object-contain animate-glass-morph hover:animate-micro-bounce transition-transform duration-300"
-                style={{animationDelay: '50ms'}}
-                onError={(e) => {
-                  // Hide image if it fails to load, graceful degradation
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
+            <div className={`flex items-center justify-center sm:justify-start mb-2 ${logoLoaded ? '' : 'justify-center sm:justify-start'}`}>
+              {logoLoaded && (
+                <img
+                  src="/assets/images/Zekaj.png"
+                  alt="Zekaj Technologies Logo - Modern dotted sphere design representing innovation and technology solutions"
+                  className="w-12 h-12 sm:w-14 sm:h-14 object-contain animate-glass-morph hover:animate-micro-bounce transition-transform duration-300 mr-4"
+                  style={{animationDelay: '50ms'}}
+                  onError={() => setLogoLoaded(false)}
+                />
+              )}
               <h1 className="text-3xl font-extrabold text-brand-light bg-gradient-to-r from-brand-light via-brand-accent to-brand-secondary-accent bg-clip-text text-transparent animate-liquid-shimmer bg-[length:200%_100%]">
                 Elvi Zekaj
               </h1>
