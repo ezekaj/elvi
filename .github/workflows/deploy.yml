@@ -24,8 +24,15 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
+    - name: Verify React types installation
+      run: |
+        echo "Checking installed packages..."
+        npm list @types/react @types/react-dom || echo "React types not found"
+
     - name: TypeScript Check
-      run: npx tsc --noEmit
+      run: |
+        echo "Running TypeScript compilation check..."
+        npx tsc --noEmit --verbose
 
     - name: Build Test
       run: npm run build
