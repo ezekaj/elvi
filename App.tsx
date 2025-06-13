@@ -4,8 +4,6 @@ import { WorkExperienceItem, EducationItem } from './types';
 import InteractiveProject from './components/InteractiveProject';
 import InteractiveDesk from './components/InteractiveDesk';
 import FloatingParticles from './components/FloatingParticles';
-import zekajLogo from './assets/images/zekaj.png';
-import profileImage from './assets/images/profile.png';
 
 const SectionTitle: React.FC<{ children: React.ReactNode, id: string }> = ({ children, id }) => (
   <h2 id={id} className="text-4xl font-bold mb-16 relative inline-block animate-fade-in-up">
@@ -153,7 +151,7 @@ const App: React.FC = () => {
 
                     {/* Logo image */}
                     <img
-                      src={zekajLogo}
+                      src="/assets/images/zekaj.png"
                       alt="Zekaj Technologies Logo - Modern dotted sphere design representing innovation and technology solutions"
                       className="relative z-10 w-full h-full object-contain animate-glass-morph group-hover:animate-micro-bounce transition-all duration-500 filter group-hover:brightness-110 group-hover:contrast-110"
                       style={{
@@ -224,7 +222,7 @@ const App: React.FC = () => {
               {/* Profile Image Container */}
               <div className="relative flex-shrink-0 mb-8 lg:mb-0 mx-auto lg:mx-0">
                 <img
-                  src={profileImage}
+                  src="/assets/images/profile.png"
                   alt="Elvi Zekaj - Professional portrait"
                   className="w-40 h-40 rounded-3xl border-4 border-transparent bg-gradient-to-br from-brand-accent to-brand-secondary-accent p-1 shadow-2xl animate-glass-morph hover:animate-micro-bounce transition-transform duration-300 object-cover"
                   style={{animationDelay: '100ms'}}
