@@ -543,6 +543,349 @@
         font-weight: 600;
       }
 
+      /* ========================================
+         2024 REFINED NEUMORPHISM SYSTEM
+         Soft, tactile UI for interactive elements
+         ======================================== */
+
+      :root {
+        /* Neumorphism color palette - 2024 accessible approach */
+        --neuro-bg-light: #e2e8f0;
+        --neuro-bg-dark: #1a202c;
+        --neuro-shadow-light: rgba(255, 255, 255, 0.8);
+        --neuro-shadow-dark: rgba(0, 0, 0, 0.3);
+        --neuro-inset-light: rgba(255, 255, 255, 0.9);
+        --neuro-inset-dark: rgba(0, 0, 0, 0.4);
+        --neuro-border: rgba(255, 255, 255, 0.1);
+        --neuro-text-contrast: #ffffff;
+        --neuro-text-secondary: #a0aec0;
+      }
+
+      /* 2024 Accessibility: High contrast mode for neumorphism */
+      @media (prefers-contrast: high) {
+        :root {
+          --neuro-shadow-light: rgba(255, 255, 255, 1);
+          --neuro-shadow-dark: rgba(0, 0, 0, 0.8);
+          --neuro-inset-light: rgba(255, 255, 255, 1);
+          --neuro-inset-dark: rgba(0, 0, 0, 0.9);
+          --neuro-border: rgba(255, 255, 255, 0.4);
+        }
+      }
+
+      /* Base neumorphic surface - 2024 refined approach */
+      .neuro-surface {
+        background: var(--neuro-bg-dark);
+        border-radius: 16px;
+        box-shadow:
+          8px 8px 16px var(--neuro-shadow-dark),
+          -8px -8px 16px var(--neuro-shadow-light);
+        border: 1px solid var(--neuro-border);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        /* 2024 Accessibility improvements */
+        color: var(--neuro-text-contrast);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Interactive neumorphic button - primary use case for 2024 */
+      .neuro-button {
+        background: linear-gradient(145deg, #2d3748, #1a202c);
+        border-radius: 12px;
+        padding: 12px 24px;
+        border: none;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 14px;
+        color: var(--neuro-text-contrast);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+
+        /* Soft tactile shadows */
+        box-shadow:
+          6px 6px 12px rgba(0, 0, 0, 0.4),
+          -6px -6px 12px rgba(255, 255, 255, 0.05),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+        /* 2024 Accessibility: Focus states */
+        outline: none;
+        position: relative;
+      }
+
+      .neuro-button:focus-visible {
+        box-shadow:
+          6px 6px 12px rgba(0, 0, 0, 0.4),
+          -6px -6px 12px rgba(255, 255, 255, 0.05),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+          0 0 0 3px rgba(66, 153, 225, 0.5);
+      }
+
+      .neuro-button:hover {
+        transform: translateY(-1px);
+        box-shadow:
+          8px 8px 16px rgba(0, 0, 0, 0.5),
+          -8px -8px 16px rgba(255, 255, 255, 0.08),
+          inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      }
+
+      .neuro-button:active {
+        transform: translateY(1px);
+        box-shadow:
+          2px 2px 6px rgba(0, 0, 0, 0.6),
+          -2px -2px 6px rgba(255, 255, 255, 0.03),
+          inset 2px 2px 6px rgba(0, 0, 0, 0.3),
+          inset -2px -2px 6px rgba(255, 255, 255, 0.05);
+      }
+
+      /* Neumorphic toggle switch - 2024 accessible design */
+      .neuro-toggle {
+        width: 60px;
+        height: 30px;
+        background: linear-gradient(145deg, #1a202c, #2d3748);
+        border-radius: 15px;
+        position: relative;
+        cursor: pointer;
+
+        box-shadow:
+          inset 4px 4px 8px rgba(0, 0, 0, 0.5),
+          inset -4px -4px 8px rgba(255, 255, 255, 0.05);
+
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        /* 2024 Accessibility */
+        border: 2px solid transparent;
+      }
+
+      .neuro-toggle:focus-within {
+        border-color: rgba(66, 153, 225, 0.6);
+        box-shadow:
+          inset 4px 4px 8px rgba(0, 0, 0, 0.5),
+          inset -4px -4px 8px rgba(255, 255, 255, 0.05),
+          0 0 0 2px rgba(66, 153, 225, 0.3);
+      }
+
+      .neuro-toggle::before {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 22px;
+        height: 22px;
+        background: linear-gradient(145deg, #4299e1, #3182ce);
+        border-radius: 50%;
+
+        box-shadow:
+          3px 3px 6px rgba(0, 0, 0, 0.4),
+          -3px -3px 6px rgba(255, 255, 255, 0.1);
+
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .neuro-toggle.active::before {
+        transform: translateX(30px);
+        background: linear-gradient(145deg, #38b2ac, #319795);
+      }
+
+      /* Neumorphic card - for content containers */
+      .neuro-card {
+        background: linear-gradient(145deg, #2d3748, #1a202c);
+        border-radius: 20px;
+        padding: 24px;
+
+        box-shadow:
+          12px 12px 24px rgba(0, 0, 0, 0.4),
+          -12px -12px 24px rgba(255, 255, 255, 0.05);
+
+        border: 1px solid var(--neuro-border);
+
+        /* 2024 Accessibility improvements */
+        color: var(--neuro-text-contrast);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .neuro-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent);
+      }
+
+      /* Neumorphic input field - 2024 accessible approach */
+      .neuro-input {
+        background: linear-gradient(145deg, #1a202c, #2d3748);
+        border: 2px solid var(--neuro-border);
+        border-radius: 12px;
+        padding: 12px 16px;
+        font-size: 14px;
+        color: var(--neuro-text-contrast);
+
+        box-shadow:
+          inset 6px 6px 12px rgba(0, 0, 0, 0.4),
+          inset -6px -6px 12px rgba(255, 255, 255, 0.05);
+
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        outline: none;
+      }
+
+      .neuro-input:focus {
+        border-color: rgba(66, 153, 225, 0.6);
+        box-shadow:
+          inset 6px 6px 12px rgba(0, 0, 0, 0.4),
+          inset -6px -6px 12px rgba(255, 255, 255, 0.05),
+          0 0 0 3px rgba(66, 153, 225, 0.3);
+      }
+
+      .neuro-input::placeholder {
+        color: var(--neuro-text-secondary);
+        opacity: 0.7;
+      }
+
+      /* 2024 NEUMORPHISM ACCESSIBILITY ENHANCEMENTS */
+
+      /* High contrast mode - flatten neumorphic effects */
+      @media (prefers-contrast: high) {
+        .neuro-surface, .neuro-button, .neuro-card, .neuro-input {
+          background: #000000 !important;
+          color: #ffffff !important;
+          border: 3px solid #ffffff !important;
+          box-shadow: none !important;
+          text-shadow: none !important;
+        }
+
+        .neuro-button:hover {
+          background: #333333 !important;
+          transform: none !important;
+        }
+
+        .neuro-toggle {
+          background: #000000 !important;
+          border: 3px solid #ffffff !important;
+          box-shadow: none !important;
+        }
+
+        .neuro-toggle::before {
+          background: #ffffff !important;
+          box-shadow: none !important;
+        }
+      }
+
+      /* Reduced motion - disable tactile animations */
+      @media (prefers-reduced-motion: reduce) {
+        .neuro-surface, .neuro-button, .neuro-card, .neuro-input, .neuro-toggle {
+          transition: none !important;
+          transform: none !important;
+        }
+
+        .neuro-button:hover, .neuro-button:active {
+          transform: none !important;
+        }
+
+        .neuro-toggle::before {
+          transition: none !important;
+        }
+      }
+
+      /* Performance mode - simplified neumorphism */
+      .performance-mode .neuro-surface,
+      .performance-mode .neuro-button,
+      .performance-mode .neuro-card {
+        box-shadow:
+          4px 4px 8px rgba(0, 0, 0, 0.3),
+          -4px -4px 8px rgba(255, 255, 255, 0.03) !important;
+      }
+
+      .performance-mode .neuro-input {
+        box-shadow:
+          inset 3px 3px 6px rgba(0, 0, 0, 0.3),
+          inset -3px -3px 6px rgba(255, 255, 255, 0.03) !important;
+      }
+
+      /* 2024 NEUMORPHIC UTILITY CLASSES */
+
+      /* Pressed/inset state for interactive feedback */
+      .neuro-pressed {
+        box-shadow:
+          inset 4px 4px 8px rgba(0, 0, 0, 0.5),
+          inset -4px -4px 8px rgba(255, 255, 255, 0.03) !important;
+        transform: scale(0.98) !important;
+      }
+
+      /* Elevated state for hover effects */
+      .neuro-elevated {
+        box-shadow:
+          16px 16px 32px rgba(0, 0, 0, 0.5),
+          -16px -16px 32px rgba(255, 255, 255, 0.08) !important;
+        transform: translateY(-2px) !important;
+      }
+
+      /* Flat state for disabled elements */
+      .neuro-flat {
+        box-shadow: none !important;
+        background: #2d3748 !important;
+        color: var(--neuro-text-secondary) !important;
+        cursor: not-allowed !important;
+      }
+
+      /* 2024 NEUMORPHIC INTERACTIVE STATES */
+
+      /* Loading state with subtle animation */
+      .neuro-loading {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .neuro-loading::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent);
+        animation: neuro-shimmer 2s infinite;
+      }
+
+      @keyframes neuro-shimmer {
+        0% { left: -100%; }
+        100% { left: 100%; }
+      }
+
+      /* Success state */
+      .neuro-success {
+        background: linear-gradient(145deg, #38a169, #2f855a) !important;
+        box-shadow:
+          6px 6px 12px rgba(0, 0, 0, 0.4),
+          -6px -6px 12px rgba(56, 161, 105, 0.1) !important;
+      }
+
+      /* Error state */
+      .neuro-error {
+        background: linear-gradient(145deg, #e53e3e, #c53030) !important;
+        box-shadow:
+          6px 6px 12px rgba(0, 0, 0, 0.4),
+          -6px -6px 12px rgba(229, 62, 62, 0.1) !important;
+      }
+
+      /* Warning state */
+      .neuro-warning {
+        background: linear-gradient(145deg, #ed8936, #dd6b20) !important;
+        box-shadow:
+          6px 6px 12px rgba(0, 0, 0, 0.4),
+          -6px -6px 12px rgba(237, 137, 54, 0.1) !important;
+      }
+
       /* Enhanced Micro-interactions */
       .micro-bounce {
         transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -707,6 +1050,9 @@
           // 2024 Glassmorphism enhancements
           this.setupPerformanceOptimization();
           this.setupAccessibilityEnhancements();
+
+          // 2024 Neumorphism system
+          this.setupNeumorphicInteractions();
         }
 
         setupAmbientLightSensor() {
@@ -825,17 +1171,25 @@
         }
 
         setupAccessibilityEnhancements() {
-          // Enhanced text contrast checking
+          // Enhanced text contrast checking for both glass and neumorphic elements
           const checkTextContrast = () => {
             const glassElements = document.querySelectorAll('[class*="glass-"]');
-            glassElements.forEach(element => {
+            const neuroElements = document.querySelectorAll('[class*="neuro-"]');
+
+            [...glassElements, ...neuroElements].forEach(element => {
               const computedStyle = window.getComputedStyle(element);
               const backgroundColor = computedStyle.backgroundColor;
               const color = computedStyle.color;
 
               // Add high contrast class if needed
               if (this.contrastPreference) {
-                element.classList.add('high-contrast-glass');
+                if (element.classList.contains('neuro-button') ||
+                    element.classList.contains('neuro-surface') ||
+                    element.classList.contains('neuro-card')) {
+                  element.classList.add('high-contrast-neuro');
+                } else {
+                  element.classList.add('high-contrast-glass');
+                }
               }
             });
           };
@@ -846,6 +1200,75 @@
           // Re-check when contrast preference changes
           const contrastQuery = window.matchMedia('(prefers-contrast: high)');
           contrastQuery.addListener(checkTextContrast);
+        }
+
+        // 2024 Neumorphism: Tactile interaction system
+        setupNeumorphicInteractions() {
+          document.addEventListener('DOMContentLoaded', () => {
+            // Add tactile feedback to neumorphic buttons
+            const neuroButtons = document.querySelectorAll('.neuro-button');
+            neuroButtons.forEach(button => {
+              // Mouse interactions
+              button.addEventListener('mousedown', () => {
+                if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                  button.classList.add('neuro-pressed');
+                }
+              });
+
+              button.addEventListener('mouseup', () => {
+                button.classList.remove('neuro-pressed');
+              });
+
+              button.addEventListener('mouseleave', () => {
+                button.classList.remove('neuro-pressed');
+              });
+
+              // Keyboard interactions
+              button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    button.classList.add('neuro-pressed');
+                  }
+                }
+              });
+
+              button.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  button.classList.remove('neuro-pressed');
+                }
+              });
+            });
+
+            // Toggle switch interactions
+            const neuroToggles = document.querySelectorAll('.neuro-toggle');
+            neuroToggles.forEach(toggle => {
+              toggle.addEventListener('click', () => {
+                toggle.classList.toggle('active');
+
+                // Announce state change for screen readers
+                const isActive = toggle.classList.contains('active');
+                toggle.setAttribute('aria-checked', isActive);
+
+                // Optional: Dispatch custom event
+                toggle.dispatchEvent(new CustomEvent('neuro-toggle', {
+                  detail: { active: isActive }
+                }));
+              });
+
+              // Keyboard support
+              toggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  toggle.click();
+                }
+              });
+
+              // Set initial ARIA attributes
+              toggle.setAttribute('role', 'switch');
+              toggle.setAttribute('tabindex', '0');
+              toggle.setAttribute('aria-checked', toggle.classList.contains('active'));
+            });
+          });
         }
       }
 
