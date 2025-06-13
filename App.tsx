@@ -134,20 +134,52 @@ const App: React.FC = () => {
           <div className="text-center sm:text-left mb-4 sm:mb-0 animate-slide-in-left">
             <div className={`flex items-center justify-center sm:justify-start mb-2 ${logoLoaded ? '' : 'justify-center sm:justify-start'}`}>
               {logoLoaded && (
-                <img
-                  src="./assets/images/zekaj.png"
-                  alt="Zekaj Technologies Logo - Modern dotted sphere design representing innovation and technology solutions"
-                  className="w-12 h-12 sm:w-14 sm:h-14 object-contain animate-glass-morph hover:animate-micro-bounce transition-transform duration-300 mr-4 border-0 outline-none"
-                  style={{
-                    animationDelay: '50ms',
-                    border: 'none',
-                    outline: 'none',
-                    boxShadow: 'none'
-                  }}
-                  onError={() => setLogoLoaded(false)}
-                />
+                <div className="relative group mr-4">
+                  {/* Outer glow ring */}
+                  <div className="absolute inset-0 w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-gradient-to-r from-brand-accent via-brand-secondary-accent to-brand-accent opacity-20 blur-md group-hover:opacity-40 group-hover:blur-lg transition-all duration-500 animate-glow-pulse"></div>
+
+                  {/* Middle glow ring */}
+                  <div className="absolute inset-1 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-brand-secondary-accent via-brand-accent to-brand-secondary-accent opacity-15 blur-sm group-hover:opacity-30 transition-all duration-500 animate-glow-pulse" style={{animationDelay: '0.5s'}}></div>
+
+                  {/* Logo container with glass effect */}
+                  <div className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-full liquid-glass-interactive p-2 group-hover:scale-110 transition-all duration-500 overflow-hidden">
+                    {/* Inner gradient background */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/10 via-transparent to-brand-secondary-accent/10 rounded-full group-hover:from-brand-accent/20 group-hover:to-brand-secondary-accent/20 transition-all duration-500"></div>
+
+                    {/* Rotating border effect */}
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-brand-accent via-transparent via-brand-secondary-accent via-transparent to-brand-accent opacity-0 group-hover:opacity-30 group-hover:animate-spin transition-all duration-500" style={{animationDuration: '3s'}}></div>
+
+                    {/* Logo image */}
+                    <img
+                      src="./assets/images/zekaj.png"
+                      alt="Zekaj Technologies Logo - Modern dotted sphere design representing innovation and technology solutions"
+                      className="relative z-10 w-full h-full object-contain animate-glass-morph group-hover:animate-micro-bounce transition-all duration-500 filter group-hover:brightness-110 group-hover:contrast-110"
+                      style={{
+                        animationDelay: '50ms',
+                        border: 'none',
+                        outline: 'none',
+                        boxShadow: 'none'
+                      }}
+                      onError={() => setLogoLoaded(false)}
+                    />
+
+                    {/* Shimmer effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out rounded-full"></div>
+
+                    {/* Floating particles effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute top-1 left-1 w-1 h-1 bg-brand-accent rounded-full animate-ping" style={{animationDelay: '0s'}}></div>
+                      <div className="absolute top-3 right-2 w-0.5 h-0.5 bg-brand-secondary-accent rounded-full animate-ping" style={{animationDelay: '0.3s'}}></div>
+                      <div className="absolute bottom-2 left-3 w-0.5 h-0.5 bg-brand-accent rounded-full animate-ping" style={{animationDelay: '0.6s'}}></div>
+                      <div className="absolute bottom-1 right-1 w-1 h-1 bg-brand-secondary-accent rounded-full animate-ping" style={{animationDelay: '0.9s'}}></div>
+                    </div>
+                  </div>
+
+                  {/* Floating shadow */}
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-3 bg-brand-accent/20 rounded-full blur-md group-hover:w-14 group-hover:bg-brand-accent/30 transition-all duration-500"></div>
+                </div>
               )}
-              <h1 className="text-3xl font-extrabold text-brand-light bg-gradient-to-r from-brand-light via-brand-accent to-brand-secondary-accent bg-clip-text text-transparent animate-liquid-shimmer bg-[length:200%_100%]">
+              <h1 className="text-3xl font-extrabold text-brand-light bg-gradient-to-r from-brand-light via-brand-accent to-brand-secondary-accent bg-clip-text text-transparent animate-liquid-shimmer bg-[length:200%_100%] group-hover:scale-105 transition-transform duration-300">
                 Z.E Digital Systems
               </h1>
             </div>
