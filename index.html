@@ -76,16 +76,46 @@
         }
       }
 
-      /* High contrast mode support */
+      /* 2024 Glassmorphism: Enhanced accessibility and performance */
       @media (prefers-contrast: high) {
         :root {
-          --liquid-glass-bg: rgba(255, 255, 255, 0.15);
-          --liquid-glass-border: rgba(255, 255, 255, 0.25);
-          --liquid-glass-blur: 8px;
+          --liquid-glass-bg: rgba(255, 255, 255, 0.20);
+          --liquid-glass-border: rgba(255, 255, 255, 0.35);
+          --liquid-glass-blur: 4px; /* Reduced blur for better text readability */
+        }
+
+        /* Ensure high contrast text on glass surfaces */
+        .liquid-glass, .liquid-glass-card, .liquid-glass-interactive {
+          background: rgba(0, 0, 0, 0.85) !important;
+          color: #ffffff !important;
+          border: 2px solid rgba(255, 255, 255, 0.5) !important;
+        }
+
+        /* Remove complex pseudo-elements in high contrast mode */
+        .liquid-glass::before, .liquid-glass::after,
+        .liquid-glass-card::before, .liquid-glass-card::after,
+        .liquid-glass-interactive::before, .liquid-glass-interactive::after {
+          display: none !important;
         }
       }
 
-      /* Advanced Multi-Layered Glass Effects with Real-time Depth */
+      /* Performance optimization: Reduce blur on low-end devices */
+      @media (max-width: 768px) and (max-resolution: 1.5dppx) {
+        :root {
+          --liquid-glass-blur: 12px; /* Reduced from 20px for mobile performance */
+        }
+
+        /* Simplify glass effects on mobile */
+        .liquid-glass-deep {
+          backdrop-filter: blur(16px) saturate(150%) !important;
+        }
+
+        .liquid-glass-header {
+          backdrop-filter: blur(16px) saturate(180%) !important;
+        }
+      }
+
+      /* 2024 Refined Glassmorphism: Strategic depth and accessibility-first */
       .liquid-glass {
         position: relative;
         background: var(--liquid-glass-bg);
@@ -96,6 +126,14 @@
           0 8px 32px var(--liquid-glass-shadow),
           inset 0 1px 0 rgba(255, 255, 255, 0.1);
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+        /* 2024 Best Practice: Ensure text contrast */
+        color: #e2e8f0;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+
+        /* Performance optimization */
+        will-change: transform, backdrop-filter;
+        contain: layout style paint;
       }
 
       /* Multi-layer glass with real-time depth and ambient light adaptation */
@@ -397,6 +435,114 @@
         pointer-events: none;
       }
 
+      /* 2024 Strategic Glassmorphism Usage Classes */
+
+      /* For navigation and UI elements - optimal blur and contrast */
+      .glass-nav {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: #ffffff;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+      }
+
+      /* For cards and content containers - balanced readability */
+      .glass-content {
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(12px) saturate(150%);
+        -webkit-backdrop-filter: blur(12px) saturate(150%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #f7fafc;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+
+        /* Ensure sufficient contrast for body text */
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      /* For modals and overlays - strong separation */
+      .glass-modal {
+        background: rgba(26, 32, 44, 0.85);
+        backdrop-filter: blur(20px) saturate(200%);
+        -webkit-backdrop-filter: blur(20px) saturate(200%);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #ffffff;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+      }
+
+      /* For subtle backgrounds - minimal interference */
+      .glass-bg {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(8px) saturate(120%);
+        -webkit-backdrop-filter: blur(8px) saturate(120%);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      /* Performance-optimized glass for mobile */
+      @media (max-width: 768px) {
+        .glass-nav, .glass-content, .glass-modal {
+          backdrop-filter: blur(8px) saturate(140%);
+          -webkit-backdrop-filter: blur(8px) saturate(140%);
+        }
+      }
+
+      /* 2024 Performance Mode: Simplified effects for low-end devices */
+      .performance-mode .liquid-glass,
+      .performance-mode .liquid-glass-card,
+      .performance-mode .liquid-glass-interactive {
+        backdrop-filter: blur(6px) saturate(130%) !important;
+        -webkit-backdrop-filter: blur(6px) saturate(130%) !important;
+      }
+
+      .performance-mode .liquid-glass::before,
+      .performance-mode .liquid-glass::after,
+      .performance-mode .liquid-glass-card::before,
+      .performance-mode .liquid-glass-card::after {
+        display: none !important;
+      }
+
+      /* High contrast glass for accessibility */
+      .high-contrast-glass {
+        background: rgba(0, 0, 0, 0.9) !important;
+        color: #ffffff !important;
+        border: 2px solid rgba(255, 255, 255, 0.6) !important;
+        text-shadow: none !important;
+        backdrop-filter: blur(4px) !important;
+        -webkit-backdrop-filter: blur(4px) !important;
+      }
+
+      /* 2024 Best Practice: Strategic glassmorphism usage guidelines */
+
+      /* DO: Use for navigation, cards, modals, overlays */
+      .glass-appropriate {
+        /* These elements benefit from glass effects */
+      }
+
+      /* DON'T: Avoid glass on dense text content */
+      .glass-avoid {
+        /* Dense content should use solid backgrounds */
+        background: rgba(26, 32, 44, 0.95) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+
+      /* Text readability enforcement */
+      .liquid-glass p, .liquid-glass span, .liquid-glass div,
+      .glass-content p, .glass-content span, .glass-content div {
+        color: #f7fafc;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+        font-weight: 500; /* Slightly bolder for better readability */
+      }
+
+      /* Ensure headings are highly readable on glass */
+      .liquid-glass h1, .liquid-glass h2, .liquid-glass h3,
+      .glass-content h1, .glass-content h2, .glass-content h3 {
+        color: #ffffff;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        font-weight: 600;
+      }
+
       /* Enhanced Micro-interactions */
       .micro-bounce {
         transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -557,6 +703,10 @@
           this.setupMotionPreferences();
           this.setupContrastPreferences();
           this.setupContextualAwareness();
+
+          // 2024 Glassmorphism enhancements
+          this.setupPerformanceOptimization();
+          this.setupAccessibilityEnhancements();
         }
 
         setupAmbientLightSensor() {
@@ -648,9 +798,54 @@
 
           // Observe all glass elements
           document.addEventListener('DOMContentLoaded', () => {
-            const glassElements = document.querySelectorAll('[class*="liquid-glass"]');
+            const glassElements = document.querySelectorAll('[class*="liquid-glass"], [class*="glass-"]');
             glassElements.forEach(el => observer.observe(el));
           });
+        }
+
+        // 2024 Glassmorphism: Performance and accessibility monitoring
+        setupPerformanceOptimization() {
+          // Monitor performance and adjust glass effects accordingly
+          const checkPerformance = () => {
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            const isLowEndDevice = navigator.hardwareConcurrency <= 2;
+            const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
+
+            if (isLowEndDevice || isSlowConnection) {
+              document.documentElement.style.setProperty('--liquid-glass-blur', '8px');
+              document.documentElement.classList.add('performance-mode');
+            }
+          };
+
+          // Check on load and connection change
+          checkPerformance();
+          if (navigator.connection) {
+            navigator.connection.addEventListener('change', checkPerformance);
+          }
+        }
+
+        setupAccessibilityEnhancements() {
+          // Enhanced text contrast checking
+          const checkTextContrast = () => {
+            const glassElements = document.querySelectorAll('[class*="glass-"]');
+            glassElements.forEach(element => {
+              const computedStyle = window.getComputedStyle(element);
+              const backgroundColor = computedStyle.backgroundColor;
+              const color = computedStyle.color;
+
+              // Add high contrast class if needed
+              if (this.contrastPreference) {
+                element.classList.add('high-contrast-glass');
+              }
+            });
+          };
+
+          // Run contrast check after DOM is ready
+          document.addEventListener('DOMContentLoaded', checkTextContrast);
+
+          // Re-check when contrast preference changes
+          const contrastQuery = window.matchMedia('(prefers-contrast: high)');
+          contrastQuery.addListener(checkTextContrast);
         }
       }
 
