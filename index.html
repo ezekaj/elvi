@@ -886,6 +886,539 @@
           -6px -6px 12px rgba(237, 137, 54, 0.1) !important;
       }
 
+      /* ========================================
+         2024 MICROINTERACTIONS SYSTEM
+         Purposeful animations for feedback & delight
+         ======================================== */
+
+      :root {
+        /* Microinteraction timing variables */
+        --micro-fast: 0.15s;
+        --micro-normal: 0.3s;
+        --micro-slow: 0.5s;
+        --micro-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        --micro-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+        --micro-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        /* Animation states */
+        --micro-scale-press: 0.95;
+        --micro-scale-hover: 1.05;
+        --micro-scale-focus: 1.02;
+      }
+
+      /* 2024 PURPOSEFUL BUTTON MICROINTERACTIONS */
+
+      /* Enhanced button press feedback */
+      .micro-button {
+        position: relative;
+        overflow: hidden;
+        transition: all var(--micro-normal) var(--micro-smooth);
+        transform-origin: center;
+
+        /* Ripple effect container */
+        --ripple-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .micro-button:hover {
+        transform: translateY(-2px) scale(var(--micro-scale-hover));
+        box-shadow:
+          0 8px 25px rgba(0, 0, 0, 0.15),
+          0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .micro-button:active {
+        transform: translateY(0) scale(var(--micro-scale-press));
+        transition: all var(--micro-fast) var(--micro-smooth);
+      }
+
+      .micro-button:focus-visible {
+        transform: scale(var(--micro-scale-focus));
+        outline: none;
+        box-shadow:
+          0 0 0 3px rgba(66, 153, 225, 0.5),
+          0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Ripple effect for button presses */
+      .micro-button::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: var(--ripple-color);
+        transform: translate(-50%, -50%);
+        transition: width var(--micro-normal) var(--micro-smooth),
+                    height var(--micro-normal) var(--micro-smooth),
+                    opacity var(--micro-normal) var(--micro-smooth);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .micro-button.ripple-active::before {
+        width: 300px;
+        height: 300px;
+        opacity: 1;
+        transition: width var(--micro-slow) var(--micro-smooth),
+                    height var(--micro-slow) var(--micro-smooth),
+                    opacity var(--micro-fast) var(--micro-smooth) var(--micro-normal);
+      }
+
+      /* Loading state with purposeful animation */
+      .micro-button.loading {
+        pointer-events: none;
+        position: relative;
+        color: transparent !important;
+      }
+
+      .micro-button.loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        margin: -10px 0 0 -10px;
+        border: 2px solid transparent;
+        border-top: 2px solid currentColor;
+        border-radius: 50%;
+        animation: micro-spin 1s linear infinite;
+        color: #ffffff;
+      }
+
+      @keyframes micro-spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* 2024 NOTIFICATION MICROINTERACTIONS */
+
+      /* Toast notification entrance */
+      .micro-toast {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 16px 24px;
+        border-radius: 12px;
+        background: linear-gradient(145deg, #4299e1, #3182ce);
+        color: white;
+        box-shadow:
+          0 10px 25px rgba(0, 0, 0, 0.15),
+          0 4px 10px rgba(0, 0, 0, 0.1);
+
+        /* Entrance animation */
+        animation: micro-toast-enter var(--micro-slow) var(--micro-bounce);
+        transform-origin: top right;
+        z-index: 1000;
+      }
+
+      .micro-toast.success {
+        background: linear-gradient(145deg, #38a169, #2f855a);
+      }
+
+      .micro-toast.error {
+        background: linear-gradient(145deg, #e53e3e, #c53030);
+      }
+
+      .micro-toast.warning {
+        background: linear-gradient(145deg, #ed8936, #dd6b20);
+      }
+
+      .micro-toast.exit {
+        animation: micro-toast-exit var(--micro-normal) var(--micro-smooth) forwards;
+      }
+
+      @keyframes micro-toast-enter {
+        0% {
+          transform: translateX(100%) scale(0.8);
+          opacity: 0;
+        }
+        50% {
+          transform: translateX(-10px) scale(1.05);
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateX(0) scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes micro-toast-exit {
+        0% {
+          transform: translateX(0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(100%) scale(0.8);
+          opacity: 0;
+        }
+      }
+
+      /* Progress indicator microinteraction */
+      .micro-progress {
+        width: 100%;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .micro-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #4299e1, #38b2ac);
+        border-radius: 2px;
+        transition: width var(--micro-normal) var(--micro-smooth);
+        position: relative;
+      }
+
+      .micro-progress-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent);
+        animation: micro-progress-shimmer 2s infinite;
+      }
+
+      @keyframes micro-progress-shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+
+      /* Form input focus microinteractions */
+      .micro-input {
+        position: relative;
+        border: 2px solid transparent;
+        transition: all var(--micro-normal) var(--micro-smooth);
+      }
+
+      .micro-input:focus {
+        border-color: #4299e1;
+        transform: scale(1.02);
+        box-shadow:
+          0 0 0 3px rgba(66, 153, 225, 0.1),
+          0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .micro-input.error {
+        border-color: #e53e3e;
+        animation: micro-shake var(--micro-normal) var(--micro-smooth);
+      }
+
+      .micro-input.success {
+        border-color: #38a169;
+        animation: micro-pulse var(--micro-normal) var(--micro-smooth);
+      }
+
+      @keyframes micro-shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+      }
+
+      @keyframes micro-pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+      }
+
+      /* 2024 CARD HOVER MICROINTERACTIONS */
+
+      .micro-card {
+        transition: all var(--micro-normal) var(--micro-smooth);
+        transform-origin: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .micro-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.15),
+          0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .micro-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent);
+        transition: left var(--micro-slow) var(--micro-smooth);
+        pointer-events: none;
+      }
+
+      .micro-card:hover::before {
+        left: 100%;
+      }
+
+      /* Icon microinteractions */
+      .micro-icon {
+        transition: all var(--micro-normal) var(--micro-smooth);
+        transform-origin: center;
+      }
+
+      .micro-icon:hover {
+        transform: scale(1.2) rotate(5deg);
+        filter: brightness(1.2);
+      }
+
+      .micro-icon.bounce:hover {
+        animation: micro-bounce var(--micro-slow) var(--micro-bounce);
+      }
+
+      .micro-icon.spin:hover {
+        animation: micro-spin 1s linear infinite;
+      }
+
+      @keyframes micro-bounce {
+        0%, 100% { transform: scale(1) translateY(0); }
+        25% { transform: scale(1.1) translateY(-5px); }
+        50% { transform: scale(1.15) translateY(-8px); }
+        75% { transform: scale(1.05) translateY(-3px); }
+      }
+
+      /* Navigation microinteractions */
+      .micro-nav-item {
+        position: relative;
+        transition: all var(--micro-normal) var(--micro-smooth);
+        overflow: hidden;
+      }
+
+      .micro-nav-item::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #4299e1, #38b2ac);
+        transition: all var(--micro-normal) var(--micro-smooth);
+        transform: translateX(-50%);
+      }
+
+      .micro-nav-item:hover::after,
+      .micro-nav-item.active::after {
+        width: 100%;
+      }
+
+      .micro-nav-item:hover {
+        transform: translateY(-2px);
+        color: #4299e1;
+      }
+
+      /* Toggle switch microinteractions */
+      .micro-toggle {
+        position: relative;
+        cursor: pointer;
+        transition: all var(--micro-normal) var(--micro-smooth);
+      }
+
+      .micro-toggle input {
+        opacity: 0;
+        position: absolute;
+      }
+
+      .micro-toggle .slider {
+        position: relative;
+        display: block;
+        width: 60px;
+        height: 30px;
+        background: #ccc;
+        border-radius: 15px;
+        transition: all var(--micro-normal) var(--micro-smooth);
+      }
+
+      .micro-toggle .slider::before {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 24px;
+        height: 24px;
+        background: white;
+        border-radius: 50%;
+        transition: all var(--micro-normal) var(--micro-bounce);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .micro-toggle input:checked + .slider {
+        background: #4299e1;
+      }
+
+      .micro-toggle input:checked + .slider::before {
+        transform: translateX(30px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .micro-toggle:hover .slider::before {
+        transform: scale(1.1);
+      }
+
+      .micro-toggle input:checked:hover + .slider::before {
+        transform: translateX(30px) scale(1.1);
+      }
+
+      /* 2024 ACCESSIBILITY & PERFORMANCE CONSIDERATIONS */
+
+      /* Respect reduced motion preferences */
+      @media (prefers-reduced-motion: reduce) {
+        .micro-button,
+        .micro-card,
+        .micro-icon,
+        .micro-nav-item,
+        .micro-toggle .slider,
+        .micro-toggle .slider::before,
+        .micro-input,
+        .micro-progress-bar {
+          animation: none !important;
+          transition: none !important;
+        }
+
+        .micro-button:hover,
+        .micro-card:hover,
+        .micro-icon:hover,
+        .micro-nav-item:hover {
+          transform: none !important;
+        }
+
+        .micro-toast {
+          animation: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
+
+      /* High contrast mode adjustments */
+      @media (prefers-contrast: high) {
+        .micro-button,
+        .micro-card,
+        .micro-input {
+          border: 2px solid currentColor !important;
+          box-shadow: none !important;
+        }
+
+        .micro-toast {
+          background: #000000 !important;
+          color: #ffffff !important;
+          border: 2px solid #ffffff !important;
+        }
+
+        .micro-progress-bar {
+          background: #ffffff !important;
+        }
+
+        .micro-nav-item::after {
+          background: currentColor !important;
+        }
+      }
+
+      /* Performance mode for low-end devices */
+      .performance-mode .micro-button,
+      .performance-mode .micro-card,
+      .performance-mode .micro-icon {
+        transition: transform var(--micro-fast) ease !important;
+      }
+
+      .performance-mode .micro-button::before,
+      .performance-mode .micro-card::before,
+      .performance-mode .micro-progress-bar::after {
+        display: none !important;
+      }
+
+      /* Focus indicators for keyboard navigation */
+      .micro-button:focus-visible,
+      .micro-nav-item:focus-visible,
+      .micro-toggle:focus-visible {
+        outline: 2px solid #4299e1;
+        outline-offset: 2px;
+      }
+
+      /* 2024 UTILITY CLASSES FOR MICROINTERACTIONS */
+
+      /* Stagger animations for lists */
+      .micro-stagger > * {
+        animation-delay: calc(var(--stagger-delay, 0.1s) * var(--stagger-index, 0));
+      }
+
+      /* Entrance animations */
+      .micro-fade-in {
+        animation: micro-fade-in var(--micro-slow) var(--micro-smooth);
+      }
+
+      .micro-slide-up {
+        animation: micro-slide-up var(--micro-slow) var(--micro-smooth);
+      }
+
+      .micro-scale-in {
+        animation: micro-scale-in var(--micro-slow) var(--micro-bounce);
+      }
+
+      @keyframes micro-fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes micro-slide-up {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes micro-scale-in {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Success/Error feedback animations */
+      .micro-success-feedback {
+        animation: micro-success-pulse var(--micro-slow) var(--micro-smooth);
+      }
+
+      .micro-error-feedback {
+        animation: micro-error-shake var(--micro-normal) var(--micro-smooth);
+      }
+
+      @keyframes micro-success-pulse {
+        0%, 100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(56, 161, 105, 0.4);
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 0 0 10px rgba(56, 161, 105, 0);
+        }
+      }
+
+      @keyframes micro-error-shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+      }
+
       /* Enhanced Micro-interactions */
       .micro-bounce {
         transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -1053,6 +1586,12 @@
 
           // 2024 Neumorphism system
           this.setupNeumorphicInteractions();
+
+          // 2024 Microinteractions system
+          this.setupMicrointeractions();
+
+          // Demo microinteractions (remove in production)
+          // this.demoMicrointeractions();
         }
 
         setupAmbientLightSensor() {
@@ -1269,6 +1808,260 @@
               toggle.setAttribute('aria-checked', toggle.classList.contains('active'));
             });
           });
+        }
+
+        // 2024 MICROINTERACTIONS SYSTEM
+        setupMicrointeractions() {
+          document.addEventListener('DOMContentLoaded', () => {
+            this.setupButtonMicrointeractions();
+            this.setupNotificationSystem();
+            this.setupFormMicrointeractions();
+            this.setupNavigationMicrointeractions();
+            this.setupStaggerAnimations();
+          });
+        }
+
+        setupButtonMicrointeractions() {
+          const microButtons = document.querySelectorAll('.micro-button');
+
+          microButtons.forEach(button => {
+            // Ripple effect on click
+            button.addEventListener('click', (e) => {
+              if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+              // Create ripple effect
+              button.classList.add('ripple-active');
+
+              setTimeout(() => {
+                button.classList.remove('ripple-active');
+              }, 600);
+            });
+
+            // Loading state simulation
+            button.addEventListener('dblclick', (e) => {
+              e.preventDefault();
+              this.simulateLoading(button);
+            });
+          });
+        }
+
+        simulateLoading(button) {
+          if (button.classList.contains('loading')) return;
+
+          const originalText = button.textContent;
+          button.classList.add('loading');
+          button.setAttribute('aria-busy', 'true');
+
+          // Simulate async operation
+          setTimeout(() => {
+            button.classList.remove('loading');
+            button.setAttribute('aria-busy', 'false');
+
+            // Success feedback
+            button.classList.add('micro-success-feedback');
+            setTimeout(() => {
+              button.classList.remove('micro-success-feedback');
+            }, 500);
+          }, 2000);
+        }
+
+        setupNotificationSystem() {
+          // Create notification container if it doesn't exist
+          if (!document.querySelector('.micro-notifications')) {
+            const container = document.createElement('div');
+            container.className = 'micro-notifications';
+            container.style.cssText = `
+              position: fixed;
+              top: 20px;
+              right: 20px;
+              z-index: 1000;
+              pointer-events: none;
+            `;
+            document.body.appendChild(container);
+          }
+        }
+
+        showNotification(message, type = 'info', duration = 4000) {
+          const container = document.querySelector('.micro-notifications');
+          if (!container) return;
+
+          const notification = document.createElement('div');
+          notification.className = `micro-toast ${type}`;
+          notification.textContent = message;
+          notification.style.pointerEvents = 'auto';
+
+          // Add close button
+          const closeBtn = document.createElement('button');
+          closeBtn.innerHTML = '×';
+          closeBtn.style.cssText = `
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+          `;
+
+          closeBtn.addEventListener('click', () => {
+            this.hideNotification(notification);
+          });
+
+          notification.appendChild(closeBtn);
+          container.appendChild(notification);
+
+          // Auto-hide after duration
+          setTimeout(() => {
+            this.hideNotification(notification);
+          }, duration);
+
+          return notification;
+        }
+
+        hideNotification(notification) {
+          notification.classList.add('exit');
+          setTimeout(() => {
+            if (notification.parentNode) {
+              notification.parentNode.removeChild(notification);
+            }
+          }, 300);
+        }
+
+        setupFormMicrointeractions() {
+          const microInputs = document.querySelectorAll('.micro-input');
+
+          microInputs.forEach(input => {
+            // Focus animations
+            input.addEventListener('focus', () => {
+              input.classList.remove('error', 'success');
+            });
+
+            // Validation feedback
+            input.addEventListener('blur', () => {
+              this.validateInput(input);
+            });
+
+            // Real-time validation for specific inputs
+            if (input.type === 'email') {
+              input.addEventListener('input', () => {
+                clearTimeout(input.validationTimeout);
+                input.validationTimeout = setTimeout(() => {
+                  this.validateInput(input);
+                }, 500);
+              });
+            }
+          });
+        }
+
+        validateInput(input) {
+          const value = input.value.trim();
+          let isValid = true;
+
+          // Basic validation rules
+          if (input.required && !value) {
+            isValid = false;
+          } else if (input.type === 'email' && value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            isValid = emailRegex.test(value);
+          }
+
+          // Apply feedback classes
+          input.classList.remove('error', 'success');
+          if (value) {
+            input.classList.add(isValid ? 'success' : 'error');
+          }
+
+          return isValid;
+        }
+
+        setupNavigationMicrointeractions() {
+          const navItems = document.querySelectorAll('.micro-nav-item');
+
+          navItems.forEach(item => {
+            // Active state management
+            item.addEventListener('click', () => {
+              // Remove active from siblings
+              navItems.forEach(sibling => sibling.classList.remove('active'));
+              // Add active to clicked item
+              item.classList.add('active');
+            });
+
+            // Keyboard navigation
+            item.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                item.click();
+              }
+            });
+          });
+        }
+
+        setupStaggerAnimations() {
+          const staggerContainers = document.querySelectorAll('.micro-stagger');
+
+          staggerContainers.forEach(container => {
+            const items = container.children;
+
+            // Set stagger index for each item
+            Array.from(items).forEach((item, index) => {
+              item.style.setProperty('--stagger-index', index);
+            });
+
+            // Trigger stagger animation on scroll into view
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('micro-fade-in');
+                  observer.unobserve(entry.target);
+                }
+              });
+            }, { threshold: 0.1 });
+
+            Array.from(items).forEach(item => {
+              observer.observe(item);
+            });
+          });
+        }
+
+        // Progress bar microinteraction
+        updateProgress(element, percentage) {
+          const progressBar = element.querySelector('.micro-progress-bar');
+          if (progressBar) {
+            progressBar.style.width = `${Math.min(100, Math.max(0, percentage))}%`;
+          }
+        }
+
+        // Utility functions for microinteractions
+        addMicroClass(element, className, duration = 500) {
+          element.classList.add(className);
+          setTimeout(() => {
+            element.classList.remove(className);
+          }, duration);
+        }
+
+        // Demo functions for testing microinteractions
+        demoMicrointeractions() {
+          // Demo notification
+          setTimeout(() => {
+            this.showNotification('Welcome! Microinteractions are active.', 'success');
+          }, 1000);
+
+          // Demo progress
+          const progressDemo = document.querySelector('.micro-progress');
+          if (progressDemo) {
+            let progress = 0;
+            const interval = setInterval(() => {
+              progress += 10;
+              this.updateProgress(progressDemo.parentElement, progress);
+              if (progress >= 100) {
+                clearInterval(interval);
+                setTimeout(() => {
+                  this.showNotification('Progress complete!', 'success');
+                }, 500);
+              }
+            }, 200);
+          }
         }
       }
 

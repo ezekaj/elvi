@@ -37,14 +37,14 @@ const InteractiveDesk: React.FC<InteractiveDeskProps> = ({ items }) => {
       <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/50 via-transparent to-brand-dark/30 pointer-events-none" />
 
       <div className="container mx-auto relative z-10">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 md:gap-6 micro-stagger">
           {items.map((item, index) => (
             <button
               key={item.id}
               onClick={item.action}
               aria-label={`Go to ${item.label}`}
               className={`
-                group liquid-glass-interactive
+                group liquid-glass-interactive micro-button micro-card
                 text-brand-light p-5 rounded-2xl
                 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-opacity-75
                 flex flex-col items-center justify-center text-center
@@ -52,13 +52,16 @@ const InteractiveDesk: React.FC<InteractiveDeskProps> = ({ items }) => {
                 animate-glass-morph
                 ${item.className || ''}
               `}
-              style={{ animationDelay: `${index * 150}ms` }}
+              style={{
+                animationDelay: `${index * 150}ms`,
+                '--stagger-index': index
+              } as React.CSSProperties}
             >
               {/* Inner glow effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/10 via-transparent to-brand-secondary-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
 
               {/* Icon container with enhanced effects */}
-              <div className="mb-3 flex-shrink-0 relative z-10 group-hover:animate-micro-bounce transition-transform duration-300">
+              <div className="mb-3 flex-shrink-0 relative z-10 micro-icon bounce transition-transform duration-300">
                 <div className="p-2 rounded-xl bg-gradient-to-br from-brand-accent/20 to-brand-secondary-accent/20 group-hover:from-brand-accent/30 group-hover:to-brand-secondary-accent/30 transition-all duration-300">
                   {item.icon}
                 </div>
