@@ -212,7 +212,7 @@ const App: React.FC = () => {
 
       {/* Main Content Sections */}
       <main id="main-content" className="container mx-auto p-4 sm:p-8 space-y-16 flex-grow adaptive-bg adaptive-text" role="main">
-        <section id="about">
+        <section id="about" data-section="about" className="about">
           <SectionTitle id="about-title">About Me</SectionTitle>
           <div className="liquid-glass-deep p-10 rounded-3xl relative overflow-hidden group">
             {/* Background gradient overlay */}
@@ -246,7 +246,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <section id="experience">
+        <section id="experience" data-section="experience" className="experience">
           <SectionTitle id="experience-title">Work Experience</SectionTitle>
           <div className="relative">
             {WORK_EXPERIENCE.map((item, index) => (
@@ -260,7 +260,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <section id="education">
+        <section id="education" data-section="education" className="education">
           <SectionTitle id="education-title">Education & Training</SectionTitle>
           <div className="relative">
             {EDUCATION_HISTORY.map((item, index) => (
@@ -273,7 +273,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <section id="skills">
+        <section id="skills" data-section="skills" className="skills">
           <SectionTitle id="skills-title">Skills</SectionTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {SKILLS_DATA.map((skill, index) => (
@@ -321,7 +321,7 @@ const App: React.FC = () => {
           </div>
         </section>
         
-        <section id="projects">
+        <section id="projects" data-section="projects" className="projects">
           <SectionTitle id="projects-title">My Projects</SectionTitle>
           <p 
             className="text-slate-300 mb-8 animate-fade-in-up"
@@ -336,7 +336,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <section id="contact">
+        <section id="contact" data-section="contact" className="contact">
           <SectionTitle id="contact-title">Get In Touch</SectionTitle>
           <div className="glass-live-sample p-12 rounded-3xl text-center animate-glass-morph group relative overflow-hidden" style={{animationDelay: '100ms'}}>
             {/* Background gradient overlay */}
@@ -350,7 +350,7 @@ const App: React.FC = () => {
 
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
-                className="liquid-glass-interactive px-10 py-4 rounded-2xl font-bold text-lg inline-flex items-center group/button relative overflow-hidden"
+                className="liquid-glass-interactive micro-button px-10 py-4 rounded-2xl font-bold text-lg inline-flex items-center group/button relative overflow-hidden"
               >
                 {/* Button gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-brand-accent to-brand-secondary-accent opacity-20 group-hover/button:opacity-30 transition-opacity duration-300 rounded-2xl"></div>
