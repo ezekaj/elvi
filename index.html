@@ -52,44 +52,90 @@
         min-height: 100vh;
       }
 
-      /* Advanced Multi-Layered Glass Effects */
-      .liquid-glass {
-        position: relative;
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(20px) saturate(180%);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow:
-          0 8px 32px rgba(0, 0, 0, 0.3),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      /* Apple Liquid Glass Design System - Enhanced for iOS 26+ */
+      :root {
+        --liquid-glass-bg: rgba(255, 255, 255, 0.08);
+        --liquid-glass-border: rgba(255, 255, 255, 0.12);
+        --liquid-glass-shadow: rgba(0, 0, 0, 0.25);
+        --liquid-glass-blur: 20px;
+        --liquid-glass-hover-bg: rgba(255, 255, 255, 0.12);
+        --liquid-glass-active-bg: rgba(255, 255, 255, 0.16);
+        --ambient-light-factor: 1;
+        --motion-preference: 1;
       }
 
-      /* Multi-layer glass with depth */
+      /* Respect user motion preferences */
+      @media (prefers-reduced-motion: reduce) {
+        :root {
+          --motion-preference: 0;
+        }
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* High contrast mode support */
+      @media (prefers-contrast: high) {
+        :root {
+          --liquid-glass-bg: rgba(255, 255, 255, 0.15);
+          --liquid-glass-border: rgba(255, 255, 255, 0.25);
+          --liquid-glass-blur: 8px;
+        }
+      }
+
+      /* Advanced Multi-Layered Glass Effects with Real-time Depth */
+      .liquid-glass {
+        position: relative;
+        background: var(--liquid-glass-bg);
+        backdrop-filter: blur(var(--liquid-glass-blur)) saturate(180%) brightness(105%);
+        -webkit-backdrop-filter: blur(var(--liquid-glass-blur)) saturate(180%) brightness(105%);
+        border: 1px solid var(--liquid-glass-border);
+        box-shadow:
+          0 8px 32px var(--liquid-glass-shadow),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Multi-layer glass with real-time depth and ambient light adaptation */
       .liquid-glass::before {
         content: '';
         position: absolute;
         inset: 2px;
         background: linear-gradient(135deg,
-          rgba(255, 255, 255, 0.08) 0%,
-          rgba(255, 255, 255, 0.02) 50%,
-          rgba(255, 255, 255, 0.06) 100%);
-        backdrop-filter: blur(12px) saturate(150%) brightness(105%);
-        -webkit-backdrop-filter: blur(12px) saturate(150%) brightness(105%);
+          rgba(255, 255, 255, calc(0.08 * var(--ambient-light-factor))) 0%,
+          rgba(255, 255, 255, calc(0.02 * var(--ambient-light-factor))) 50%,
+          rgba(255, 255, 255, calc(0.06 * var(--ambient-light-factor))) 100%);
+        backdrop-filter: blur(calc(var(--liquid-glass-blur) * 0.6)) saturate(150%) brightness(105%);
+        -webkit-backdrop-filter: blur(calc(var(--liquid-glass-blur) * 0.6)) saturate(150%) brightness(105%);
         border-radius: inherit;
         z-index: -1;
         pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       .liquid-glass::after {
         content: '';
         position: absolute;
         inset: 4px;
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(8px) saturate(120%);
-        -webkit-backdrop-filter: blur(8px) saturate(120%);
+        background: rgba(255, 255, 255, calc(0.03 * var(--ambient-light-factor)));
+        backdrop-filter: blur(calc(var(--liquid-glass-blur) * 0.4)) saturate(120%);
+        -webkit-backdrop-filter: blur(calc(var(--liquid-glass-blur) * 0.4)) saturate(120%);
         border-radius: inherit;
         z-index: -2;
         pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Contextual awareness - adapts to content behind */
+      .liquid-glass:hover {
+        background: var(--liquid-glass-hover-bg);
+        border-color: rgba(255, 255, 255, 0.18);
+        box-shadow:
+          0 12px 40px rgba(0, 0, 0, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        transform: translateY(-1px) scale(1.005);
       }
 
       .liquid-glass-header {
@@ -497,6 +543,120 @@
       }
     </style>
     <script>
+      // Apple Liquid Glass - Real-time Ambient Light & Motion Adaptation
+      class LiquidGlassSystem {
+        constructor() {
+          this.ambientLightSensor = null;
+          this.motionPreference = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          this.contrastPreference = window.matchMedia('(prefers-contrast: high)').matches;
+          this.init();
+        }
+
+        init() {
+          this.setupAmbientLightSensor();
+          this.setupMotionPreferences();
+          this.setupContrastPreferences();
+          this.setupContextualAwareness();
+        }
+
+        setupAmbientLightSensor() {
+          // Try to use Ambient Light Sensor API (if available)
+          if ('AmbientLightSensor' in window) {
+            try {
+              this.ambientLightSensor = new AmbientLightSensor({ frequency: 60 });
+              this.ambientLightSensor.addEventListener('reading', () => {
+                this.updateAmbientLightFactor(this.ambientLightSensor.illuminance);
+              });
+              this.ambientLightSensor.start();
+            } catch (error) {
+              console.log('Ambient Light Sensor not available, using fallback');
+              this.fallbackAmbientLight();
+            }
+          } else {
+            this.fallbackAmbientLight();
+          }
+        }
+
+        fallbackAmbientLight() {
+          // Fallback: Use time of day to estimate ambient light
+          const updateByTime = () => {
+            const hour = new Date().getHours();
+            let lightFactor = 1;
+
+            if (hour >= 6 && hour < 8) lightFactor = 0.7; // Dawn
+            else if (hour >= 8 && hour < 18) lightFactor = 1; // Day
+            else if (hour >= 18 && hour < 20) lightFactor = 0.8; // Dusk
+            else lightFactor = 0.6; // Night
+
+            this.updateAmbientLightFactor(lightFactor * 100);
+          };
+
+          updateByTime();
+          setInterval(updateByTime, 60000); // Update every minute
+        }
+
+        updateAmbientLightFactor(illuminance) {
+          // Convert lux to factor (typical indoor: 100-500 lux, outdoor: 1000+ lux)
+          let factor = Math.min(Math.max(illuminance / 300, 0.6), 1.2);
+          document.documentElement.style.setProperty('--ambient-light-factor', factor);
+        }
+
+        setupMotionPreferences() {
+          const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+          const updateMotionPreference = (e) => {
+            this.motionPreference = !e.matches;
+            document.documentElement.style.setProperty('--motion-preference', e.matches ? '0' : '1');
+          };
+
+          motionQuery.addListener(updateMotionPreference);
+          updateMotionPreference(motionQuery);
+        }
+
+        setupContrastPreferences() {
+          const contrastQuery = window.matchMedia('(prefers-contrast: high)');
+          const updateContrastPreference = (e) => {
+            this.contrastPreference = e.matches;
+            if (e.matches) {
+              document.documentElement.style.setProperty('--liquid-glass-blur', '8px');
+              document.documentElement.style.setProperty('--liquid-glass-bg', 'rgba(255, 255, 255, 0.15)');
+            } else {
+              document.documentElement.style.setProperty('--liquid-glass-blur', '20px');
+              document.documentElement.style.setProperty('--liquid-glass-bg', 'rgba(255, 255, 255, 0.08)');
+            }
+          };
+
+          contrastQuery.addListener(updateContrastPreference);
+          updateContrastPreference(contrastQuery);
+        }
+
+        setupContextualAwareness() {
+          // Add intersection observer for contextual glass adaptation
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const element = entry.target;
+                const rect = element.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const position = rect.top / viewportHeight;
+
+                // Adjust glass properties based on position in viewport
+                const intensity = 1 - Math.abs(position - 0.5) * 0.3;
+                element.style.setProperty('--glass-intensity', intensity);
+              }
+            });
+          }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+          // Observe all glass elements
+          document.addEventListener('DOMContentLoaded', () => {
+            const glassElements = document.querySelectorAll('[class*="liquid-glass"]');
+            glassElements.forEach(el => observer.observe(el));
+          });
+        }
+      }
+
+      // Initialize the Liquid Glass system
+      const liquidGlass = new LiquidGlassSystem();
+
       tailwind.config = {
         theme: {
           extend: {
