@@ -124,12 +124,12 @@ const App: React.FC = () => {
   ];
   
   return (
-    <div className="flex flex-col min-h-screen bg-brand-dark relative">
+    <div className="flex flex-col min-h-screen bg-brand-dark relative adaptive-bg adaptive-text">
       {/* Floating Particles Background */}
       <FloatingParticles />
 
       {/* Enhanced Liquid Glass Header */}
-      <header ref={headerRef} className="liquid-glass-header py-6 px-4 sm:px-8 sticky top-0 z-50 transition-all duration-300">
+      <header ref={headerRef} id="navigation" className="liquid-glass-header py-6 px-4 sm:px-8 sticky top-0 z-50 transition-all duration-300 adaptive-bg-secondary adaptive-border" role="banner">
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
           <div className="text-center sm:text-left mb-4 sm:mb-0 animate-slide-in-left">
             <div className={`flex items-center justify-center sm:justify-start mb-2 ${logoLoaded ? '' : 'justify-center sm:justify-start'}`}>
@@ -211,7 +211,7 @@ const App: React.FC = () => {
       <InteractiveDesk items={deskItems} />
 
       {/* Main Content Sections */}
-      <main className="container mx-auto p-4 sm:p-8 space-y-16 flex-grow">
+      <main id="main-content" className="container mx-auto p-4 sm:p-8 space-y-16 flex-grow adaptive-bg adaptive-text" role="main">
         <section id="about">
           <SectionTitle id="about-title">About Me</SectionTitle>
           <div className="liquid-glass-deep p-10 rounded-3xl relative overflow-hidden group">

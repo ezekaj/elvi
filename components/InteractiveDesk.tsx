@@ -42,16 +42,25 @@ const InteractiveDesk: React.FC<InteractiveDeskProps> = ({ items }) => {
             <button
               key={item.id}
               onClick={item.action}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  item.action();
+                }
+              }}
               aria-label={`Go to ${item.label}`}
               className={`
-                group liquid-glass-interactive micro-button micro-card
-                text-brand-light p-5 rounded-2xl
+                group liquid-glass-interactive micro-button micro-card adaptive-button
+                adaptive-text p-5 rounded-2xl
                 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-opacity-75
                 flex flex-col items-center justify-center text-center
                 h-40 sm:h-44 relative overflow-hidden
-                animate-glass-morph
+                animate-glass-morph adaptive-shadow
                 ${item.className || ''}
               `}
+              role="button"
+              tabIndex={0}
+              aria-describedby={`desc-${item.id}`}
               style={{
                 animationDelay: `${index * 150}ms`,
                 '--stagger-index': index
@@ -68,8 +77,13 @@ const InteractiveDesk: React.FC<InteractiveDeskProps> = ({ items }) => {
               </div>
 
               {/* Enhanced label with gradient text */}
-              <span className="font-semibold text-sm sm:text-base leading-tight relative z-10 group-hover:bg-gradient-to-r group-hover:from-brand-accent group-hover:to-brand-secondary-accent group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+              <span className="font-semibold text-sm sm:text-base leading-tight relative z-10 group-hover:bg-gradient-to-r group-hover:from-brand-accent group-hover:to-brand-secondary-accent group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 adaptive-text">
                 {item.label}
+              </span>
+
+              {/* Hidden description for screen readers */}
+              <span id={`desc-${item.id}`} className="sr-only">
+                Navigate to {item.label} section. Press Enter or Space to activate.
               </span>
 
               {/* Shimmer effect overlay */}
