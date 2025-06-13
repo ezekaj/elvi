@@ -2740,7 +2740,23 @@
 
         // 2024 AI-POWERED PERSONALIZATION SYSTEM
         setupAIPersonalization() {
-          document.addEventListener('DOMContentLoaded', () => {
+          // Initialize immediately if DOM is already loaded, otherwise wait
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+              this.initializeAIPersonalizationSystem();
+            });
+          } else {
+            // DOM is already loaded
+            setTimeout(() => {
+              this.initializeAIPersonalizationSystem();
+            }, 100);
+          }
+        }
+
+        initializeAIPersonalizationSystem() {
+          console.log('🤖 Initializing AI Personalization System...');
+
+          try {
             this.initializeAIPersonalization();
             this.setupBehaviorTracking();
             this.setupPredictiveUI();
@@ -2749,7 +2765,17 @@
             this.setupAdaptiveLayoutSystem();
             this.setupIntelligentColorSchemes();
             this.startAIPersonalizationEngine();
-          });
+
+            console.log('✅ AI Personalization System Fully Initialized');
+
+            // Show activation notification
+            setTimeout(() => {
+              this.showNotification('🤖 AI Personalization Active: Interface adapting to your preferences', 'info', 6000);
+            }, 2000);
+
+          } catch (error) {
+            console.error('❌ AI Personalization System Error:', error);
+          }
         }
 
         initializeAIPersonalization() {
@@ -3015,6 +3041,74 @@
           });
         }
 
+        trackTimeSpent() {
+          // Track time spent in each section using Intersection Observer
+          const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              const section = entry.target.dataset.section || this.getElementSection(entry.target);
+              if (section) {
+                if (entry.isIntersecting) {
+                  this.aiPersonalization.sessionData.timeSpent[section] =
+                    this.aiPersonalization.sessionData.timeSpent[section] || { startTime: Date.now(), totalTime: 0 };
+                  this.aiPersonalization.sessionData.timeSpent[section].startTime = Date.now();
+                } else if (this.aiPersonalization.sessionData.timeSpent[section]?.startTime) {
+                  const timeInSection = Date.now() - this.aiPersonalization.sessionData.timeSpent[section].startTime;
+                  this.aiPersonalization.sessionData.timeSpent[section].totalTime += timeInSection;
+                }
+              }
+            });
+          }, { threshold: 0.5 });
+
+          // Observe all sections
+          document.querySelectorAll('[data-section]').forEach(section => {
+            sectionObserver.observe(section);
+          });
+        }
+
+        trackNavigationFlow() {
+          // Track user navigation patterns
+          let lastSection = null;
+
+          const flowObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const currentSection = entry.target.dataset.section || this.getElementSection(entry.target);
+                if (currentSection && currentSection !== lastSection) {
+                  this.aiPersonalization.behaviorData.navigationFlow.push({
+                    from: lastSection,
+                    to: currentSection,
+                    timestamp: Date.now()
+                  });
+                  lastSection = currentSection;
+                }
+              }
+            });
+          }, { threshold: 0.7 });
+
+          document.querySelectorAll('[data-section]').forEach(section => {
+            flowObserver.observe(section);
+          });
+        }
+
+        trackContentEngagement() {
+          // Track engagement with specific content elements
+          const engagementElements = document.querySelectorAll('button, a, .project-card, .skill-item');
+
+          engagementElements.forEach(element => {
+            element.addEventListener('click', () => {
+              const section = this.getElementSection(element);
+              const elementType = element.tagName.toLowerCase();
+
+              if (section) {
+                this.aiPersonalization.behaviorData.contentEngagement[section] =
+                  this.aiPersonalization.behaviorData.contentEngagement[section] || {};
+                this.aiPersonalization.behaviorData.contentEngagement[section][elementType] =
+                  (this.aiPersonalization.behaviorData.contentEngagement[section][elementType] || 0) + 1;
+              }
+            });
+          });
+        }
+
         getElementSection(element) {
           // Identify which section of the portfolio the element belongs to
           const section = element.closest('[data-section]');
@@ -3097,6 +3191,46 @@
           this.preloadPredictedContent();
         }
 
+        applyPredictiveUI() {
+          // Apply predictive UI enhancements
+          this.updatePredictiveElements();
+          this.preloadPredictedContent();
+        }
+
+        preloadPredictedContent() {
+          // Preload content that user is likely to interact with
+          const nextActions = this.aiPersonalization.aiInsights.nextActions;
+
+          nextActions.forEach(action => {
+            if (action.probability > 0.7) {
+              // Preload high-probability sections
+              const section = this.getSectionFromAction(action.action);
+              if (section) {
+                this.preloadSection(section);
+              }
+            }
+          });
+        }
+
+        getSectionFromAction(actionType) {
+          const actionMap = {
+            'view_projects': 'projects',
+            'check_skills': 'skills',
+            'contact': 'contact',
+            'scroll_to_about': 'about'
+          };
+          return actionMap[actionType];
+        }
+
+        preloadSection(sectionName) {
+          const section = document.querySelector(`[data-section="${sectionName}"]`);
+          if (section) {
+            // Add preload class for CSS optimizations
+            section.classList.add('ai-preloaded');
+            console.log(`🚀 Preloaded section: ${sectionName}`);
+          }
+        }
+
         updatePredictiveElements() {
           const nextActions = this.aiPersonalization.aiInsights.nextActions;
 
@@ -3154,6 +3288,93 @@
           this.generateAdaptiveNavigation();
         }
 
+        generateContextualTips() {
+          const userType = this.aiPersonalization.aiInsights.userType;
+          const timeContext = this.aiPersonalization.aiInsights.timeContext;
+
+          let tips = [];
+
+          if (userType === 'first_time_visitor') {
+            tips.push('💡 Tip: Use the navigation menu to explore different sections');
+            tips.push('🎯 Tip: Click on project cards to see detailed information');
+          } else if (userType === 'returning_visitor') {
+            tips.push('🔄 Tip: Check out the latest updates in the projects section');
+            tips.push('📊 Tip: Your browsing patterns help optimize the interface');
+          }
+
+          if (timeContext === 'work_hours') {
+            tips.push('💼 Tip: Professional projects are highlighted for work-hour browsing');
+          }
+
+          // Display tips periodically
+          tips.forEach((tip, index) => {
+            setTimeout(() => {
+              this.showContextualTip(tip);
+            }, (index + 1) * 15000); // Show every 15 seconds
+          });
+        }
+
+        showContextualTip(tip) {
+          // Only show if user hasn't been too active recently
+          const recentInteractions = this.aiPersonalization.sessionData.interactions.filter(
+            interaction => Date.now() - interaction.timestamp < 10000
+          );
+
+          if (recentInteractions.length < 2) {
+            this.showNotification(tip, 'info', 8000);
+          }
+        }
+
+        generatePersonalizedCTA() {
+          const interests = this.aiPersonalization.aiInsights.interests;
+          const userType = this.aiPersonalization.aiInsights.userType;
+
+          let cta = '';
+
+          if (interests.includes('projects')) {
+            cta = 'Ready to discuss a project? Let\'s connect!';
+          } else if (interests.includes('technical_skills')) {
+            cta = 'Interested in my technical expertise? Get in touch!';
+          } else if (userType === 'loyal_visitor') {
+            cta = 'Thanks for your continued interest! Ready to collaborate?';
+          } else {
+            cta = 'Like what you see? Let\'s start a conversation!';
+          }
+
+          // Update CTA text if contact section exists
+          const contactCTA = document.querySelector('.contact a, .contact button');
+          if (contactCTA && cta) {
+            const originalText = contactCTA.textContent;
+            setTimeout(() => {
+              contactCTA.textContent = cta;
+              contactCTA.title = `AI-personalized: ${originalText}`;
+            }, 5000);
+          }
+        }
+
+        generateAdaptiveNavigation() {
+          const interests = this.aiPersonalization.aiInsights.interests;
+
+          // Reorder navigation based on interests
+          const nav = document.querySelector('nav, .navigation');
+          if (nav) {
+            const navItems = Array.from(nav.querySelectorAll('a, button'));
+
+            navItems.forEach(item => {
+              const href = item.getAttribute('href') || '';
+              const text = item.textContent.toLowerCase();
+
+              if (interests.includes('projects') && (href.includes('projects') || text.includes('project'))) {
+                item.style.order = '-10';
+                item.classList.add('ai-priority-nav');
+              } else if (interests.includes('technical_skills') && (href.includes('skills') || text.includes('skill'))) {
+                item.style.order = '-9';
+                item.classList.add('ai-priority-nav');
+              }
+            });
+          }
+        }
+
         generatePersonalizedGreeting() {
           const userType = this.aiPersonalization.aiInsights.userType;
           const timeContext = this.aiPersonalization.aiInsights.timeContext;
@@ -3177,6 +3398,80 @@
           }
 
           this.displayPersonalizedMessage(greeting);
+        }
+
+        setupPersonalizedRecommendations() {
+          // AI-powered personalized recommendations
+          this.generateContentRecommendations();
+          this.setupInterestBasedHighlighting();
+          this.setupPersonalizedNavigation();
+        }
+
+        generateContentRecommendations() {
+          const interests = this.aiPersonalization.aiInsights.interests;
+          const userType = this.aiPersonalization.aiInsights.userType;
+
+          // Generate recommendations based on AI analysis
+          let recommendations = [];
+
+          if (interests.includes('projects')) {
+            recommendations.push({
+              type: 'content',
+              message: 'Based on your interest in projects, you might enjoy the technical details in the Skills section.',
+              action: 'highlight_skills'
+            });
+          }
+
+          if (interests.includes('technical_skills')) {
+            recommendations.push({
+              type: 'content',
+              message: 'Since you\'re interested in technical skills, check out how I apply them in my Projects.',
+              action: 'highlight_projects'
+            });
+          }
+
+          if (userType === 'loyal_visitor') {
+            recommendations.push({
+              type: 'special',
+              message: 'As a valued returning visitor, you have access to detailed project insights.',
+              action: 'enhance_projects'
+            });
+          }
+
+          this.applyRecommendations(recommendations);
+        }
+
+        applyRecommendations(recommendations) {
+          recommendations.forEach((rec, index) => {
+            setTimeout(() => {
+              this.executeRecommendation(rec);
+            }, (index + 1) * 5000); // Stagger recommendations
+          });
+        }
+
+        executeRecommendation(recommendation) {
+          switch (recommendation.action) {
+            case 'highlight_skills':
+              this.addPredictiveHighlight('.skills', 'Skills section recommended for you');
+              break;
+            case 'highlight_projects':
+              this.addPredictiveHighlight('.projects', 'Projects section recommended based on your interests');
+              break;
+            case 'enhance_projects':
+              this.enhanceProjectsForLoyalVisitor();
+              break;
+          }
+        }
+
+        enhanceProjectsForLoyalVisitor() {
+          const projectsSection = document.querySelector('.projects');
+          if (projectsSection) {
+            projectsSection.classList.add('ai-loyal-enhancement');
+            projectsSection.style.background = 'linear-gradient(145deg, rgba(72, 187, 120, 0.1), rgba(56, 178, 172, 0.1))';
+            projectsSection.style.border = '2px solid rgba(72, 187, 120, 0.3)';
+            projectsSection.style.borderRadius = '20px';
+            projectsSection.style.padding = '2rem';
+          }
         }
 
         displayPersonalizedMessage(message) {
@@ -3314,6 +3609,102 @@
           this.adaptLayoutDensity();
           this.optimizeContentOrder();
           this.adaptNavigationStyle();
+        }
+
+        adaptLayoutDensity() {
+          const layoutPreferences = this.aiPersonalization.aiInsights.layoutPreferences;
+
+          if (layoutPreferences?.preferredDensity === 'compact') {
+            document.body.classList.add('ai-compact-layout');
+            console.log('📐 Applied compact layout for scanner behavior');
+          } else {
+            document.body.classList.add('ai-comfortable-layout');
+            console.log('📐 Applied comfortable layout for reader behavior');
+          }
+        }
+
+        optimizeContentOrder() {
+          const layoutPreferences = this.aiPersonalization.aiInsights.layoutPreferences;
+
+          if (layoutPreferences?.preferredContentOrder?.length > 0) {
+            this.reorderContentBasedOnInterests(layoutPreferences.preferredContentOrder);
+          }
+        }
+
+        adaptNavigationStyle() {
+          const deviceType = this.aiPersonalization.aiInsights.deviceType;
+          const interactionStyle = this.aiPersonalization.aiInsights.interactionStyle;
+
+          if (deviceType === 'mobile' && interactionStyle === 'touch') {
+            document.body.classList.add('ai-touch-optimized');
+            console.log('📱 Applied touch-optimized navigation');
+          }
+        }
+
+        updatePersonalizationInsights() {
+          // Update AI insights based on current session data
+          const sessionData = this.aiPersonalization.sessionData;
+          const insights = this.aiPersonalization.aiInsights;
+
+          // Update interests based on recent interactions
+          const recentInteractions = sessionData.interactions.slice(-10);
+          const sectionCounts = {};
+
+          recentInteractions.forEach(interaction => {
+            if (interaction.section) {
+              sectionCounts[interaction.section] = (sectionCounts[interaction.section] || 0) + 1;
+            }
+          });
+
+          // Update interests array
+          insights.interests = Object.entries(sectionCounts)
+            .filter(([section, count]) => count >= 2)
+            .map(([section]) => section === 'projects' ? 'projects' :
+                                section === 'skills' ? 'technical_skills' :
+                                section === 'contact' ? 'contact_intent' : section)
+            .slice(0, 5); // Keep top 5 interests
+
+          console.log('🧠 Updated AI insights:', insights);
+        }
+
+        optimizeUserExperience() {
+          // Continuous UX optimization based on AI analysis
+          const engagementLevel = this.calculateEngagementLevel();
+          const satisfaction = this.predictUserSatisfaction();
+
+          // Apply engagement-based optimizations
+          if (engagementLevel === 'low' && satisfaction < 0.5) {
+            this.applyLowEngagementOptimizations();
+          } else if (engagementLevel === 'high') {
+            this.applyHighEngagementEnhancements();
+          }
+
+          // Update visual indicators
+          document.body.className = document.body.className.replace(/ai-\w+-engagement/g, '');
+          document.body.classList.add(`ai-${engagementLevel}-engagement`);
+        }
+
+        applyLowEngagementOptimizations() {
+          // Optimize for users with low engagement
+          this.showNotification('💡 Need help navigating? Try the Projects section for examples of my work!', 'info', 10000);
+
+          // Highlight key sections
+          this.addPredictiveHighlight('.projects', 'Featured content for you');
+          this.addPredictiveHighlight('.about', 'Learn more about my background');
+        }
+
+        applyHighEngagementEnhancements() {
+          // Enhance experience for highly engaged users
+          const loyalVisitor = this.aiPersonalization.aiInsights.userType === 'loyal_visitor';
+
+          if (loyalVisitor) {
+            this.enhanceProjectsForLoyalVisitor();
+          }
+
+          // Provide advanced features
+          setTimeout(() => {
+            this.showNotification('🌟 You seem engaged! Check out the detailed project information.', 'success', 8000);
+          }, 5000);
         }
 
         analyzeLayoutPreferences() {
@@ -3479,18 +3870,121 @@
           // Apply all AI-powered personalizations
           const insights = this.aiPersonalization.aiInsights;
 
+          console.log('🎯 Applying AI Personalization:', insights);
+
           // Apply performance optimizations
           if (insights.performanceProfile === 'low') {
             document.body.classList.add('ai-performance-mode');
+            console.log('⚡ Applied low-performance optimizations');
           }
 
           // Apply device-specific optimizations
           if (insights.deviceType === 'mobile') {
             document.body.classList.add('ai-mobile-optimized');
+            console.log('📱 Applied mobile optimizations');
           }
 
           // Apply user type specific enhancements
-          document.body.classList.add(`ai-user-${insights.userType.replace('_', '-')}`);
+          const userTypeClass = `ai-user-${insights.userType.replace('_', '-')}`;
+          document.body.classList.add(userTypeClass);
+          console.log(`👤 Applied user type class: ${userTypeClass}`);
+
+          // Add visual indicator for debugging
+          this.addAIDebugIndicator();
+        }
+
+        addAIDebugIndicator() {
+          // Add a debug indicator to show AI system is active
+          const indicator = document.createElement('div');
+          indicator.id = 'ai-debug-indicator';
+          indicator.innerHTML = '🤖 AI Active';
+          indicator.style.cssText = `
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(66, 153, 225, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 10000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+          `;
+
+          // Click to show AI data
+          indicator.addEventListener('click', () => {
+            this.showAIDebugData();
+          });
+
+          document.body.appendChild(indicator);
+
+          // Auto-hide after 10 seconds
+          setTimeout(() => {
+            if (indicator.parentNode) {
+              indicator.style.opacity = '0.3';
+              indicator.style.transform = 'scale(0.8)';
+            }
+          }, 10000);
+        }
+
+        showAIDebugData() {
+          // Show comprehensive AI data in console and alert
+          console.group('🤖 AI Personalization Debug Data');
+          console.log('User Profile:', this.aiPersonalization.userProfile);
+          console.log('Behavior Data:', this.aiPersonalization.behaviorData);
+          console.log('Session Data:', this.aiPersonalization.sessionData);
+          console.log('AI Insights:', this.aiPersonalization.aiInsights);
+          console.log('Preferences:', this.aiPersonalization.preferences);
+          console.groupEnd();
+
+          // Show summary in alert
+          const insights = this.aiPersonalization.aiInsights;
+          const profile = this.aiPersonalization.userProfile;
+
+          alert(`🤖 AI Personalization Status:
+
+User Type: ${insights.userType}
+Device: ${insights.deviceType} (${insights.interactionStyle})
+Performance: ${insights.performanceProfile}
+Time Context: ${insights.timeContext}
+Visits: ${profile.visits}
+Interests: ${insights.interests.join(', ') || 'None detected yet'}
+Engagement: ${this.calculateEngagementLevel()}
+
+Check browser console for detailed data!`);
+        }
+
+        // Global function to test AI features
+        testAIFeatures() {
+          console.group('🧪 Testing AI Features');
+
+          // Test user classification
+          console.log('Testing user classification...');
+          this.classifyUser();
+          console.log('User Type:', this.aiPersonalization.aiInsights.userType);
+
+          // Test predictive UI
+          console.log('Testing predictive UI...');
+          this.predictNextActions({ section: 'about' });
+          console.log('Predicted Actions:', this.aiPersonalization.aiInsights.nextActions);
+
+          // Test color adaptation
+          console.log('Testing color adaptation...');
+          this.generatePersonalizedColorScheme();
+
+          // Test layout analysis
+          console.log('Testing layout analysis...');
+          this.analyzeLayoutPreferences();
+
+          // Test personalized greeting
+          console.log('Testing personalized greeting...');
+          this.generatePersonalizedGreeting();
+
+          console.groupEnd();
+
+          this.showNotification('🧪 AI Features Test Complete - Check Console', 'success', 5000);
         }
 
         setupButtonMicrointeractions() {
@@ -3739,6 +4233,37 @@
 
       // Initialize the Liquid Glass system
       const liquidGlass = new LiquidGlassSystem();
+
+      // Make the system globally available for debugging
+      window.liquidGlassSystem = liquidGlass;
+
+      // Initialize when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeSystem);
+      } else {
+        initializeSystem();
+      }
+
+      function initializeSystem() {
+        liquidGlass.init();
+
+        // Make AI testing functions globally available
+        window.testAI = () => liquidGlass.testAIFeatures();
+        window.showAIData = () => liquidGlass.showAIDebugData();
+        window.resetAIData = () => {
+          localStorage.removeItem('ai_user_profile');
+          localStorage.removeItem('ai_behavior_data');
+          localStorage.removeItem('ai_personalized_preferences');
+          console.log('🔄 AI data reset. Reloading page...');
+          location.reload();
+        };
+
+        console.log('🤖 AI Testing Functions Available:');
+        console.log('- testAI() - Test all AI features');
+        console.log('- showAIData() - Show current AI data');
+        console.log('- resetAIData() - Reset AI data and reload');
+        console.log('- liquidGlassSystem.aiPersonalization - Direct access to AI data');
+      }
 
       tailwind.config = {
         theme: {
