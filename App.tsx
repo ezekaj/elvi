@@ -135,7 +135,7 @@ const App: React.FC = () => {
             <div className={`flex items-center justify-center sm:justify-start mb-2 ${logoLoaded ? '' : 'justify-center sm:justify-start'}`}>
               {logoLoaded && (
                 <img
-                  src="/assets/images/Zekaj.png"
+                  src="/assets/images/zekaj.png"
                   alt="Zekaj Technologies Logo - Modern dotted sphere design representing innovation and technology solutions"
                   className="w-12 h-12 sm:w-14 sm:h-14 object-contain animate-glass-morph hover:animate-micro-bounce transition-transform duration-300 mr-4 border-0 outline-none"
                   style={{
@@ -190,7 +190,7 @@ const App: React.FC = () => {
               {/* Profile Image Container */}
               <div className="relative flex-shrink-0 mb-8 lg:mb-0 mx-auto lg:mx-0">
                 <img
-                  src="/assets/images/IMG_2898.png"
+                  src="/assets/images/profile.png"
                   alt="Elvi Zekaj - Professional portrait"
                   className="w-40 h-40 rounded-3xl border-4 border-transparent bg-gradient-to-br from-brand-accent to-brand-secondary-accent p-1 shadow-2xl animate-glass-morph hover:animate-micro-bounce transition-transform duration-300 object-cover"
                   style={{animationDelay: '100ms'}}
