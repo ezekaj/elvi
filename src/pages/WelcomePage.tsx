@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import useScrollToTop from '../hooks/useScrollToTop';
 
 const WelcomePage = () => {
+  useScrollToTop();
   return (
     <div className="min-h-screen bg-slate-900 text-white">
       {/* Hero Section */}
@@ -44,7 +46,7 @@ const WelcomePage = () => {
           <div className="mt-12 flex justify-center">
             <div className="relative">
               <img
-                src="./assets/images/profile.png"
+                src="/assets/images/profile.png"
                 alt="Elvi Zekaj - Full Stack Developer"
                 className="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-cyan-400/30 shadow-2xl object-cover"
               />

@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import useScrollToTop from '../hooks/useScrollToTop';
 
 const ContactPage = () => {
+  useScrollToTop();
   const [formData, setFormData] = useState({
     name: '',
     email: '',

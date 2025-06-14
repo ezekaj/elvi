@@ -1,4 +1,8 @@
+import useScrollToTop from '../hooks/useScrollToTop';
+
 const ExperiencePage = () => {
+  useScrollToTop();
+
   const experiences = [
     {
       id: 1,

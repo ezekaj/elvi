@@ -1,4 +1,8 @@
+import useScrollToTop from '../hooks/useScrollToTop';
+
 const ProjectsPage = () => {
+  useScrollToTop();
+
   const projects = [
     {
       id: 1,

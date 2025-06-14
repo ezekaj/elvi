@@ -1,4 +1,8 @@
+import useScrollToTop from '../hooks/useScrollToTop';
+
 const SkillsPage = () => {
+  useScrollToTop();
+
   const skillCategories = [
     {
       title: "Frontend Development",
