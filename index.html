@@ -43,7 +43,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
       html {
         scroll-behavior: smooth;
@@ -52,14 +52,60 @@
         min-height: 100vh;
       }
 
-      /* Apple Liquid Glass Design System - Enhanced for iOS 26+ with Improved Contrast */
+      /* Layout adjustments for fixed bottom navigation */
+      .app-main {
+        padding-bottom: 100px; /* Space for bottom navigation */
+      }
+
+      /* Enhanced scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, var(--dev-primary), var(--dev-secondary));
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, var(--dev-secondary), var(--dev-primary));
+      }
+
+      /* 2024 Modern Developer Portfolio Design System */
       :root {
+        /* Primary Developer Color Palette - Electric & Professional */
+        --dev-primary: #00d4ff;        /* Electric cyan - main accent */
+        --dev-secondary: #7c3aed;      /* Deep purple - secondary accent */
+        --dev-tertiary: #f59e0b;       /* Amber - warning/highlight */
+        --dev-success: #10b981;        /* Emerald - success states */
+        --dev-error: #ef4444;          /* Red - error states */
+
+        /* Gradient Combinations */
+        --dev-gradient-primary: linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%);
+        --dev-gradient-secondary: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+        --dev-gradient-accent: linear-gradient(135deg, #10b981 0%, #00d4ff 100%);
+        --dev-gradient-warm: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+
+        /* Code-Inspired Colors */
+        --code-bg: #0f172a;            /* Deep slate for code blocks */
+        --code-border: #1e293b;        /* Slate border */
+        --code-text: #e2e8f0;          /* Light text */
+        --code-comment: #64748b;       /* Muted for comments */
+        --code-keyword: #00d4ff;       /* Cyan for keywords */
+        --code-string: #10b981;        /* Green for strings */
+        --code-number: #f59e0b;        /* Amber for numbers */
+
+        /* Enhanced Glass System */
         --liquid-glass-bg: rgba(0, 0, 0, 0.4);
-        --liquid-glass-border: rgba(255, 255, 255, 0.2);
+        --liquid-glass-border: rgba(0, 212, 255, 0.2);  /* Cyan tint */
         --liquid-glass-shadow: rgba(0, 0, 0, 0.4);
         --liquid-glass-blur: 16px;
-        --liquid-glass-hover-bg: rgba(0, 0, 0, 0.5);
-        --liquid-glass-active-bg: rgba(0, 0, 0, 0.6);
+        --liquid-glass-hover-bg: rgba(0, 212, 255, 0.1);
+        --liquid-glass-active-bg: rgba(124, 58, 237, 0.1);
         --ambient-light-factor: 1;
         --motion-preference: 1;
 
@@ -151,7 +197,7 @@
         }
       }
 
-      /* 2024 Refined Glassmorphism: Strategic depth and accessibility-first */
+      /* 2024 Enhanced Developer Glassmorphism */
       .liquid-glass {
         position: relative;
         background: var(--liquid-glass-bg);
@@ -160,16 +206,39 @@
         border: 1px solid var(--liquid-glass-border);
         box-shadow:
           0 8px 32px var(--liquid-glass-shadow),
+          0 0 0 1px rgba(0, 212, 255, 0.1),
           inset 0 1px 0 rgba(255, 255, 255, 0.1);
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-        /* 2024 Best Practice: Ensure text contrast */
+        /* Enhanced text contrast with developer theme */
         color: #e2e8f0;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 
         /* Performance optimization */
         will-change: transform, backdrop-filter;
         contain: layout style paint;
+      }
+
+      /* Developer-themed glass variants */
+      .liquid-glass-dev {
+        background: linear-gradient(135deg,
+          rgba(0, 212, 255, 0.1) 0%,
+          rgba(124, 58, 237, 0.05) 100%);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        box-shadow:
+          0 8px 32px rgba(0, 212, 255, 0.2),
+          0 0 0 1px rgba(0, 212, 255, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      }
+
+      .liquid-glass-code {
+        background: var(--code-bg);
+        border: 1px solid var(--code-border);
+        box-shadow:
+          0 8px 32px rgba(0, 0, 0, 0.6),
+          0 0 0 1px rgba(0, 212, 255, 0.2),
+          inset 0 1px 0 rgba(0, 212, 255, 0.1);
+        font-family: 'JetBrains Mono', monospace;
       }
 
       /* Multi-layer glass with real-time depth and ambient light adaptation */
@@ -938,6 +1007,182 @@
         box-shadow:
           6px 6px 12px rgba(0, 0, 0, 0.4),
           -6px -6px 12px rgba(237, 137, 54, 0.1) !important;
+      }
+
+      /* ========================================
+         2024 CODE-INSPIRED VISUAL ELEMENTS
+         Developer-themed UI components
+         ======================================== */
+
+      /* Terminal Window Component */
+      .terminal-window {
+        background: var(--code-bg);
+        border: 1px solid var(--code-border);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      .terminal-header {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 1px solid var(--code-border);
+      }
+
+      .terminal-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .terminal-dot.red { background: #ef4444; }
+      .terminal-dot.yellow { background: #f59e0b; }
+      .terminal-dot.green { background: #10b981; }
+
+      .terminal-content {
+        padding: 20px;
+        background: var(--code-bg);
+        color: var(--code-text);
+        line-height: 1.6;
+      }
+
+      .terminal-prompt {
+        color: var(--dev-primary);
+        font-weight: 500;
+      }
+
+      .terminal-command {
+        color: var(--code-keyword);
+      }
+
+      .terminal-output {
+        color: var(--code-text);
+        margin: 8px 0;
+      }
+
+      /* Code Block Component */
+      .code-block {
+        background: var(--code-bg);
+        border: 1px solid var(--code-border);
+        border-radius: 8px;
+        padding: 20px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 14px;
+        line-height: 1.6;
+        overflow-x: auto;
+        position: relative;
+      }
+
+      .code-block::before {
+        content: attr(data-language);
+        position: absolute;
+        top: 8px;
+        right: 12px;
+        font-size: 12px;
+        color: var(--code-comment);
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+
+      .code-keyword { color: var(--code-keyword); font-weight: 500; }
+      .code-string { color: var(--code-string); }
+      .code-number { color: var(--code-number); }
+      .code-comment { color: var(--code-comment); font-style: italic; }
+      .code-function { color: var(--dev-secondary); font-weight: 500; }
+
+      /* Tech Stack Badge */
+      .tech-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        background: linear-gradient(135deg,
+          rgba(0, 212, 255, 0.1) 0%,
+          rgba(124, 58, 237, 0.1) 100%);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--dev-primary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+      }
+
+      .tech-badge:hover {
+        background: linear-gradient(135deg,
+          rgba(0, 212, 255, 0.2) 0%,
+          rgba(124, 58, 237, 0.2) 100%);
+        border-color: rgba(0, 212, 255, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+      }
+
+      /* Gradient Text Effects */
+      .gradient-text-primary {
+        background: var(--dev-gradient-primary);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% 200%;
+        animation: gradient-shift 3s ease-in-out infinite;
+      }
+
+      .gradient-text-secondary {
+        background: var(--dev-gradient-secondary);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% 200%;
+        animation: gradient-shift 3s ease-in-out infinite;
+      }
+
+      @keyframes gradient-shift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+
+      /* Enhanced Button Styles */
+      .btn-dev-primary {
+        background: var(--dev-gradient-primary);
+        border: none;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-dev-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent);
+        transition: left 0.5s ease;
+      }
+
+      .btn-dev-primary:hover::before {
+        left: 100%;
+      }
+
+      .btn-dev-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
       }
 
       /* ========================================
@@ -6878,16 +7123,42 @@ Check browser console for detailed data!`);
           extend: {
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
+              display: ['Space Grotesk', 'Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
             },
             colors: {
-              'brand-dark': '#1a202c', // Very dark blue/gray
-              'brand-dark-secondary': '#2d3748', // Darker gray
-              'brand-light': '#f7fafc', // Off-white
-              'brand-accent': '#5a9bd4', // Softer blue accent (reduced saturation)
-              'brand-accent-hover': '#4a8bc2', // Softer darker blue for hover
-              'brand-secondary-accent': '#4a9d96', // Softer teal accent (reduced saturation)
-              'desk-surface': '#252e3d', // Slightly lighter than brand-dark-secondary
-              'desk-object': '#3a475a', // For objects on the desk (fallback if glassmorphism fails or as a base)
+              // Legacy colors (preserved for compatibility)
+              'brand-dark': '#1a202c',
+              'brand-dark-secondary': '#2d3748',
+              'brand-light': '#f7fafc',
+              'brand-accent': '#5a9bd4',
+              'brand-accent-hover': '#4a8bc2',
+              'brand-secondary-accent': '#4a9d96',
+              'desk-surface': '#252e3d',
+              'desk-object': '#3a475a',
+
+              // 2024 Developer Color Palette
+              'dev-primary': '#00d4ff',      // Electric cyan
+              'dev-secondary': '#7c3aed',    // Deep purple
+              'dev-tertiary': '#f59e0b',     // Amber
+              'dev-success': '#10b981',      // Emerald
+              'dev-error': '#ef4444',        // Red
+              'dev-warning': '#f59e0b',      // Amber
+
+              // Code colors
+              'code-bg': '#0f172a',          // Deep slate
+              'code-border': '#1e293b',      // Slate border
+              'code-text': '#e2e8f0',        // Light text
+              'code-comment': '#64748b',     // Muted
+              'code-keyword': '#00d4ff',     // Cyan
+              'code-string': '#10b981',      // Green
+              'code-number': '#f59e0b',      // Amber
+              'code-function': '#7c3aed',    // Purple
+
+              // Glass system colors
+              'glass-primary': 'rgba(0, 212, 255, 0.1)',
+              'glass-secondary': 'rgba(124, 58, 237, 0.1)',
+              'glass-border': 'rgba(0, 212, 255, 0.3)',
             },
             animation: {
               'float': 'float 3s ease-in-out infinite',

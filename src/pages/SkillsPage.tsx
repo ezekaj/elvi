@@ -1,10 +1,9 @@
-import React from 'react';
-
-const SkillsPage: React.FC = () => {
+const SkillsPage = () => {
   const skillCategories = [
     {
       title: "Frontend Development",
       icon: "🎨",
+      color: "cyan",
       skills: [
         { name: "React", level: 95, description: "Advanced component architecture and state management" },
         { name: "TypeScript", level: 90, description: "Type-safe development and advanced patterns" },
@@ -16,6 +15,7 @@ const SkillsPage: React.FC = () => {
     {
       title: "Backend Development",
       icon: "⚙️",
+      color: "purple",
       skills: [
         { name: "Node.js", level: 88, description: "Server-side JavaScript and API development" },
         { name: "Express.js", level: 85, description: "RESTful APIs and middleware development" },
@@ -27,6 +27,7 @@ const SkillsPage: React.FC = () => {
     {
       title: "Cloud & DevOps",
       icon: "☁️",
+      color: "green",
       skills: [
         { name: "AWS", level: 75, description: "Cloud infrastructure and serverless architecture" },
         { name: "Docker", level: 70, description: "Containerization and deployment strategies" },
@@ -38,6 +39,7 @@ const SkillsPage: React.FC = () => {
     {
       title: "Design & UX",
       icon: "🎯",
+      color: "yellow",
       skills: [
         { name: "UI/UX Design", level: 80, description: "User-centered design and interface optimization" },
         { name: "Figma", level: 75, description: "Design systems and prototyping" },
@@ -69,14 +71,27 @@ const SkillsPage: React.FC = () => {
     }
   ];
 
+  const getColorClasses = (color: string) => {
+    const colors = {
+      cyan: { bg: 'bg-cyan-500/20', text: 'text-cyan-400', border: 'border-cyan-500/30', progress: 'bg-gradient-to-r from-cyan-500 to-cyan-600' },
+      purple: { bg: 'bg-purple-500/20', text: 'text-purple-400', border: 'border-purple-500/30', progress: 'bg-gradient-to-r from-purple-500 to-purple-600' },
+      green: { bg: 'bg-green-500/20', text: 'text-green-400', border: 'border-green-500/30', progress: 'bg-gradient-to-r from-green-500 to-green-600' },
+      yellow: { bg: 'bg-yellow-500/20', text: 'text-yellow-400', border: 'border-yellow-500/30', progress: 'bg-gradient-to-r from-yellow-500 to-yellow-600' }
+    };
+    return colors[color as keyof typeof colors] || colors.cyan;
+  };
+
   return (
-    <div className="skills-page">
+    <div className="min-h-screen bg-slate-900 text-white">
       {/* Hero Section */}
-      <section className="page-hero">
-        <div className="container">
-          <div className="hero-content">
-            <h1 className="page-title">Technical Skills</h1>
-            <p className="page-subtitle">
+      <section className="py-20 px-6">
+        <div className="container mx-auto text-center">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="text-cyan-400">Technical</span>{' '}
+              <span className="text-purple-400">Skills</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-slate-300 leading-relaxed mb-8">
               Expertise in Modern Technologies and Development Practices
             </p>
           </div>
@@ -84,86 +99,101 @@ const SkillsPage: React.FC = () => {
       </section>
 
       {/* Skills Content */}
-      <section className="skills-content">
-        <div className="container">
+      <section className="py-20 px-6 bg-slate-800/50">
+        <div className="container mx-auto">
           {/* Skills Categories */}
-          <div className="skills-categories">
-            {skillCategories.map((category, categoryIndex) => (
-              <div key={categoryIndex} className="skill-category">
-                <div className="category-header">
-                  <span className="category-icon">{category.icon}</span>
-                  <h3 className="category-title">{category.title}</h3>
-                </div>
-                
-                <div className="skills-list">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex} className="skill-item">
-                      <div className="skill-header">
-                        <span className="skill-name">{skill.name}</span>
-                        <span className="skill-percentage">{skill.level}%</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {skillCategories.map((category, categoryIndex) => {
+              const colorClasses = getColorClasses(category.color);
+              return (
+                <div key={categoryIndex} className="bg-slate-800/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-700">
+                  <div className="flex items-center mb-6">
+                    <span className="text-3xl mr-3">{category.icon}</span>
+                    <h3 className={`text-xl font-bold ${colorClasses.text}`}>{category.title}</h3>
+                  </div>
+
+                  <div className="space-y-4">
+                    {category.skills.map((skill, skillIndex) => (
+                      <div key={skillIndex} className="space-y-2">
+                        <div className="flex justify-between items-center">
+                          <span className="font-medium text-white">{skill.name}</span>
+                          <span className={`text-sm font-medium ${colorClasses.text}`}>{skill.level}%</span>
+                        </div>
+                        <div className="w-full bg-slate-700 rounded-full h-2">
+                          <div
+                            className={`h-2 rounded-full ${colorClasses.progress}`}
+                            style={{ width: `${skill.level}%` }}
+                          ></div>
+                        </div>
+                        <p className="text-sm text-slate-400">{skill.description}</p>
                       </div>
-                      <div className="skill-bar">
-                        <div 
-                          className="skill-progress" 
-                          style={{ width: `${skill.level}%` }}
-                        ></div>
-                      </div>
-                      <p className="skill-description">{skill.description}</p>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Certifications */}
-          <div className="certifications-section">
-            <h3>Certifications & Achievements</h3>
-            <div className="certifications-grid">
+          <div className="mt-16">
+            <h3 className="text-3xl font-bold text-center mb-12">
+              <span className="text-cyan-400">Certifications</span>{' '}
+              <span className="text-purple-400">& Achievements</span>
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {certifications.map((cert, index) => (
-                <div key={index} className="certification-card">
-                  <div className="cert-header">
-                    <h4 className="cert-title">{cert.title}</h4>
-                    <span className="cert-status">{cert.status}</span>
+                <div key={index} className="bg-slate-900 rounded-xl p-6 border border-slate-700 hover:border-cyan-500/50 transition-all duration-300">
+                  <div className="flex justify-between items-start mb-3">
+                    <h4 className="font-bold text-white">{cert.title}</h4>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      cert.status === 'Active'
+                        ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                        : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                    }`}>
+                      {cert.status}
+                    </span>
                   </div>
-                  <p className="cert-issuer">{cert.issuer}</p>
-                  <p className="cert-year">{cert.year}</p>
+                  <p className="text-cyan-400 text-sm mb-1">{cert.issuer}</p>
+                  <p className="text-slate-400 text-sm">{cert.year}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Tools & Technologies */}
-          <div className="tools-section">
-            <h3>Tools & Technologies</h3>
-            <div className="tools-grid">
-              <div className="tool-category">
-                <h4>Development</h4>
-                <div className="tool-tags">
-                  <span className="tool-tag">VS Code</span>
-                  <span className="tool-tag">WebStorm</span>
-                  <span className="tool-tag">Postman</span>
-                  <span className="tool-tag">Chrome DevTools</span>
+          <div className="mt-16">
+            <h3 className="text-3xl font-bold text-center mb-12">
+              <span className="text-purple-400">Tools</span>{' '}
+              <span className="text-yellow-400">& Technologies</span>
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700">
+                <h4 className="text-lg font-bold text-cyan-400 mb-4">Development</h4>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-sm border border-cyan-500/30">VS Code</span>
+                  <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-sm border border-cyan-500/30">WebStorm</span>
+                  <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-sm border border-cyan-500/30">Postman</span>
+                  <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-sm border border-cyan-500/30">Chrome DevTools</span>
                 </div>
               </div>
-              
-              <div className="tool-category">
-                <h4>Design</h4>
-                <div className="tool-tags">
-                  <span className="tool-tag">Figma</span>
-                  <span className="tool-tag">Adobe XD</span>
-                  <span className="tool-tag">Sketch</span>
-                  <span className="tool-tag">Photoshop</span>
+
+              <div className="bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700">
+                <h4 className="text-lg font-bold text-purple-400 mb-4">Design</h4>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-sm border border-purple-500/30">Figma</span>
+                  <span className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-sm border border-purple-500/30">Adobe XD</span>
+                  <span className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-sm border border-purple-500/30">Sketch</span>
+                  <span className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-sm border border-purple-500/30">Photoshop</span>
                 </div>
               </div>
-              
-              <div className="tool-category">
-                <h4>Collaboration</h4>
-                <div className="tool-tags">
-                  <span className="tool-tag">Slack</span>
-                  <span className="tool-tag">Notion</span>
-                  <span className="tool-tag">Jira</span>
-                  <span className="tool-tag">Trello</span>
+
+              <div className="bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-700">
+                <h4 className="text-lg font-bold text-yellow-400 mb-4">Collaboration</h4>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm border border-yellow-500/30">Slack</span>
+                  <span className="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm border border-yellow-500/30">Notion</span>
+                  <span className="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm border border-yellow-500/30">Jira</span>
+                  <span className="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm border border-yellow-500/30">Trello</span>
                 </div>
               </div>
             </div>
