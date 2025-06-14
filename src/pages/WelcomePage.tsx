@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import useScrollToTop from '../hooks/useScrollToTop';
 
+// Import profile image
+const profileImageUrl = '/assets/images/profile.png';
+
 const WelcomePage = () => {
   useScrollToTop();
   return (
@@ -45,11 +48,32 @@ const WelcomePage = () => {
           {/* Hero Visual */}
           <div className="mt-12 flex justify-center">
             <div className="relative">
-              <img
-                src="/assets/images/profile.png"
-                alt="Elvi Zekaj - Full Stack Developer"
-                className="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-cyan-400/30 shadow-2xl object-cover"
-              />
+              {/* Profile Image with Fallback */}
+              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-cyan-400/30 shadow-2xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center overflow-hidden">
+                {/* Fallback Content - Always Visible */}
+                <div className="w-full h-full flex items-center justify-center text-cyan-400">
+                  <div className="text-center">
+                    <div className="text-6xl mb-4">👨‍💻</div>
+                    <div className="text-lg font-semibold">Elvi Zekaj</div>
+                    <div className="text-sm opacity-75">Full Stack Developer</div>
+                  </div>
+                </div>
+
+                {/* Actual Image - Hidden by default, shown when loaded */}
+                <img
+                  src={profileImageUrl}
+                  alt="Elvi Zekaj - Full Stack Developer"
+                  className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                  onLoad={(e) => {
+                    console.log('Profile image loaded successfully');
+                    e.currentTarget.style.opacity = '1';
+                  }}
+                  onError={(e) => {
+                    console.error('Failed to load profile image - using fallback');
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+              </div>
               {/* Tech icons floating around */}
               <div className="absolute -top-4 -right-4 w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center animate-bounce">
                 <span className="text-cyan-400 text-xl">⚛️</span>
