@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BottomNavigation from './src/components/BottomNavigation';
 import WelcomePage from './src/pages/WelcomePage';
@@ -7,6 +7,16 @@ import ProjectsPage from './src/pages/ProjectsPage';
 import SkillsPage from './src/pages/SkillsPage';
 import ExperiencePage from './src/pages/ExperiencePage';
 import ContactPage from './src/pages/ContactPage';
+
+// TypeScript declarations for global objects
+declare global {
+  interface Window {
+    liquidGlassSystem?: {
+      init: () => void;
+      [key: string]: any;
+    };
+  }
+}
 
 function App() {
   useEffect(() => {
