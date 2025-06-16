@@ -197,7 +197,6 @@ const ContactPage = () => {
                   </StaggeredItem>
                 ))}
               </StaggeredContainer>
-            </div>
 
               {/* Availability */}
               <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6`} delay={1.0}>

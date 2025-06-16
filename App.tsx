@@ -7,7 +7,9 @@ import ExperiencePage from './src/pages/ExperiencePage';
 import ContactPage from './src/pages/ContactPage';
 import BottomNavigation from './src/components/BottomNavigation';
 import ThemeToggle from './src/components/ThemeToggle';
+import AnimationToggle from './src/components/AnimationToggle';
 import { ThemeProvider } from './src/contexts/ThemeContext';
+import { AnimationProvider } from './src/contexts/AnimationContext';
 import { useThemeStyles } from './src/hooks/useThemeStyles';
 
 // Get the base path for GitHub Pages
@@ -31,8 +33,11 @@ const AppContent = () => {
               </p>
             </Link>
 
-            {/* Theme Toggle */}
-            <ThemeToggle />
+            {/* Controls */}
+            <div className="flex items-center gap-3">
+              <AnimationToggle />
+              <ThemeToggle />
+            </div>
           </div>
         </header>
 
@@ -58,7 +63,9 @@ const AppContent = () => {
 function App() {
   return (
     <ThemeProvider>
-      <AppContent />
+      <AnimationProvider>
+        <AppContent />
+      </AnimationProvider>
     </ThemeProvider>
   );
 }
