@@ -1,5 +1,9 @@
 import useScrollToTop from '../hooks/useScrollToTop';
 import { useThemeStyles } from '../hooks/useThemeStyles';
+import AnimatedSection from '../components/animations/AnimatedSection';
+import StaggeredContainer, { StaggeredItem } from '../components/animations/StaggeredContainer';
+import AnimatedCard from '../components/animations/AnimatedCard';
+import { heroTitle, heroDescription, fadeInUp } from '../config/animations';
 
 const ProjectsPage = () => {
   useScrollToTop();
@@ -55,27 +59,34 @@ const ProjectsPage = () => {
       <section className="py-20 px-6">
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className={accent}>My</span>{' '}
-              <span className="text-purple-400">Projects</span>
-            </h1>
-            <p className={`text-xl md:text-2xl ${textSecondary} leading-relaxed mb-8`}>
-              Innovative Solutions Built with Modern Technologies
-            </p>
+            <AnimatedSection variants={heroTitle}>
+              <h1 className="text-5xl md:text-6xl font-bold mb-6">
+                <span className={accent}>My</span>{' '}
+                <span className="text-purple-400">Projects</span>
+              </h1>
+            </AnimatedSection>
+
+            <AnimatedSection variants={heroDescription} delay={0.2}>
+              <p className={`text-xl md:text-2xl ${textSecondary} leading-relaxed mb-8`}>
+                Innovative Solutions Built with Modern Technologies
+              </p>
+            </AnimatedSection>
 
             {/* Terminal-style project count */}
-            <div className={`${card} rounded-lg p-4 max-w-md mx-auto font-mono text-sm`}>
-              <div className="flex items-center mb-2">
-                <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-                <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                <span className={`${textSecondary} text-sm ml-4`}>~/projects</span>
+            <AnimatedSection delay={0.4}>
+              <div className={`${card} rounded-lg p-4 max-w-md mx-auto font-mono text-sm`}>
+                <div className="flex items-center mb-2">
+                  <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                  <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                  <span className={`${textSecondary} text-sm ml-4`}>~/projects</span>
+                </div>
+                <div className={`${getSkillColors('green').text}`}>
+                  <span className={accent}>$</span> ls -la projects/
+                </div>
+                <div className={textSecondary}>{projects.length} innovative solutions found</div>
               </div>
-              <div className={`${getSkillColors('green').text}`}>
-                <span className={accent}>$</span> ls -la projects/
-              </div>
-              <div className={textSecondary}>{projects.length} innovative solutions found</div>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -83,9 +94,10 @@ const ProjectsPage = () => {
       {/* Projects Grid */}
       <section className={`py-20 px-6 ${sectionBackground}`}>
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {projects.map((project) => (
-              <div key={project.id} className={`${card} ${cardHover} rounded-2xl p-6 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105`}>
+          <StaggeredContainer className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto" staggerDelay={0.2}>
+            {projects.map((project, index) => (
+              <StaggeredItem key={project.id}>
+                <AnimatedCard className={`${card} ${cardHover} rounded-2xl p-6 hover:border-cyan-500/50 transition-all duration-300`} index={index}>
                 <div className="mb-4">
                   <div className="flex items-center justify-between mb-3">
                     <div className={`px-3 py-1 rounded-full text-xs font-medium ${
@@ -117,12 +129,13 @@ const ProjectsPage = () => {
                     </a>
                   </div>
                 </div>
-              </div>
+                </AnimatedCard>
+              </StaggeredItem>
             ))}
-          </div>
+          </StaggeredContainer>
 
           {/* Featured Project */}
-          <div className={`mt-16 ${card} rounded-2xl p-8`}>
+          <AnimatedSection className={`mt-16 ${card} rounded-2xl p-8`} delay={0.6}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div>
                 <h3 className={`${accent} font-medium mb-2`}>Featured Project</h3>
@@ -174,7 +187,7 @@ const ProjectsPage = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
     </div>

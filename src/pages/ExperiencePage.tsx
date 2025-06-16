@@ -1,5 +1,9 @@
 import useScrollToTop from '../hooks/useScrollToTop';
 import { useThemeStyles } from '../hooks/useThemeStyles';
+import AnimatedSection from '../components/animations/AnimatedSection';
+import StaggeredContainer, { StaggeredItem } from '../components/animations/StaggeredContainer';
+import AnimatedCard from '../components/animations/AnimatedCard';
+import { heroTitle, heroDescription, timelineDot, timelineCard } from '../config/animations';
 
 const ExperiencePage = () => {
   useScrollToTop();
@@ -105,13 +109,18 @@ const ExperiencePage = () => {
       <section className="py-20 px-6">
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className={accent}>Professional</span>{' '}
-              <span className="text-purple-400">Experience</span>
-            </h1>
-            <p className={`text-xl md:text-2xl ${textSecondary} leading-relaxed mb-8`}>
-              A Journey of Growth, Innovation, and Technical Excellence
-            </p>
+            <AnimatedSection variants={heroTitle}>
+              <h1 className="text-5xl md:text-6xl font-bold mb-6">
+                <span className={accent}>Professional</span>{' '}
+                <span className="text-purple-400">Experience</span>
+              </h1>
+            </AnimatedSection>
+
+            <AnimatedSection variants={heroDescription} delay={0.2}>
+              <p className={`text-xl md:text-2xl ${textSecondary} leading-relaxed mb-8`}>
+                A Journey of Growth, Innovation, and Technical Excellence
+              </p>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -129,17 +138,19 @@ const ExperiencePage = () => {
 
                 <div className="flex items-start">
                   {/* Timeline dot */}
-                  <div className={`flex-shrink-0 w-12 h-12 rounded-full border-4 flex items-center justify-center z-10 ${
-                    exp.current
-                      ? 'bg-cyan-500 border-cyan-400 shadow-lg shadow-cyan-500/50'
-                      : `${pageBackground} border-purple-500`
-                  }`}>
-                    <div className={`w-3 h-3 rounded-full ${exp.current ? 'bg-white' : 'bg-purple-400'}`}></div>
-                  </div>
+                  <AnimatedSection variants={timelineDot} delay={index * 0.2}>
+                    <div className={`flex-shrink-0 w-12 h-12 rounded-full border-4 flex items-center justify-center z-10 ${
+                      exp.current
+                        ? 'bg-cyan-500 border-cyan-400 shadow-lg shadow-cyan-500/50'
+                        : `${pageBackground} border-purple-500`
+                    }`}>
+                      <div className={`w-3 h-3 rounded-full ${exp.current ? 'bg-white' : 'bg-purple-400'}`}></div>
+                    </div>
+                  </AnimatedSection>
 
                   {/* Experience card */}
                   <div className="ml-8 flex-1">
-                    <div className={`${card} ${cardHover} rounded-2xl p-6 hover:border-cyan-500/50 transition-all duration-300`}>
+                    <AnimatedCard className={`${card} ${cardHover} rounded-2xl p-6 hover:border-cyan-500/50 transition-all duration-300`} variants={timelineCard} delay={index * 0.2 + 0.1}>
                       <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                         <div>
                           <h3 className={`text-xl font-bold ${textPrimary} mb-1`}>{exp.title}</h3>
@@ -184,7 +195,7 @@ const ExperiencePage = () => {
                           ))}
                         </div>
                       </div>
-                    </div>
+                    </AnimatedCard>
                   </div>
                 </div>
               </div>
@@ -193,11 +204,13 @@ const ExperiencePage = () => {
 
           {/* Education Section */}
           <div className="mt-16">
-            <h3 className="text-3xl font-bold text-center mb-12">
-              <span className={`${getSkillColors('purple').text}`}>Education</span>
-            </h3>
+            <AnimatedSection>
+              <h3 className="text-3xl font-bold text-center mb-12">
+                <span className={`${getSkillColors('purple').text}`}>Education</span>
+              </h3>
+            </AnimatedSection>
             {education.map((edu, index) => (
-              <div key={index} className={`${card} ${cardHover} rounded-2xl p-6`}>
+              <AnimatedCard key={index} className={`${card} ${cardHover} rounded-2xl p-6`} delay={0.4}>
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                   <div>
                     <h4 className={`text-xl font-bold ${textPrimary} mb-1`}>{edu.degree}</h4>
@@ -219,34 +232,44 @@ const ExperiencePage = () => {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </AnimatedCard>
             ))}
           </div>
 
           {/* Career Stats */}
           <div className="mt-16">
-            <h3 className="text-3xl font-bold text-center mb-12">
-              <span className={accent}>Career</span>{' '}
-              <span className={`${getSkillColors('yellow').text}`}>Highlights</span>
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className={`${card} ${cardHover} rounded-xl p-6 text-center hover:border-cyan-500/50 transition-all duration-300`}>
-                <div className={`text-4xl font-bold ${getSkillColors('cyan').text} mb-2`}>5+</div>
-                <div className={`${textSecondary} font-medium`}>Years Experience</div>
-              </div>
-              <div className={`${card} ${cardHover} rounded-xl p-6 text-center hover:border-purple-500/50 transition-all duration-300`}>
-                <div className={`text-4xl font-bold ${getSkillColors('purple').text} mb-2`}>50+</div>
-                <div className={`${textSecondary} font-medium`}>Projects Completed</div>
-              </div>
-              <div className={`${card} ${cardHover} rounded-xl p-6 text-center hover:border-green-500/50 transition-all duration-300`}>
-                <div className={`text-4xl font-bold ${getSkillColors('green').text} mb-2`}>4</div>
-                <div className={`${textSecondary} font-medium`}>Companies</div>
-              </div>
-              <div className={`${card} ${cardHover} rounded-xl p-6 text-center hover:border-yellow-500/50 transition-all duration-300`}>
-                <div className={`text-4xl font-bold ${getSkillColors('yellow').text} mb-2`}>10+</div>
-                <div className={`${textSecondary} font-medium`}>Technologies Mastered</div>
-              </div>
-            </div>
+            <AnimatedSection>
+              <h3 className="text-3xl font-bold text-center mb-12">
+                <span className={accent}>Career</span>{' '}
+                <span className={`${getSkillColors('yellow').text}`}>Highlights</span>
+              </h3>
+            </AnimatedSection>
+            <StaggeredContainer className="grid grid-cols-2 md:grid-cols-4 gap-6" staggerDelay={0.15}>
+              <StaggeredItem>
+                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6 text-center hover:border-cyan-500/50 transition-all duration-300`}>
+                  <div className={`text-4xl font-bold ${getSkillColors('cyan').text} mb-2`}>5+</div>
+                  <div className={`${textSecondary} font-medium`}>Years Experience</div>
+                </AnimatedCard>
+              </StaggeredItem>
+              <StaggeredItem>
+                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6 text-center hover:border-purple-500/50 transition-all duration-300`}>
+                  <div className={`text-4xl font-bold ${getSkillColors('purple').text} mb-2`}>50+</div>
+                  <div className={`${textSecondary} font-medium`}>Projects Completed</div>
+                </AnimatedCard>
+              </StaggeredItem>
+              <StaggeredItem>
+                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6 text-center hover:border-green-500/50 transition-all duration-300`}>
+                  <div className={`text-4xl font-bold ${getSkillColors('green').text} mb-2`}>4</div>
+                  <div className={`${textSecondary} font-medium`}>Companies</div>
+                </AnimatedCard>
+              </StaggeredItem>
+              <StaggeredItem>
+                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6 text-center hover:border-yellow-500/50 transition-all duration-300`}>
+                  <div className={`text-4xl font-bold ${getSkillColors('yellow').text} mb-2`}>10+</div>
+                  <div className={`${textSecondary} font-medium`}>Technologies Mastered</div>
+                </AnimatedCard>
+              </StaggeredItem>
+            </StaggeredContainer>
           </div>
         </div>
       </section>
