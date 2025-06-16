@@ -244,29 +244,29 @@ const ExperiencePage = () => {
                 <span className={`${getSkillColors('yellow').text}`}>Highlights</span>
               </h3>
             </AnimatedSection>
-            <StaggeredContainer className="grid grid-cols-2 md:grid-cols-4 gap-6" staggerDelay={0.15}>
+            <StaggeredContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto" staggerDelay={0.15}>
               <StaggeredItem>
-                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6 text-center hover:border-cyan-500/50 transition-all duration-300`}>
-                  <div className={`text-4xl font-bold ${getSkillColors('cyan').text} mb-2`}>5+</div>
-                  <div className={`${textSecondary} font-medium`}>Years Experience</div>
+                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 text-center hover:border-cyan-500/50 transition-all duration-300 min-h-[120px] flex flex-col justify-center`}>
+                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('cyan').text} mb-2`}>5+</div>
+                  <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Years Experience</div>
                 </AnimatedCard>
               </StaggeredItem>
               <StaggeredItem>
-                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6 text-center hover:border-purple-500/50 transition-all duration-300`}>
-                  <div className={`text-4xl font-bold ${getSkillColors('purple').text} mb-2`}>50+</div>
-                  <div className={`${textSecondary} font-medium`}>Projects Completed</div>
+                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 text-center hover:border-purple-500/50 transition-all duration-300 min-h-[120px] flex flex-col justify-center`}>
+                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('purple').text} mb-2`}>50+</div>
+                  <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Projects Completed</div>
                 </AnimatedCard>
               </StaggeredItem>
               <StaggeredItem>
-                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6 text-center hover:border-green-500/50 transition-all duration-300`}>
-                  <div className={`text-4xl font-bold ${getSkillColors('green').text} mb-2`}>4</div>
-                  <div className={`${textSecondary} font-medium`}>Companies</div>
+                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 text-center hover:border-green-500/50 transition-all duration-300 min-h-[120px] flex flex-col justify-center`}>
+                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('green').text} mb-2`}>4</div>
+                  <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Companies</div>
                 </AnimatedCard>
               </StaggeredItem>
               <StaggeredItem>
-                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6 text-center hover:border-yellow-500/50 transition-all duration-300`}>
-                  <div className={`text-4xl font-bold ${getSkillColors('yellow').text} mb-2`}>10+</div>
-                  <div className={`${textSecondary} font-medium`}>Technologies Mastered</div>
+                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 text-center hover:border-yellow-500/50 transition-all duration-300 min-h-[120px] flex flex-col justify-center`}>
+                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('yellow').text} mb-2`}>10+</div>
+                  <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Technologies Mastered</div>
                 </AnimatedCard>
               </StaggeredItem>
             </StaggeredContainer>

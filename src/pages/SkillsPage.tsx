@@ -118,31 +118,31 @@ const SkillsPage = () => {
       <section className={`py-20 px-6 ${sectionBackground}`}>
         <div className="container mx-auto">
           {/* Skills Categories */}
-          <StaggeredContainer className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto" staggerDelay={0.2}>
+          <StaggeredContainer className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto" staggerDelay={0.2}>
             {skillCategories.map((category, categoryIndex) => {
               const colorClasses = getSkillColors(category.color);
               return (
                 <StaggeredItem key={categoryIndex}>
-                  <AnimatedCard className={`${card} ${cardHover} rounded-2xl p-6`} index={categoryIndex}>
-                  <div className="flex items-center mb-6">
-                    <span className="text-3xl mr-3">{category.icon}</span>
-                    <h3 className={`text-xl font-bold ${colorClasses.text}`}>{category.title}</h3>
+                  <AnimatedCard className={`${card} ${cardHover} rounded-2xl p-4 sm:p-6 h-full`} index={categoryIndex}>
+                  <div className="flex items-center mb-4 sm:mb-6">
+                    <span className="text-2xl sm:text-3xl mr-3">{category.icon}</span>
+                    <h3 className={`text-lg sm:text-xl font-bold ${colorClasses.text}`}>{category.title}</h3>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     {category.skills.map((skill, skillIndex) => (
                       <div key={skillIndex} className="space-y-2">
-                        <div className="flex justify-between items-center">
-                          <span className={`font-medium ${textPrimary}`}>{skill.name}</span>
-                          <span className={`text-sm font-medium ${colorClasses.text}`}>{skill.level}%</span>
+                        <div className="flex justify-between items-center gap-2">
+                          <span className={`font-medium ${textPrimary} text-sm sm:text-base truncate`}>{skill.name}</span>
+                          <span className={`text-xs sm:text-sm font-medium ${colorClasses.text} flex-shrink-0`}>{skill.level}%</span>
                         </div>
                         <div className={`w-full ${sectionBackground} rounded-full h-2`}>
                           <div
-                            className={`h-2 rounded-full ${colorClasses.progress}`}
+                            className={`h-2 rounded-full ${colorClasses.progress} transition-all duration-500`}
                             style={{ width: `${skill.level}%` }}
                           ></div>
                         </div>
-                        <p className={`text-sm ${textSecondary}`}>{skill.description}</p>
+                        <p className={`text-xs sm:text-sm ${textSecondary} leading-relaxed`}>{skill.description}</p>
                       </div>
                     ))}
                   </div>
@@ -160,13 +160,13 @@ const SkillsPage = () => {
                 <span className="text-purple-400">& Achievements</span>
               </h3>
             </AnimatedSection>
-            <StaggeredContainer className="grid grid-cols-1 md:grid-cols-3 gap-6" staggerDelay={0.15}>
+            <StaggeredContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto" staggerDelay={0.15}>
               {certifications.map((cert, index) => (
                 <StaggeredItem key={index}>
-                  <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6 hover:border-cyan-500/50 transition-all duration-300`} index={index}>
-                    <div className="flex justify-between items-start mb-3">
-                      <h4 className={`font-bold ${textPrimary}`}>{cert.title}</h4>
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                  <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 hover:border-cyan-500/50 transition-all duration-300 h-full flex flex-col`} index={index}>
+                    <div className="flex justify-between items-start mb-3 gap-2">
+                      <h4 className={`font-bold ${textPrimary} text-sm sm:text-base leading-tight`}>{cert.title}</h4>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium flex-shrink-0 ${
                         cert.status === 'Active'
                           ? `${getSkillColors('green').bg} ${getSkillColors('green').text} border ${getSkillColors('green').border}`
                           : `${getSkillColors('blue').bg} ${getSkillColors('blue').text} border ${getSkillColors('blue').border}`
@@ -174,8 +174,10 @@ const SkillsPage = () => {
                         {cert.status}
                       </span>
                     </div>
-                    <p className={`${accent} text-sm mb-1`}>{cert.issuer}</p>
-                    <p className={`${textSecondary} text-sm`}>{cert.year}</p>
+                    <div className="flex-grow">
+                      <p className={`${accent} text-xs sm:text-sm mb-1 font-medium`}>{cert.issuer}</p>
+                      <p className={`${textSecondary} text-xs sm:text-sm`}>{cert.year}</p>
+                    </div>
                   </AnimatedCard>
                 </StaggeredItem>
               ))}
@@ -190,39 +192,39 @@ const SkillsPage = () => {
                 <span className="text-yellow-400">& Technologies</span>
               </h3>
             </AnimatedSection>
-            <StaggeredContainer className="grid grid-cols-1 md:grid-cols-3 gap-8" staggerDelay={0.2}>
+            <StaggeredContainer className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto" staggerDelay={0.2}>
               <StaggeredItem>
-                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6`}>
-                  <h4 className={`text-lg font-bold ${getSkillColors('cyan').text} mb-4`}>Development</h4>
+                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 h-full`}>
+                  <h4 className={`text-base sm:text-lg font-bold ${getSkillColors('cyan').text} mb-3 sm:mb-4`}>Development</h4>
                   <div className="flex flex-wrap gap-2">
-                    <span className={`px-3 py-1 ${getSkillColors('cyan').bg} ${getSkillColors('cyan').text} rounded-full text-sm border ${getSkillColors('cyan').border}`}>VS Code</span>
-                    <span className={`px-3 py-1 ${getSkillColors('cyan').bg} ${getSkillColors('cyan').text} rounded-full text-sm border ${getSkillColors('cyan').border}`}>WebStorm</span>
-                    <span className={`px-3 py-1 ${getSkillColors('cyan').bg} ${getSkillColors('cyan').text} rounded-full text-sm border ${getSkillColors('cyan').border}`}>Postman</span>
-                    <span className={`px-3 py-1 ${getSkillColors('cyan').bg} ${getSkillColors('cyan').text} rounded-full text-sm border ${getSkillColors('cyan').border}`}>Chrome DevTools</span>
+                    <span className={`px-2 sm:px-3 py-1 ${getSkillColors('cyan').bg} ${getSkillColors('cyan').text} rounded-full text-xs sm:text-sm border ${getSkillColors('cyan').border} select-none`}>VS Code</span>
+                    <span className={`px-2 sm:px-3 py-1 ${getSkillColors('cyan').bg} ${getSkillColors('cyan').text} rounded-full text-xs sm:text-sm border ${getSkillColors('cyan').border} select-none`}>WebStorm</span>
+                    <span className={`px-2 sm:px-3 py-1 ${getSkillColors('cyan').bg} ${getSkillColors('cyan').text} rounded-full text-xs sm:text-sm border ${getSkillColors('cyan').border} select-none`}>Postman</span>
+                    <span className={`px-2 sm:px-3 py-1 ${getSkillColors('cyan').bg} ${getSkillColors('cyan').text} rounded-full text-xs sm:text-sm border ${getSkillColors('cyan').border} select-none`}>Chrome DevTools</span>
                   </div>
                 </AnimatedCard>
               </StaggeredItem>
 
               <StaggeredItem>
-                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6`}>
-                  <h4 className={`text-lg font-bold ${getSkillColors('purple').text} mb-4`}>Design</h4>
+                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 h-full`}>
+                  <h4 className={`text-base sm:text-lg font-bold ${getSkillColors('purple').text} mb-3 sm:mb-4`}>Design</h4>
                   <div className="flex flex-wrap gap-2">
-                    <span className={`px-3 py-1 ${getSkillColors('purple').bg} ${getSkillColors('purple').text} rounded-full text-sm border ${getSkillColors('purple').border}`}>Figma</span>
-                    <span className={`px-3 py-1 ${getSkillColors('purple').bg} ${getSkillColors('purple').text} rounded-full text-sm border ${getSkillColors('purple').border}`}>Adobe XD</span>
-                    <span className={`px-3 py-1 ${getSkillColors('purple').bg} ${getSkillColors('purple').text} rounded-full text-sm border ${getSkillColors('purple').border}`}>Sketch</span>
-                    <span className={`px-3 py-1 ${getSkillColors('purple').bg} ${getSkillColors('purple').text} rounded-full text-sm border ${getSkillColors('purple').border}`}>Photoshop</span>
+                    <span className={`px-2 sm:px-3 py-1 ${getSkillColors('purple').bg} ${getSkillColors('purple').text} rounded-full text-xs sm:text-sm border ${getSkillColors('purple').border} select-none`}>Figma</span>
+                    <span className={`px-2 sm:px-3 py-1 ${getSkillColors('purple').bg} ${getSkillColors('purple').text} rounded-full text-xs sm:text-sm border ${getSkillColors('purple').border} select-none`}>Adobe XD</span>
+                    <span className={`px-2 sm:px-3 py-1 ${getSkillColors('purple').bg} ${getSkillColors('purple').text} rounded-full text-xs sm:text-sm border ${getSkillColors('purple').border} select-none`}>Sketch</span>
+                    <span className={`px-2 sm:px-3 py-1 ${getSkillColors('purple').bg} ${getSkillColors('purple').text} rounded-full text-xs sm:text-sm border ${getSkillColors('purple').border} select-none`}>Photoshop</span>
                   </div>
                 </AnimatedCard>
               </StaggeredItem>
 
               <StaggeredItem>
-                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6`}>
-                  <h4 className={`text-lg font-bold ${getSkillColors('yellow').text} mb-4`}>Collaboration</h4>
+                <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 h-full`}>
+                  <h4 className={`text-base sm:text-lg font-bold ${getSkillColors('yellow').text} mb-3 sm:mb-4`}>Collaboration</h4>
                   <div className="flex flex-wrap gap-2">
-                    <span className={`px-3 py-1 ${getSkillColors('yellow').bg} ${getSkillColors('yellow').text} rounded-full text-sm border ${getSkillColors('yellow').border}`}>Slack</span>
-                    <span className={`px-3 py-1 ${getSkillColors('yellow').bg} ${getSkillColors('yellow').text} rounded-full text-sm border ${getSkillColors('yellow').border}`}>Notion</span>
-                    <span className={`px-3 py-1 ${getSkillColors('yellow').bg} ${getSkillColors('yellow').text} rounded-full text-sm border ${getSkillColors('yellow').border}`}>Jira</span>
-                    <span className={`px-3 py-1 ${getSkillColors('yellow').bg} ${getSkillColors('yellow').text} rounded-full text-sm border ${getSkillColors('yellow').border}`}>Trello</span>
+                    <span className={`px-2 sm:px-3 py-1 ${getSkillColors('yellow').bg} ${getSkillColors('yellow').text} rounded-full text-xs sm:text-sm border ${getSkillColors('yellow').border} select-none`}>Slack</span>
+                    <span className={`px-2 sm:px-3 py-1 ${getSkillColors('yellow').bg} ${getSkillColors('yellow').text} rounded-full text-xs sm:text-sm border ${getSkillColors('yellow').border} select-none`}>Notion</span>
+                    <span className={`px-2 sm:px-3 py-1 ${getSkillColors('yellow').bg} ${getSkillColors('yellow').text} rounded-full text-xs sm:text-sm border ${getSkillColors('yellow').border} select-none`}>Jira</span>
+                    <span className={`px-2 sm:px-3 py-1 ${getSkillColors('yellow').bg} ${getSkillColors('yellow').text} rounded-full text-xs sm:text-sm border ${getSkillColors('yellow').border} select-none`}>Trello</span>
                   </div>
                 </AnimatedCard>
               </StaggeredItem>

@@ -141,13 +141,13 @@ const WelcomePage = () => {
               Explore My Portfolio
             </h2>
           </AnimatedSection>
-          <StaggeredContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto" staggerDelay={0.15}>
+          <StaggeredContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto" staggerDelay={0.15}>
             <StaggeredItem>
-              <Link to="/about" className={`group ${card} ${cardHover} p-8 rounded-2xl hover:scale-105 transition-all duration-300 hover:border-cyan-500/50`}>
-                <div className={`text-4xl mb-4 ${getSkillColors('cyan').text}`}>👨‍💻</div>
-                <h3 className={`text-xl font-semibold mb-3 ${textPrimary} group-hover:${getSkillColors('cyan').text} transition-colors`}>About Me</h3>
-                <p className={`${textSecondary} leading-relaxed`}>Learn about my journey, skills, and passion for technology</p>
-                <div className={`mt-4 flex items-center ${getSkillColors('cyan').text} text-sm font-medium`}>
+              <Link to="/about" className={`group ${card} ${cardHover} p-4 sm:p-6 lg:p-8 rounded-2xl hover:scale-105 transition-all duration-300 hover:border-cyan-500/50 h-full flex flex-col`}>
+                <div className={`text-3xl sm:text-4xl mb-3 sm:mb-4 ${getSkillColors('cyan').text}`}>👨‍💻</div>
+                <h3 className={`text-lg sm:text-xl font-semibold mb-2 sm:mb-3 ${textPrimary} group-hover:${getSkillColors('cyan').text} transition-colors`}>About Me</h3>
+                <p className={`${textSecondary} leading-relaxed text-sm sm:text-base flex-grow`}>Learn about my journey, skills, and passion for technology</p>
+                <div className={`mt-3 sm:mt-4 flex items-center ${getSkillColors('cyan').text} text-xs sm:text-sm font-medium`}>
                   <span>Learn more</span>
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
@@ -155,11 +155,11 @@ const WelcomePage = () => {
             </StaggeredItem>
 
             <StaggeredItem>
-              <Link to="/projects" className={`group ${card} ${cardHover} p-8 rounded-2xl hover:scale-105 transition-all duration-300 hover:border-purple-500/50`}>
-                <div className={`text-4xl mb-4 ${getSkillColors('purple').text}`}>🚀</div>
-                <h3 className={`text-xl font-semibold mb-3 ${textPrimary} group-hover:${getSkillColors('purple').text} transition-colors`}>Projects</h3>
-                <p className={`${textSecondary} leading-relaxed`}>Explore my latest work and innovative solutions</p>
-                <div className={`mt-4 flex items-center ${getSkillColors('purple').text} text-sm font-medium`}>
+              <Link to="/projects" className={`group ${card} ${cardHover} p-4 sm:p-6 lg:p-8 rounded-2xl hover:scale-105 transition-all duration-300 hover:border-purple-500/50 h-full flex flex-col`}>
+                <div className={`text-3xl sm:text-4xl mb-3 sm:mb-4 ${getSkillColors('purple').text}`}>🚀</div>
+                <h3 className={`text-lg sm:text-xl font-semibold mb-2 sm:mb-3 ${textPrimary} group-hover:${getSkillColors('purple').text} transition-colors`}>Projects</h3>
+                <p className={`${textSecondary} leading-relaxed text-sm sm:text-base flex-grow`}>Explore my latest work and innovative solutions</p>
+                <div className={`mt-3 sm:mt-4 flex items-center ${getSkillColors('purple').text} text-xs sm:text-sm font-medium`}>
                   <span>View work</span>
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
@@ -167,11 +167,11 @@ const WelcomePage = () => {
             </StaggeredItem>
 
             <StaggeredItem>
-              <Link to="/skills" className={`group ${card} ${cardHover} p-8 rounded-2xl hover:scale-105 transition-all duration-300 hover:border-yellow-500/50`}>
-                <div className={`text-4xl mb-4 ${getSkillColors('yellow').text}`}>⚡</div>
-                <h3 className={`text-xl font-semibold mb-3 ${textPrimary} group-hover:${getSkillColors('yellow').text} transition-colors`}>Skills</h3>
-                <p className={`${textSecondary} leading-relaxed`}>Discover my technical expertise and capabilities</p>
-                <div className={`mt-4 flex items-center ${getSkillColors('yellow').text} text-sm font-medium`}>
+              <Link to="/skills" className={`group ${card} ${cardHover} p-4 sm:p-6 lg:p-8 rounded-2xl hover:scale-105 transition-all duration-300 hover:border-yellow-500/50 h-full flex flex-col`}>
+                <div className={`text-3xl sm:text-4xl mb-3 sm:mb-4 ${getSkillColors('yellow').text}`}>⚡</div>
+                <h3 className={`text-lg sm:text-xl font-semibold mb-2 sm:mb-3 ${textPrimary} group-hover:${getSkillColors('yellow').text} transition-colors`}>Skills</h3>
+                <p className={`${textSecondary} leading-relaxed text-sm sm:text-base flex-grow`}>Discover my technical expertise and capabilities</p>
+                <div className={`mt-3 sm:mt-4 flex items-center ${getSkillColors('yellow').text} text-xs sm:text-sm font-medium`}>
                   <span>See skills</span>
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
@@ -179,11 +179,11 @@ const WelcomePage = () => {
             </StaggeredItem>
 
             <StaggeredItem>
-              <Link to="/experience" className={`group ${card} ${cardHover} p-8 rounded-2xl hover:scale-105 transition-all duration-300 hover:border-green-500/50`}>
-                <div className={`text-4xl mb-4 ${getSkillColors('green').text}`}>💼</div>
-                <h3 className={`text-xl font-semibold mb-3 ${textPrimary} group-hover:${getSkillColors('green').text} transition-colors`}>Experience</h3>
-                <p className={`${textSecondary} leading-relaxed`}>Review my professional background and achievements</p>
-                <div className={`mt-4 flex items-center ${getSkillColors('green').text} text-sm font-medium`}>
+              <Link to="/experience" className={`group ${card} ${cardHover} p-4 sm:p-6 lg:p-8 rounded-2xl hover:scale-105 transition-all duration-300 hover:border-green-500/50 h-full flex flex-col`}>
+                <div className={`text-3xl sm:text-4xl mb-3 sm:mb-4 ${getSkillColors('green').text}`}>💼</div>
+                <h3 className={`text-lg sm:text-xl font-semibold mb-2 sm:mb-3 ${textPrimary} group-hover:${getSkillColors('green').text} transition-colors`}>Experience</h3>
+                <p className={`${textSecondary} leading-relaxed text-sm sm:text-base flex-grow`}>Review my professional background and achievements</p>
+                <div className={`mt-3 sm:mt-4 flex items-center ${getSkillColors('green').text} text-xs sm:text-sm font-medium`}>
                   <span>View history</span>
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
@@ -191,11 +191,11 @@ const WelcomePage = () => {
             </StaggeredItem>
 
             <StaggeredItem>
-              <Link to="/contact" className={`group ${card} ${cardHover} p-8 rounded-2xl hover:scale-105 transition-all duration-300 hover:border-cyan-500/50 md:col-span-2 lg:col-span-1`}>
-                <div className={`text-4xl mb-4 ${getSkillColors('cyan').text}`}>📧</div>
-                <h3 className={`text-xl font-semibold mb-3 ${textPrimary} group-hover:${getSkillColors('cyan').text} transition-colors`}>Contact</h3>
-                <p className={`${textSecondary} leading-relaxed`}>Let's connect and discuss your next project</p>
-                <div className={`mt-4 flex items-center ${getSkillColors('cyan').text} text-sm font-medium`}>
+              <Link to="/contact" className={`group ${card} ${cardHover} p-4 sm:p-6 lg:p-8 rounded-2xl hover:scale-105 transition-all duration-300 hover:border-cyan-500/50 sm:col-span-2 lg:col-span-1 h-full flex flex-col`}>
+                <div className={`text-3xl sm:text-4xl mb-3 sm:mb-4 ${getSkillColors('cyan').text}`}>📧</div>
+                <h3 className={`text-lg sm:text-xl font-semibold mb-2 sm:mb-3 ${textPrimary} group-hover:${getSkillColors('cyan').text} transition-colors`}>Contact</h3>
+                <p className={`${textSecondary} leading-relaxed text-sm sm:text-base flex-grow`}>Let's connect and discuss your next project</p>
+                <div className={`mt-3 sm:mt-4 flex items-center ${getSkillColors('cyan').text} text-xs sm:text-sm font-medium`}>
                   <span>Get in touch</span>
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
@@ -208,67 +208,67 @@ const WelcomePage = () => {
       {/* Featured Highlights */}
       <section className="py-20 px-6">
         <div className="container mx-auto">
-          <StaggeredContainer className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto" staggerDelay={0.2}>
+          <StaggeredContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-5xl mx-auto" staggerDelay={0.2}>
             <StaggeredItem>
-              <AnimatedCard className={`${card} ${cardHover} p-6 rounded-xl text-center`} variants={scaleIn}>
-                <div className={`text-4xl font-bold ${getSkillColors('cyan').text} mb-2`}>
+              <AnimatedCard className={`${card} ${cardHover} p-4 sm:p-6 rounded-xl text-center min-h-[140px] flex flex-col justify-center`} variants={scaleIn}>
+                <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('cyan').text} mb-2`}>
                   <AnimatedCounter end={5} suffix="+" />
                 </div>
-                <div className={`${textSecondary} font-medium`}>Years Experience</div>
+                <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Years Experience</div>
                 <div className={`mt-2 w-full h-1 ${progressBg} rounded-full overflow-hidden`}>
-                  <div className={`h-full ${progressFill} rounded-full`} style={{width: '85%'}}></div>
+                  <div className={`h-full ${progressFill} rounded-full transition-all duration-1000`} style={{width: '85%'}}></div>
                 </div>
               </AnimatedCard>
             </StaggeredItem>
             <StaggeredItem>
-              <AnimatedCard className={`${card} ${cardHover} p-6 rounded-xl text-center`} variants={scaleIn}>
-                <div className={`text-4xl font-bold ${getSkillColors('purple').text} mb-2`}>
+              <AnimatedCard className={`${card} ${cardHover} p-4 sm:p-6 rounded-xl text-center min-h-[140px] flex flex-col justify-center`} variants={scaleIn}>
+                <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('purple').text} mb-2`}>
                   <AnimatedCounter end={50} suffix="+" />
                 </div>
-                <div className={`${textSecondary} font-medium`}>Projects Completed</div>
+                <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Projects Completed</div>
                 <div className={`mt-2 w-full h-1 ${progressBg} rounded-full overflow-hidden`}>
-                  <div className="h-full bg-gradient-to-r from-purple-500 to-yellow-500 rounded-full" style={{width: '92%'}}></div>
+                  <div className="h-full bg-gradient-to-r from-purple-500 to-yellow-500 rounded-full transition-all duration-1000" style={{width: '92%'}}></div>
                 </div>
               </AnimatedCard>
             </StaggeredItem>
             <StaggeredItem>
-              <AnimatedCard className={`${card} ${cardHover} p-6 rounded-xl text-center`} variants={scaleIn}>
-                <div className={`text-4xl font-bold ${getSkillColors('yellow').text} mb-2`}>
+              <AnimatedCard className={`${card} ${cardHover} p-4 sm:p-6 rounded-xl text-center min-h-[140px] flex flex-col justify-center`} variants={scaleIn}>
+                <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('yellow').text} mb-2`}>
                   <AnimatedCounter end={10} suffix="+" />
                 </div>
-                <div className={`${textSecondary} font-medium`}>Technologies Mastered</div>
+                <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Technologies Mastered</div>
                 <div className={`mt-2 w-full h-1 ${progressBg} rounded-full overflow-hidden`}>
-                  <div className="h-full bg-gradient-to-r from-yellow-500 to-green-500 rounded-full" style={{width: '78%'}}></div>
+                  <div className="h-full bg-gradient-to-r from-yellow-500 to-green-500 rounded-full transition-all duration-1000" style={{width: '78%'}}></div>
                 </div>
               </AnimatedCard>
             </StaggeredItem>
             <StaggeredItem>
-              <AnimatedCard className={`${card} ${cardHover} p-6 rounded-xl text-center`} variants={scaleIn}>
-                <div className={`text-4xl font-bold ${getSkillColors('green').text} mb-2`}>
+              <AnimatedCard className={`${card} ${cardHover} p-4 sm:p-6 rounded-xl text-center min-h-[140px] flex flex-col justify-center`} variants={scaleIn}>
+                <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('green').text} mb-2`}>
                   <AnimatedCounter end={100} suffix="%" />
                 </div>
-                <div className={`${textSecondary} font-medium`}>Client Satisfaction</div>
+                <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Client Satisfaction</div>
                 <div className={`mt-2 w-full h-1 ${progressBg} rounded-full overflow-hidden`}>
-                  <div className="h-full bg-gradient-to-r from-green-500 to-cyan-500 rounded-full" style={{width: '100%'}}></div>
+                  <div className="h-full bg-gradient-to-r from-green-500 to-cyan-500 rounded-full transition-all duration-1000" style={{width: '100%'}}></div>
                 </div>
               </AnimatedCard>
             </StaggeredItem>
           </StaggeredContainer>
 
           {/* Code snippet showcase */}
-          <AnimatedSection className="mt-16 max-w-3xl mx-auto" delay={0.3}>
-            <div className={`${card} p-6 font-mono text-sm`}>
-              <div className={`${getSkillColors('purple').text}`}>interface <span className={accent}>Developer</span> {'{'}</div>
-              <div className={`ml-4 ${textSecondary}`}>name: <span className={`${getSkillColors('green').text}`}>string</span>;</div>
-              <div className={`ml-4 ${textSecondary}`}>skills: <span className={`${getSkillColors('green').text}`}>string</span>[];</div>
-              <div className={`ml-4 ${textSecondary}`}>passion: <span className={`${getSkillColors('yellow').text}`}>'building amazing things'</span>;</div>
-              <div className={`${getSkillColors('purple').text}`}>{'}'}</div>
+          <AnimatedSection className="mt-12 sm:mt-16 max-w-4xl mx-auto" delay={0.3}>
+            <div className={`${card} p-4 sm:p-6 font-mono text-xs sm:text-sm overflow-x-auto`}>
+              <div className={`${getSkillColors('purple').text} whitespace-nowrap`}>interface <span className={accent}>Developer</span> {'{'}</div>
+              <div className={`ml-2 sm:ml-4 ${textSecondary} whitespace-nowrap`}>name: <span className={`${getSkillColors('green').text}`}>string</span>;</div>
+              <div className={`ml-2 sm:ml-4 ${textSecondary} whitespace-nowrap`}>skills: <span className={`${getSkillColors('green').text}`}>string</span>[];</div>
+              <div className={`ml-2 sm:ml-4 ${textSecondary} whitespace-nowrap`}>passion: <span className={`${getSkillColors('yellow').text}`}>'building amazing things'</span>;</div>
+              <div className={`${getSkillColors('purple').text} whitespace-nowrap`}>{'}'}</div>
               <br />
-              <div className={`${getSkillColors('purple').text}`}>const <span className={accent}>elvi</span>: <span className={accent}>Developer</span> = {'{'}</div>
-              <div className={`ml-4 ${textSecondary}`}>name: <span className={`${getSkillColors('yellow').text}`}>'Elvi Zekaj'</span>,</div>
-              <div className={`ml-4 ${textSecondary}`}>skills: [<span className={`${getSkillColors('yellow').text}`}>'React'</span>, <span className={`${getSkillColors('yellow').text}`}>'TypeScript'</span>, <span className={`${getSkillColors('yellow').text}`}>'Node.js'</span>],</div>
-              <div className={`ml-4 ${textSecondary}`}>passion: <span className={`${getSkillColors('yellow').text}`}>'building amazing things'</span></div>
-              <div className={`${getSkillColors('purple').text}`}>{'}'};</div>
+              <div className={`${getSkillColors('purple').text} whitespace-nowrap`}>const <span className={accent}>elvi</span>: <span className={accent}>Developer</span> = {'{'}</div>
+              <div className={`ml-2 sm:ml-4 ${textSecondary} whitespace-nowrap`}>name: <span className={`${getSkillColors('yellow').text}`}>'Elvi Zekaj'</span>,</div>
+              <div className={`ml-2 sm:ml-4 ${textSecondary}`}>skills: [<span className={`${getSkillColors('yellow').text}`}>'React'</span>, <span className={`${getSkillColors('yellow').text}`}>'TypeScript'</span>, <span className={`${getSkillColors('yellow').text}`}>'Node.js'</span>],</div>
+              <div className={`ml-2 sm:ml-4 ${textSecondary} whitespace-nowrap`}>passion: <span className={`${getSkillColors('yellow').text}`}>'building amazing things'</span></div>
+              <div className={`${getSkillColors('purple').text} whitespace-nowrap`}>{'}'};</div>
             </div>
           </AnimatedSection>
         </div>
