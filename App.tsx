@@ -7,11 +7,12 @@ import ExperiencePage from './src/pages/ExperiencePage';
 import ContactPage from './src/pages/ContactPage';
 import BottomNavigation from './src/components/BottomNavigation';
 
-
+// Get the base path for GitHub Pages
+const basename = import.meta.env.PROD ? '/elvi' : '';
 
 function App() {
   return (
-    <Router>
+    <Router basename={basename}>
       <div className="min-h-screen bg-slate-900">
         {/* Header */}
         <header className="bg-slate-800 p-4 border-b border-slate-700">
