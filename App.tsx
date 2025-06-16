@@ -6,24 +6,34 @@ import SkillsPage from './src/pages/SkillsPage';
 import ExperiencePage from './src/pages/ExperiencePage';
 import ContactPage from './src/pages/ContactPage';
 import BottomNavigation from './src/components/BottomNavigation';
+import ThemeToggle from './src/components/ThemeToggle';
+import { ThemeProvider } from './src/contexts/ThemeContext';
+import { useThemeStyles } from './src/hooks/useThemeStyles';
 
 // Get the base path for GitHub Pages
 const basename = process.env.NODE_ENV === 'production' ? '/elvi' : '';
 
-function App() {
+const AppContent = () => {
+  const { pageBackground, headerBackground, headerBorder, accent, accentHover, textSecondary } = useThemeStyles();
+
   return (
     <Router basename={basename}>
-      <div className="min-h-screen bg-slate-900">
+      <div className={`min-h-screen ${pageBackground}`}>
         {/* Header */}
-        <header className="bg-slate-800 p-4 border-b border-slate-700">
-          <Link to="/" className="block hover:scale-105 transition-transform duration-300">
-            <h1 className="text-xl font-bold text-cyan-400 hover:text-cyan-300 transition-colors">
-              Z.E Digital Systems
-            </h1>
-            <p className="text-sm text-slate-400 hover:text-slate-300 transition-colors">
-              Elvi Zekaj - Full Stack Developer
-            </p>
-          </Link>
+        <header className={`${headerBackground} p-4 border-b ${headerBorder} relative`}>
+          <div className="flex justify-between items-center">
+            <Link to="/" className="block hover:scale-105 transition-transform duration-300">
+              <h1 className={`text-xl font-bold ${accent} ${accentHover} transition-colors`}>
+                Z.E Digital Systems
+              </h1>
+              <p className={`text-sm ${textSecondary} hover:opacity-80 transition-opacity`}>
+                Elvi Zekaj - Full Stack Developer
+              </p>
+            </Link>
+
+            {/* Theme Toggle */}
+            <ThemeToggle />
+          </div>
         </header>
 
         {/* Main Content */}
@@ -42,6 +52,14 @@ function App() {
         <BottomNavigation />
       </div>
     </Router>
+  );
+};
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 

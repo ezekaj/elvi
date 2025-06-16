@@ -1,7 +1,19 @@
 import useScrollToTop from '../hooks/useScrollToTop';
+import { useThemeStyles } from '../hooks/useThemeStyles';
 
 const SkillsPage = () => {
   useScrollToTop();
+  const {
+    pageBackground,
+    textPrimary,
+    textSecondary,
+    accent,
+    card,
+    cardHover,
+    sectionBackground,
+    getSkillColors,
+    progressBg
+  } = useThemeStyles();
 
   const skillCategories = [
     {
@@ -75,27 +87,19 @@ const SkillsPage = () => {
     }
   ];
 
-  const getColorClasses = (color: string) => {
-    const colors = {
-      cyan: { bg: 'bg-cyan-500/20', text: 'text-cyan-400', border: 'border-cyan-500/30', progress: 'bg-gradient-to-r from-cyan-500 to-cyan-600' },
-      purple: { bg: 'bg-purple-500/20', text: 'text-purple-400', border: 'border-purple-500/30', progress: 'bg-gradient-to-r from-purple-500 to-purple-600' },
-      green: { bg: 'bg-green-500/20', text: 'text-green-400', border: 'border-green-500/30', progress: 'bg-gradient-to-r from-green-500 to-green-600' },
-      yellow: { bg: 'bg-yellow-500/20', text: 'text-yellow-400', border: 'border-yellow-500/30', progress: 'bg-gradient-to-r from-yellow-500 to-yellow-600' }
-    };
-    return colors[color as keyof typeof colors] || colors.cyan;
-  };
+  // Use the theme-aware color function instead of local one
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className={`min-h-screen ${pageBackground} ${textPrimary}`}>
       {/* Hero Section */}
       <section className="py-20 px-6">
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="text-cyan-400">Technical</span>{' '}
+              <span className={accent}>Technical</span>{' '}
               <span className="text-purple-400">Skills</span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-300 leading-relaxed mb-8">
+            <p className={`text-xl md:text-2xl ${textSecondary} leading-relaxed mb-8`}>
               Expertise in Modern Technologies and Development Practices
             </p>
           </div>
@@ -103,14 +107,14 @@ const SkillsPage = () => {
       </section>
 
       {/* Skills Content */}
-      <section className="py-20 px-6 bg-slate-800/50">
+      <section className={`py-20 px-6 ${sectionBackground}`}>
         <div className="container mx-auto">
           {/* Skills Categories */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {skillCategories.map((category, categoryIndex) => {
-              const colorClasses = getColorClasses(category.color);
+              const colorClasses = getSkillColors(category.color);
               return (
-                <div key={categoryIndex} className="bg-slate-800/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-700">
+                <div key={categoryIndex} className={`${card} ${cardHover} rounded-2xl p-6`}>
                   <div className="flex items-center mb-6">
                     <span className="text-3xl mr-3">{category.icon}</span>
                     <h3 className={`text-xl font-bold ${colorClasses.text}`}>{category.title}</h3>

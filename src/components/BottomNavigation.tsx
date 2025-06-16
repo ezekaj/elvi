@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useThemeStyles } from '../hooks/useThemeStyles';
 
 interface NavItem {
   path: string;
@@ -9,6 +10,7 @@ interface NavItem {
 
 const BottomNavigation: React.FC = () => {
   const location = useLocation();
+  const { navBackground, navItem, navItemActive, navItemHover, accent } = useThemeStyles();
 
   const navItems: NavItem[] = [
     {
@@ -58,7 +60,7 @@ const BottomNavigation: React.FC = () => {
 
   return (
     <nav className="bottom-navigation fixed bottom-0 left-0 right-0 z-50" role="navigation" aria-label="Main navigation">
-      <div className="bottom-nav-container bg-slate-900/90 backdrop-blur-xl border-t border-slate-700">
+      <div className={`bottom-nav-container ${navBackground} border-t`}>
         <div className="bottom-nav-content flex justify-around items-center px-4 py-3">
           {navItems.map((item) => (
             <Link
@@ -66,8 +68,8 @@ const BottomNavigation: React.FC = () => {
               to={item.path}
               className={`nav-item flex flex-col items-center p-2 rounded-lg transition-all duration-300 ${
                 isActive(item.path)
-                  ? 'text-cyan-400 bg-cyan-400/10 scale-110'
-                  : 'text-slate-400 hover:text-cyan-400 hover:bg-cyan-400/5'
+                  ? `${navItemActive} scale-110`
+                  : `${navItem} ${navItemHover}`
               }`}
               aria-label={`Navigate to ${item.label}`}
             >
@@ -76,7 +78,7 @@ const BottomNavigation: React.FC = () => {
                   {isActive(item.path) ? (item.activeIcon || item.icon) : item.icon}
                 </span>
                 {isActive(item.path) && (
-                  <div className="active-indicator absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
+                  <div className={`active-indicator absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 ${accent.replace('text-', 'bg-')} rounded-full animate-pulse`}></div>
                 )}
               </div>
               <span className="nav-label text-xs font-medium">{item.label}</span>
