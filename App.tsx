@@ -8,7 +8,7 @@ import ContactPage from './src/pages/ContactPage';
 import BottomNavigation from './src/components/BottomNavigation';
 
 // Get the base path for GitHub Pages
-const basename = import.meta.env.PROD ? '/elvi' : '';
+const basename = process.env.NODE_ENV === 'production' ? '/elvi' : '';
 
 function App() {
   return (
