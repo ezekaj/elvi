@@ -6,13 +6,11 @@ A modern, interactive portfolio website showcasing my skills, experience, and pr
 
 ## ✨ Features
 
-- **🖥️ Interactive Desk Interface**: Navigate through different sections with an engaging 3D-style desk enhanced with Liquid Glass effects
-- **📱 Responsive Design**: Optimized for all device sizes and screen resolutions with adaptive animations
-- **🎨 Apple Liquid Glass Design**: Sophisticated glassmorphism effects inspired by Apple's design language
-- **✨ Advanced Micro-interactions**: Subtle hover effects, shimmer animations, and micro-bounces throughout
-- **🌟 Floating Particles**: Ambient animated particles for enhanced visual depth
-- **⚡ Modern Tech Stack**: Built with React 19, TypeScript, and Tailwind CSS with advanced CSS effects
-- **🚀 Fast Performance**: Powered by Vite with optimized animations running at 60fps
+- **📱 Multi-Page Navigation**: Clean mobile-inspired bottom navigation with dedicated routes
+- **🎨 Modern Design System**: Sophisticated glassmorphism effects with cyan/purple color scheme
+- **✨ Responsive Design**: Optimized for all device sizes with smooth transitions
+- **⚡ Modern Tech Stack**: Built with React 19, TypeScript, and Tailwind CSS
+- **🚀 Fast Performance**: Powered by Vite with optimized build and deployment
 - **🔧 API Integration**: Configured with Gemini API for enhanced functionality
 - **📄 Enhanced Timeline Components**: Interactive work experience and education timelines with glass morphism
 - **🎯 Premium Project Showcase**: Dynamic project cards with gradient effects and sophisticated interactions
@@ -22,15 +20,12 @@ A modern, interactive portfolio website showcasing my skills, experience, and pr
 ## 🛠️ Technology Stack
 
 - **Frontend**: React 19.1.0, TypeScript 5.7.2
+- **Routing**: React Router DOM 7.6.2
 - **Build Tool**: Vite 6.2.0
-- **Styling**: Tailwind CSS with custom Liquid Glass effects and advanced CSS animations
-- **Design System**: Apple Liquid Glass inspired glassmorphism with backdrop-filter effects
-- **Icons**: Heroicons integration with enhanced micro-interactions
-- **Animations**: Custom keyframe animations with cubic-bezier easing and staggered timing
+- **Styling**: Tailwind CSS with modern glassmorphism effects
+- **Design System**: Clean multi-page layout with mobile-first navigation
 - **Deployment**: GitHub Pages with GitHub Actions
-- **API**: Gemini API integration
 - **Package Manager**: npm
-- **Performance**: Hardware-accelerated animations with 60fps optimization
 
 ## 🚀 Quick Start
 
@@ -69,18 +64,26 @@ A modern, interactive portfolio website showcasing my skills, experience, and pr
 ## 🏗️ Project Structure
 
 ```
-├── components/
-│   ├── InteractiveDesk.tsx    # Main navigation desk component
-│   └── InteractiveProject.tsx # Project showcase cards
-├── constants.tsx              # App constants and data
-├── types.ts                  # TypeScript type definitions
-├── App.tsx                   # Main application component
-├── index.tsx                 # Application entry point
-├── index.html               # HTML template
-├── vite.config.ts           # Vite configuration
-├── package.json             # Dependencies and scripts
-└── .github/workflows/       # GitHub Actions CI/CD
-    └── deploy.yml           # Automated deployment workflow
+├── src/
+│   ├── components/
+│   │   └── BottomNavigation.tsx  # Mobile-inspired navigation
+│   ├── hooks/
+│   │   └── useScrollToTop.ts     # Scroll management hook
+│   └── pages/                    # Route components
+│       ├── WelcomePage.tsx       # Landing page
+│       ├── AboutPage.tsx         # About section
+│       ├── ProjectsPage.tsx      # Projects showcase
+│       ├── SkillsPage.tsx        # Skills overview
+│       ├── ExperiencePage.tsx    # Work experience
+│       └── ContactPage.tsx       # Contact information
+├── public/                       # Static assets
+├── App.tsx                       # Main router component
+├── index.tsx                     # Application entry point
+├── index.html                    # HTML template with SEO
+├── vite.config.ts               # Vite configuration
+├── package.json                 # Dependencies and scripts
+└── .github/workflows/           # GitHub Actions CI/CD
+    └── deploy.yml               # Automated deployment
 ```
 
 ## 🎯 Portfolio Sections
