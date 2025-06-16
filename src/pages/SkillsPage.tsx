@@ -11,8 +11,7 @@ const SkillsPage = () => {
     card,
     cardHover,
     sectionBackground,
-    getSkillColors,
-    progressBg
+    getSkillColors
   } = useThemeStyles();
 
   const skillCategories = [
