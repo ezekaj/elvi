@@ -147,9 +147,18 @@
           var decoded = l.search.slice(1).split('&').map(function(s) {
             return s.replace(/~and~/g, '&')
           }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
+
+          // For GitHub Pages project sites, preserve the base path
+          var newUrl = l.pathname + decoded + l.hash;
+
+          // Debug logging (remove in production)
+          console.log('SPA Redirect Handler Debug:');
+          console.log('Original URL:', l.href);
+          console.log('Search params:', l.search);
+          console.log('Decoded:', decoded);
+          console.log('New URL:', newUrl);
+
+          window.history.replaceState(null, null, newUrl);
         }
       }(window.location))
     </script>

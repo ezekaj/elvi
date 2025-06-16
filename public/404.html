@@ -18,23 +18,36 @@
     // Note: this 404.html file must be at least 512 bytes for it to work
     // with Internet Explorer (it is currently > 512 bytes)
 
-    // If you're creating a Project Pages site and NOT using a custom domain,
-    // then set pathSegmentsToKeep to 1 (enterprise users may need to set it to > 1).
-    // This way the code will only replace the route part and not the real directory.
-    // For example, if your site is at username.github.io/repo-name, then set
-    // pathSegmentsToKeep to 1 so that paths like /repo-name/one/two will become
-    // /repo-name/?/one/two instead of /?/repo-name/one/two
-    // Since this site is at ezekaj.github.io/elvi, we set this to 1
+    // For GitHub Pages project sites (username.github.io/repo-name)
+    // Set pathSegmentsToKeep to 1 to preserve the repo name in the path
+    // This ensures /elvi/about becomes /elvi/?/about instead of /?/elvi/about
     var pathSegmentsToKeep = 1;
 
     var l = window.location;
-    l.replace(
-      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-      l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+    var pathArray = l.pathname.split('/').filter(function(segment) {
+      return segment !== '';
+    });
+
+    // Keep the repo name (first segment) and convert the rest to query params
+    var basePath = '/' + pathArray.slice(0, pathSegmentsToKeep).join('/');
+    var routePath = pathArray.slice(pathSegmentsToKeep).join('/');
+
+    // Build the redirect URL
+    var redirectUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      basePath + '/?/' + routePath.replace(/&/g, '~and~') +
       (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-      l.hash
-    );
+      l.hash;
+
+    // Debug logging (remove in production)
+    console.log('404 Redirect Debug:');
+    console.log('Original URL:', l.href);
+    console.log('Path Array:', pathArray);
+    console.log('Base Path:', basePath);
+    console.log('Route Path:', routePath);
+    console.log('Redirect URL:', redirectUrl);
+
+    // Perform the redirect
+    l.replace(redirectUrl);
   </script>
 </head>
 <body>
