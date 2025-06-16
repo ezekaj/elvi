@@ -1,7 +1,7 @@
 import { Variants } from 'framer-motion';
 
-// Animation easing
-export const easing = [0.4, 0, 0.2, 1]; // cubic-bezier(0.4, 0, 0.2, 1)
+// Animation easing - using array format for cubic-bezier
+export const easing = [0.4, 0, 0.2, 1] as const;
 
 // Animation durations
 export const durations = {
@@ -21,11 +21,7 @@ export const viewport = {
 export const fadeInUp: Variants = {
   hidden: {
     opacity: 0,
-    y: 60,
-    transition: {
-      duration: durations.normal,
-      ease: easing
-    }
+    y: 60
   },
   visible: {
     opacity: 1,
@@ -39,11 +35,7 @@ export const fadeInUp: Variants = {
 
 export const fadeIn: Variants = {
   hidden: {
-    opacity: 0,
-    transition: {
-      duration: durations.normal,
-      ease: easing
-    }
+    opacity: 0
   },
   visible: {
     opacity: 1,
@@ -57,11 +49,7 @@ export const fadeIn: Variants = {
 export const scaleIn: Variants = {
   hidden: {
     opacity: 0,
-    scale: 0.8,
-    transition: {
-      duration: durations.normal,
-      ease: easing
-    }
+    scale: 0.8
   },
   visible: {
     opacity: 1,
@@ -76,11 +64,7 @@ export const scaleIn: Variants = {
 export const slideInLeft: Variants = {
   hidden: {
     opacity: 0,
-    x: -60,
-    transition: {
-      duration: durations.normal,
-      ease: easing
-    }
+    x: -60
   },
   visible: {
     opacity: 1,
@@ -95,11 +79,7 @@ export const slideInLeft: Variants = {
 export const slideInRight: Variants = {
   hidden: {
     opacity: 0,
-    x: 60,
-    transition: {
-      duration: durations.normal,
-      ease: easing
-    }
+    x: 60
   },
   visible: {
     opacity: 1,
@@ -125,11 +105,7 @@ export const staggerContainer: Variants = {
 export const staggerItem: Variants = {
   hidden: {
     opacity: 0,
-    y: 30,
-    transition: {
-      duration: durations.fast,
-      ease: easing
-    }
+    y: 30
   },
   visible: {
     opacity: 1,
@@ -145,11 +121,7 @@ export const staggerItem: Variants = {
 export const heroTitle: Variants = {
   hidden: {
     opacity: 0,
-    y: 40,
-    transition: {
-      duration: durations.slow,
-      ease: easing
-    }
+    y: 40
   },
   visible: {
     opacity: 1,
@@ -164,11 +136,7 @@ export const heroTitle: Variants = {
 export const heroSubtitle: Variants = {
   hidden: {
     opacity: 0,
-    y: 30,
-    transition: {
-      duration: durations.normal,
-      ease: easing
-    }
+    y: 30
   },
   visible: {
     opacity: 1,
@@ -184,11 +152,7 @@ export const heroSubtitle: Variants = {
 export const heroDescription: Variants = {
   hidden: {
     opacity: 0,
-    y: 20,
-    transition: {
-      duration: durations.normal,
-      ease: easing
-    }
+    y: 20
   },
   visible: {
     opacity: 1,
@@ -204,11 +168,7 @@ export const heroDescription: Variants = {
 export const heroImage: Variants = {
   hidden: {
     opacity: 0,
-    scale: 0.8,
-    transition: {
-      duration: durations.slow,
-      ease: easing
-    }
+    scale: 0.8
   },
   visible: {
     opacity: 1,
@@ -225,11 +185,7 @@ export const heroImage: Variants = {
 export const timelineDot: Variants = {
   hidden: {
     opacity: 0,
-    scale: 0,
-    transition: {
-      duration: durations.fast,
-      ease: easing
-    }
+    scale: 0
   },
   visible: {
     opacity: 1,
@@ -244,11 +200,7 @@ export const timelineDot: Variants = {
 export const timelineCard: Variants = {
   hidden: {
     opacity: 0,
-    x: 60,
-    transition: {
-      duration: durations.normal,
-      ease: easing
-    }
+    x: 60
   },
   visible: {
     opacity: 1,
@@ -264,11 +216,7 @@ export const timelineCard: Variants = {
 export const statsCounter: Variants = {
   hidden: {
     opacity: 0,
-    scale: 0.5,
-    transition: {
-      duration: durations.normal,
-      ease: easing
-    }
+    scale: 0.5
   },
   visible: {
     opacity: 1,

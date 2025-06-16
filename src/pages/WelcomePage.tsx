@@ -5,7 +5,7 @@ import AnimatedSection from '../components/animations/AnimatedSection';
 import StaggeredContainer, { StaggeredItem } from '../components/animations/StaggeredContainer';
 import AnimatedCard from '../components/animations/AnimatedCard';
 import AnimatedCounter from '../components/animations/AnimatedCounter';
-import { heroTitle, heroSubtitle, heroDescription, heroImage, fadeIn, scaleIn } from '../config/animations';
+import { heroTitle, heroSubtitle, heroDescription, heroImage, scaleIn } from '../config/animations';
 
 // Import profile image
 const profileImageUrl = '/assets/images/profile.png';

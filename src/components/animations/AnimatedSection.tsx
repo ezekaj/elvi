@@ -29,9 +29,9 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
     visible: {
       ...variants.visible,
       transition: {
-        ...variants.visible?.transition,
+        ...(variants.visible as any)?.transition,
         delay,
-        duration: duration || variants.visible?.transition?.duration
+        duration: duration || (variants.visible as any)?.transition?.duration
       }
     }
   } : variants;

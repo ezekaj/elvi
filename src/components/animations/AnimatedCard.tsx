@@ -29,7 +29,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
     visible: {
       ...variants.visible,
       transition: {
-        ...variants.visible?.transition,
+        ...(variants.visible as any)?.transition,
         delay: calculatedDelay
       }
     }

@@ -3,7 +3,7 @@ import { useThemeStyles } from '../hooks/useThemeStyles';
 import AnimatedSection from '../components/animations/AnimatedSection';
 import StaggeredContainer, { StaggeredItem } from '../components/animations/StaggeredContainer';
 import AnimatedCard from '../components/animations/AnimatedCard';
-import { heroTitle, heroDescription, fadeInUp } from '../config/animations';
+import { heroTitle, heroDescription } from '../config/animations';
 
 const SkillsPage = () => {
   useScrollToTop();

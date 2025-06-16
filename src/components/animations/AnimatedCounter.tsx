@@ -67,7 +67,7 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
     visible: {
       ...statsCounter.visible,
       transition: {
-        ...statsCounter.visible?.transition,
+        ...(statsCounter.visible as any)?.transition,
         delay
       }
     }

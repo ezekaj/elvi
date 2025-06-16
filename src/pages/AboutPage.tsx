@@ -2,7 +2,7 @@ import useScrollToTop from '../hooks/useScrollToTop';
 import { useThemeStyles } from '../hooks/useThemeStyles';
 import AnimatedSection from '../components/animations/AnimatedSection';
 import AnimatedCard from '../components/animations/AnimatedCard';
-import { heroTitle, heroDescription, fadeInUp } from '../config/animations';
+import { heroTitle, heroDescription } from '../config/animations';
 
 const AboutPage = () => {
   useScrollToTop();

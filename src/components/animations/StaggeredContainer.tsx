@@ -48,13 +48,11 @@ const StaggeredContainer: React.FC<StaggeredContainerProps> = ({
 interface StaggeredItemProps {
   children: React.ReactNode;
   className?: string;
-  index?: number;
 }
 
 export const StaggeredItem: React.FC<StaggeredItemProps> = ({
   children,
-  className = '',
-  index = 0
+  className = ''
 }) => {
   const { animationsEnabled } = useAnimation();
 
