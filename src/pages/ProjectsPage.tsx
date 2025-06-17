@@ -21,35 +21,51 @@ const ProjectsPage = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "A modern, scalable e-commerce solution built with React, Node.js, and MongoDB",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      status: "Live",
-      link: "#"
+      title: "Fract_ol - Fractal Explorer",
+      description: "A graphics programming project that creates graphically beautiful fractals using mathematical algorithms and the MiniLibX library",
+      technologies: ["C", "MiniLibX", "Mathematics", "Graphics Programming"],
+      status: "Completed",
+      link: "https://github.com/ezekaj/fract_ol"
     },
     {
       id: 2,
-      title: "Task Management App",
-      description: "Collaborative project management tool with real-time updates and team features",
-      technologies: ["TypeScript", "React", "Socket.io", "PostgreSQL"],
-      status: "In Development",
-      link: "#"
+      title: "Learning Solidity Web Platform",
+      description: "Interactive web platform designed for learning Solidity programming language with hands-on examples and tutorials",
+      technologies: ["TypeScript", "React", "Solidity", "Web3", "Blockchain"],
+      status: "Active",
+      link: "https://github.com/ezekaj/learning_sol"
     },
     {
       id: 3,
-      title: "AI-Powered Analytics Dashboard",
-      description: "Data visualization platform with machine learning insights and predictive analytics",
-      technologies: ["Python", "React", "TensorFlow", "D3.js"],
-      status: "Live",
-      link: "#"
+      title: "Auto Scheduling Agent",
+      description: "AI-powered scheduling system using Large Language Models to create intelligent agents that work as digital secretaries",
+      technologies: ["Python", "LLM", "AI Agents", "Natural Language Processing"],
+      status: "Development",
+      link: "https://github.com/ezekaj/auto_scheduling"
     },
     {
       id: 4,
-      title: "Mobile Banking App",
-      description: "Secure mobile banking solution with biometric authentication and real-time transactions",
-      technologies: ["React Native", "Node.js", "AWS", "Blockchain"],
-      status: "Live",
-      link: "#"
+      title: "Rregullo Tiranen - City Portal",
+      description: "A civic engagement web portal designed to help citizens of Tirana report and track city issues, promoting community involvement",
+      technologies: ["JavaScript", "HTML", "CSS", "Web Development"],
+      status: "Completed",
+      link: "https://github.com/ezekaj/Rregullo_Tiranen"
+    },
+    {
+      id: 5,
+      title: "Push_swap - Sorting Algorithm",
+      description: "Advanced algorithm project implementing efficient sorting techniques with stack operations and optimization strategies",
+      technologies: ["C", "Algorithms", "Data Structures", "Optimization"],
+      status: "Completed",
+      link: "https://github.com/ezekaj/push_swap"
+    },
+    {
+      id: 6,
+      title: "Minitalk - UNIX Signals",
+      description: "Small data exchange program demonstrating inter-process communication using UNIX signals for message transmission",
+      technologies: ["C", "UNIX Signals", "System Programming", "IPC"],
+      status: "Completed",
+      link: "https://github.com/ezekaj/minitalk"
     }
   ];
 
@@ -68,7 +84,7 @@ const ProjectsPage = () => {
 
             <AnimatedSection variants={heroDescription} delay={0.2}>
               <p className={`text-xl md:text-2xl ${textSecondary} leading-relaxed mb-8`}>
-                Innovative Solutions Built with Modern Technologies
+                Real Projects from My GitHub Portfolio
               </p>
             </AnimatedSection>
 
@@ -84,7 +100,7 @@ const ProjectsPage = () => {
                 <div className={`${getSkillColors('green').text}`}>
                   <span className={accent}>$</span> ls -la projects/
                 </div>
-                <div className={textSecondary}>{projects.length} innovative solutions found</div>
+                <div className={textSecondary}>{projects.length} real projects found</div>
               </div>
             </AnimatedSection>
           </div>
@@ -139,16 +155,16 @@ const ProjectsPage = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
               <div>
                 <h3 className={`${accent} font-medium mb-2 text-sm sm:text-base`}>Featured Project</h3>
-                <h2 className={`text-2xl sm:text-3xl font-bold ${textPrimary} mb-4`}>AI-Powered Portfolio System</h2>
+                <h2 className={`text-2xl sm:text-3xl font-bold ${textPrimary} mb-4`}>Personal Portfolio Website</h2>
                 <p className={`${textSecondary} leading-relaxed mb-6 text-sm sm:text-base`}>
-                  This very portfolio showcases cutting-edge 2024 design trends including
-                  modern developer aesthetics, responsive design, and clean architecture.
-                  Built with React, TypeScript, and Tailwind CSS.
+                  This portfolio website showcases modern web development practices with
+                  glassmorphism design, responsive layouts, and smooth animations.
+                  Built with React, TypeScript, and Framer Motion for optimal performance.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   <span className={`px-2 sm:px-3 py-1 ${getSkillColors('purple').bg} ${getSkillColors('purple').text} rounded-full text-xs sm:text-sm border ${getSkillColors('purple').border} select-none`}>React</span>
                   <span className={`px-2 sm:px-3 py-1 ${getSkillColors('blue').bg} ${getSkillColors('blue').text} rounded-full text-xs sm:text-sm border ${getSkillColors('blue').border} select-none`}>TypeScript</span>
-                  <span className={`px-2 sm:px-3 py-1 ${getSkillColors('cyan').bg} ${getSkillColors('cyan').text} rounded-full text-xs sm:text-sm border ${getSkillColors('cyan').border} select-none`}>Tailwind</span>
+                  <span className={`px-2 sm:px-3 py-1 ${getSkillColors('cyan').bg} ${getSkillColors('cyan').text} rounded-full text-xs sm:text-sm border ${getSkillColors('cyan').border} select-none`}>Framer Motion</span>
                   <span className={`px-2 sm:px-3 py-1 ${getSkillColors('green').bg} ${getSkillColors('green').text} rounded-full text-xs sm:text-sm border ${getSkillColors('green').border} select-none`}>Vite</span>
                 </div>
                 <a href="https://github.com/ezekaj/elvi" className={`inline-flex items-center ${accent} hover:opacity-80 font-medium transition-opacity text-sm sm:text-base`}>

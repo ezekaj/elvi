@@ -52,87 +52,20 @@ const ExperiencePage = () => {
         "Led team of 5 developers in agile hackathon environment"
       ],
       technologies: ["React", "Vite", "Material UI", "TypeScript", "Node.js", "Recharts"]
-    },
-    {
-      id: 3,
-      title: "Senior Full-Stack Developer",
-      company: "TechInnovate Solutions",
-      period: "2022 - Present",
-      location: "Remote",
-      type: "Full-time",
-      current: true,
-      description: "Leading development of scalable web applications and mentoring junior developers",
-      achievements: [
-        "Architected and built 5+ enterprise-level applications serving 10,000+ users",
-        "Improved application performance by 40% through code optimization and caching strategies",
-        "Led a team of 4 developers in agile development practices",
-        "Implemented CI/CD pipelines reducing deployment time by 60%"
-      ],
-      technologies: ["React", "Node.js", "TypeScript", "AWS", "PostgreSQL"]
-    },
-    {
-      id: 4,
-      title: "Full-Stack Developer",
-      company: "Digital Dynamics",
-      period: "2020 - 2022",
-      location: "New York, NY",
-      type: "Full-time",
-      current: false,
-      description: "Developed and maintained multiple client projects using modern web technologies",
-      achievements: [
-        "Built 15+ responsive web applications for diverse client base",
-        "Reduced bug reports by 50% through comprehensive testing strategies",
-        "Collaborated with design team to implement pixel-perfect UI components",
-        "Mentored 2 junior developers and conducted code reviews"
-      ],
-      technologies: ["React", "Express.js", "MongoDB", "Docker", "Jest"]
-    },
-    {
-      id: 5,
-      title: "Frontend Developer",
-      company: "StartupHub",
-      period: "2019 - 2020",
-      location: "San Francisco, CA",
-      type: "Full-time",
-      current: false,
-      description: "Focused on creating engaging user interfaces and optimizing user experience",
-      achievements: [
-        "Developed responsive interfaces for 8+ web applications",
-        "Improved user engagement by 35% through UX optimizations",
-        "Implemented modern CSS techniques and animations",
-        "Collaborated with UX designers to create intuitive user flows"
-      ],
-      technologies: ["JavaScript", "React", "CSS3", "Webpack", "Figma"]
-    },
-    {
-      id: 6,
-      title: "Junior Web Developer",
-      company: "WebCraft Agency",
-      period: "2018 - 2019",
-      location: "Boston, MA",
-      type: "Full-time",
-      current: false,
-      description: "Started my professional journey building websites and learning industry best practices",
-      achievements: [
-        "Developed 20+ client websites using HTML, CSS, and JavaScript",
-        "Learned modern development workflows and version control",
-        "Contributed to team projects and gained valuable experience",
-        "Completed professional development courses in React and Node.js"
-      ],
-      technologies: ["HTML5", "CSS3", "JavaScript", "jQuery", "WordPress"]
     }
   ];
 
   const education = [
     {
-      degree: "Bachelor of Science in Computer Science",
-      school: "University of Technology",
-      period: "2014 - 2018",
-      description: "Focused on software engineering, algorithms, and web development",
+      degree: "Computer Science & Software Engineering",
+      school: "42 School",
+      period: "2024 - Present",
+      description: "Intensive peer-to-peer learning program focused on practical programming skills and project-based learning",
       achievements: [
-        "Graduated Magna Cum Laude (GPA: 3.8/4.0)",
-        "President of Computer Science Club",
-        "Winner of Annual Hackathon 2017"
+        "Completed core curriculum projects including Libft, Printf, and get_next_line",
+        "Developed advanced algorithms and data structures (push_swap project)",
+        "Built graphics programming projects with fractals (fract_ol)",
+        "Mastered low-level programming and system administration"
       ]
     }
   ];
@@ -300,26 +233,26 @@ const ExperiencePage = () => {
             <StaggeredContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto" staggerDelay={0.15}>
               <StaggeredItem>
                 <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 text-center hover:border-cyan-500/50 transition-all duration-300 min-h-[120px] flex flex-col justify-center`}>
-                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('cyan').text} mb-2`}>5+</div>
-                  <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Years Experience</div>
+                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('cyan').text} mb-2`}>19+</div>
+                  <div className={`${textSecondary} font-medium text-sm sm:text-base`}>GitHub Projects</div>
                 </AnimatedCard>
               </StaggeredItem>
               <StaggeredItem>
                 <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 text-center hover:border-purple-500/50 transition-all duration-300 min-h-[120px] flex flex-col justify-center`}>
-                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('purple').text} mb-2`}>52+</div>
-                  <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Projects Completed</div>
+                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('purple').text} mb-2`}>2</div>
+                  <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Hackathons</div>
                 </AnimatedCard>
               </StaggeredItem>
               <StaggeredItem>
                 <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 text-center hover:border-green-500/50 transition-all duration-300 min-h-[120px] flex flex-col justify-center`}>
-                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('green').text} mb-2`}>2</div>
-                  <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Hackathons Won</div>
+                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('green').text} mb-2`}>6+</div>
+                  <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Languages</div>
                 </AnimatedCard>
               </StaggeredItem>
               <StaggeredItem>
                 <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 text-center hover:border-yellow-500/50 transition-all duration-300 min-h-[120px] flex flex-col justify-center`}>
-                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('yellow').text} mb-2`}>15+</div>
-                  <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Technologies Mastered</div>
+                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('yellow').text} mb-2`}>1</div>
+                  <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Year at 42</div>
                 </AnimatedCard>
               </StaggeredItem>
             </StaggeredContainer>
