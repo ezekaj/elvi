@@ -50,6 +50,7 @@ const AppContent = () => {
             <Route path="/skills" element={<SkillsPage />} />
             <Route path="/experience" element={<ExperiencePage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="*" element={<WelcomePage />} />
           </Routes>
         </main>
 

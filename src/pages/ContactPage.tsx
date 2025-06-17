@@ -65,11 +65,11 @@ const ContactPage = () => {
       description: "Check out my code repositories"
     },
     {
-      icon: "📱",
-      title: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
-      description: "Call me for urgent matters"
+      icon: "💬",
+      title: "Discord",
+      value: "Available upon request",
+      link: "mailto:elvizekaj02@gmail.com?subject=Discord Contact Request",
+      description: "Request Discord contact for project discussions"
     }
   ];
 
@@ -208,7 +208,7 @@ const ContactPage = () => {
                   </div>
                   <div className="flex justify-between">
                     <span className={textSecondary}>Time Zone:</span>
-                    <span className={`${textPrimary} font-medium`}>EST (UTC-5)</span>
+                    <span className={`${textPrimary} font-medium`}>CET (UTC+1)</span>
                   </div>
                   <div className="flex justify-between">
                     <span className={textSecondary}>Preferred Contact:</span>
@@ -223,27 +223,27 @@ const ContactPage = () => {
                 <ul className="space-y-2">
                   <li className={`flex items-center ${textSecondary}`}>
                     <span className={`${accent} mr-2`}>•</span>
-                    Web Application Development
+                    System Programming (C/C++)
                   </li>
                   <li className={`flex items-center ${textSecondary}`}>
                     <span className={`${accent} mr-2`}>•</span>
-                    E-commerce Solutions
+                    Web Development (React/TypeScript)
                   </li>
                   <li className={`flex items-center ${textSecondary}`}>
                     <span className={`${accent} mr-2`}>•</span>
-                    API Development & Integration
+                    Blockchain Development (Solidity)
                   </li>
                   <li className={`flex items-center ${textSecondary}`}>
                     <span className={`${accent} mr-2`}>•</span>
-                    UI/UX Implementation
+                    Algorithm Implementation
                   </li>
                   <li className={`flex items-center ${textSecondary}`}>
                     <span className={`${accent} mr-2`}>•</span>
-                    Performance Optimization
+                    Graphics Programming
                   </li>
                   <li className={`flex items-center ${textSecondary}`}>
                     <span className={`${accent} mr-2`}>•</span>
-                    Technical Consulting
+                    AI/LLM Integration Projects
                   </li>
                 </ul>
               </AnimatedCard>
@@ -274,13 +274,13 @@ const ContactPage = () => {
               <StaggeredItem>
                 <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6`}>
                   <h4 className={`text-lg font-bold ${getSkillColors('yellow').text} mb-3`}>What technologies do you specialize in?</h4>
-                  <p className={textSecondary}>I specialize in React, Node.js, TypeScript, and modern web technologies. Check my Skills page for the full list.</p>
+                  <p className={textSecondary}>I specialize in C/C++, React, TypeScript, Solidity, and system programming. Currently studying at 42 School.</p>
                 </AnimatedCard>
               </StaggeredItem>
               <StaggeredItem>
                 <AnimatedCard className={`${card} ${cardHover} rounded-xl p-6`}>
-                  <h4 className={`text-lg font-bold ${getSkillColors('green').text} mb-3`}>Do you provide ongoing maintenance?</h4>
-                  <p className={textSecondary}>Yes, I offer maintenance packages to keep your application updated, secure, and performing optimally.</p>
+                  <h4 className={`text-lg font-bold ${getSkillColors('green').text} mb-3`}>Are you available for collaboration?</h4>
+                  <p className={textSecondary}>Yes! I'm open to collaborating on interesting projects, hackathons, and learning opportunities. Let's connect!</p>
                 </AnimatedCard>
               </StaggeredItem>
             </StaggeredContainer>
