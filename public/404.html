@@ -5,9 +5,9 @@
   <title>Z.E Digital Systems - Portfolio</title>
   <meta name="description" content="Elvi Zekaj - Full Stack Developer Portfolio">
   
-  <!-- GitHub Pages SPA redirect script -->
+  <!-- GitHub Pages SPA redirect script for custom domain -->
   <script type="text/javascript">
-    // Single Page Apps for GitHub Pages
+    // Single Page Apps for GitHub Pages (Custom Domain Version)
     // MIT License
     // https://github.com/rafgraph/spa-github-pages
     // This script takes the current url and converts the path and query
@@ -18,31 +18,28 @@
     // Note: this 404.html file must be at least 512 bytes for it to work
     // with Internet Explorer (it is currently > 512 bytes)
 
-    // For GitHub Pages project sites (username.github.io/repo-name)
-    // Set pathSegmentsToKeep to 1 to preserve the repo name in the path
-    // This ensures /elvi/about becomes /elvi/?/about instead of /?/elvi/about
-    var pathSegmentsToKeep = 1;
+    // For custom domains, we don't need to preserve any path segments
+    // All routes should redirect to the root with query parameters
+    var pathSegmentsToKeep = 0;
 
     var l = window.location;
     var pathArray = l.pathname.split('/').filter(function(segment) {
       return segment !== '';
     });
 
-    // Keep the repo name (first segment) and convert the rest to query params
-    var basePath = '/' + pathArray.slice(0, pathSegmentsToKeep).join('/');
-    var routePath = pathArray.slice(pathSegmentsToKeep).join('/');
+    // For custom domain, redirect everything to root with query params
+    var routePath = pathArray.join('/');
 
     // Build the redirect URL
     var redirectUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-      basePath + '/?/' + routePath.replace(/&/g, '~and~') +
+      '/?/' + routePath.replace(/&/g, '~and~') +
       (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
       l.hash;
 
     // Debug logging (remove in production)
-    console.log('404 Redirect Debug:');
+    console.log('404 Redirect Debug (Custom Domain):');
     console.log('Original URL:', l.href);
     console.log('Path Array:', pathArray);
-    console.log('Base Path:', basePath);
     console.log('Route Path:', routePath);
     console.log('Redirect URL:', redirectUrl);
 
