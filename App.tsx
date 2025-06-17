@@ -13,7 +13,8 @@ import { AnimationProvider } from './src/contexts/AnimationContext';
 import { useThemeStyles } from './src/hooks/useThemeStyles';
 
 // Get the base path for GitHub Pages
-const basename = process.env.NODE_ENV === 'production' ? '/elvi' : '';
+// For custom domain, use empty basename
+const basename = '';
 
 const AppContent = () => {
   const { pageBackground, headerBackground, headerBorder, accent, accentHover, textSecondary } = useThemeStyles();
