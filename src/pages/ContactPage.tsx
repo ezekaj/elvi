@@ -6,6 +6,17 @@ import StaggeredContainer, { StaggeredItem } from '../components/animations/Stag
 import AnimatedCard from '../components/animations/AnimatedCard';
 import { heroTitle, heroDescription } from '../config/animations';
 
+// Form submission states
+type FormStatus = 'idle' | 'loading' | 'success' | 'error';
+
+// Form validation errors
+interface FormErrors {
+  name?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
+}
+
 const ContactPage = () => {
   useScrollToTop();
   const {
@@ -27,19 +38,115 @@ const ContactPage = () => {
     message: ''
   });
 
+  const [formStatus, setFormStatus] = useState<FormStatus>('idle');
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
+  const [submitMessage, setSubmitMessage] = useState('');
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
+
+    // Clear specific field error when user starts typing
+    if (formErrors[name as keyof FormErrors]) {
+      setFormErrors(prev => ({
+        ...prev,
+        [name]: undefined
+      }));
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Form validation function
+  const validateForm = (): boolean => {
+    const errors: FormErrors = {};
+
+    // Name validation
+    if (!formData.name.trim()) {
+      errors.name = 'Full name is required';
+    } else if (formData.name.trim().length < 2) {
+      errors.name = 'Name must be at least 2 characters';
+    }
+
+    // Email validation
+    if (!formData.email.trim()) {
+      errors.email = 'Email address is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+
+    // Subject validation
+    if (!formData.subject.trim()) {
+      errors.subject = 'Subject is required';
+    } else if (formData.subject.trim().length < 5) {
+      errors.subject = 'Subject must be at least 5 characters';
+    }
+
+    // Message validation
+    if (!formData.message.trim()) {
+      errors.message = 'Message is required';
+    } else if (formData.message.trim().length < 10) {
+      errors.message = 'Message must be at least 10 characters';
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  // Form submission handler with email integration
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // You can integrate with email service or backend API
+
+    // Validate form
+    if (!validateForm()) {
+      setSubmitMessage('Please fix the errors above and try again.');
+      return;
+    }
+
+    setFormStatus('loading');
+    setSubmitMessage('');
+
+    try {
+      // Create mailto link with form data
+      const subject = encodeURIComponent(`Portfolio Contact: ${formData.subject}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\n` +
+        `Email: ${formData.email}\n` +
+        `Subject: ${formData.subject}\n\n` +
+        `Message:\n${formData.message}\n\n` +
+        `---\n` +
+        `Sent from portfolio contact form`
+      );
+
+      const mailtoLink = `mailto:elvizekaj02@gmail.com?subject=${subject}&body=${body}`;
+
+      // Open email client
+      window.location.href = mailtoLink;
+
+      // Simulate processing time
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      setFormStatus('success');
+      setSubmitMessage('Thank you for your message! Your email client should have opened with the message ready to send.');
+
+      // Reset form after successful submission
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+        setFormStatus('idle');
+        setSubmitMessage('');
+      }, 5000);
+
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setFormStatus('error');
+      setSubmitMessage('Sorry, there was an error processing your message. Please try sending an email directly to elvizekaj02@gmail.com');
+    }
   };
 
   const contactMethods = [
@@ -107,9 +214,24 @@ const ContactPage = () => {
                 Fill out the form below and I'll get back to you within 24 hours.
               </p>
 
+              {/* Form Status Message */}
+              {submitMessage && (
+                <AnimatedCard className={`p-4 rounded-lg mb-6 ${
+                  formStatus === 'success'
+                    ? 'bg-green-500/10 border border-green-500/30 text-green-400'
+                    : formStatus === 'error'
+                    ? 'bg-red-500/10 border border-red-500/30 text-red-400'
+                    : 'bg-yellow-500/10 border border-yellow-500/30 text-yellow-400'
+                }`}>
+                  <p className="text-sm">{submitMessage}</p>
+                </AnimatedCard>
+              )}
+
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
-                  <label htmlFor="name" className={`block text-sm font-medium ${textSecondary} mb-2`}>Full Name</label>
+                  <label htmlFor="name" className={`block text-sm font-medium ${textSecondary} mb-2`}>
+                    Full Name <span className="text-red-400">*</span>
+                  </label>
                   <input
                     type="text"
                     id="name"
@@ -117,13 +239,23 @@ const ContactPage = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
+                    disabled={formStatus === 'loading'}
                     placeholder="Your full name"
-                    className={`w-full px-4 py-3 ${input} rounded-lg transition-colors`}
+                    className={`w-full px-4 py-3 ${input} border ${
+                      formErrors.name
+                        ? 'border-red-500 focus:ring-red-500'
+                        : 'border-slate-700 focus:ring-cyan-500'
+                    } rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed`}
                   />
+                  {formErrors.name && (
+                    <p className="mt-1 text-sm text-red-400">{formErrors.name}</p>
+                  )}
                 </div>
 
                 <div>
-                  <label htmlFor="email" className={`block text-sm font-medium ${textSecondary} mb-2`}>Email Address</label>
+                  <label htmlFor="email" className={`block text-sm font-medium ${textSecondary} mb-2`}>
+                    Email Address <span className="text-red-400">*</span>
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -131,13 +263,23 @@ const ContactPage = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
+                    disabled={formStatus === 'loading'}
                     placeholder="your.email@example.com"
-                    className={`w-full px-4 py-3 ${input} rounded-lg transition-colors`}
+                    className={`w-full px-4 py-3 ${input} border ${
+                      formErrors.email
+                        ? 'border-red-500 focus:ring-red-500'
+                        : 'border-slate-700 focus:ring-cyan-500'
+                    } rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed`}
                   />
+                  {formErrors.email && (
+                    <p className="mt-1 text-sm text-red-400">{formErrors.email}</p>
+                  )}
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className={`block text-sm font-medium ${textSecondary} mb-2`}>Subject</label>
+                  <label htmlFor="subject" className={`block text-sm font-medium ${textSecondary} mb-2`}>
+                    Subject <span className="text-red-400">*</span>
+                  </label>
                   <input
                     type="text"
                     id="subject"
@@ -145,30 +287,63 @@ const ContactPage = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
+                    disabled={formStatus === 'loading'}
                     placeholder="Project inquiry, collaboration, etc."
-                    className={`w-full px-4 py-3 ${input} rounded-lg transition-colors`}
+                    className={`w-full px-4 py-3 ${input} border ${
+                      formErrors.subject
+                        ? 'border-red-500 focus:ring-red-500'
+                        : 'border-slate-700 focus:ring-cyan-500'
+                    } rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed`}
                   />
+                  {formErrors.subject && (
+                    <p className="mt-1 text-sm text-red-400">{formErrors.subject}</p>
+                  )}
                 </div>
 
                 <div>
-                  <label htmlFor="message" className={`block text-sm font-medium ${textSecondary} mb-2`}>Message</label>
+                  <label htmlFor="message" className={`block text-sm font-medium ${textSecondary} mb-2`}>
+                    Message <span className="text-red-400">*</span>
+                  </label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
                     required
+                    disabled={formStatus === 'loading'}
                     rows={6}
                     placeholder="Tell me about your project, timeline, and requirements..."
-                    className={`w-full px-4 py-3 ${input} rounded-lg transition-colors resize-none`}
+                    className={`w-full px-4 py-3 ${input} border ${
+                      formErrors.message
+                        ? 'border-red-500 focus:ring-red-500'
+                        : 'border-slate-700 focus:ring-cyan-500'
+                    } rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 resize-none disabled:opacity-50 disabled:cursor-not-allowed`}
                   ></textarea>
+                  {formErrors.message && (
+                    <p className="mt-1 text-sm text-red-400">{formErrors.message}</p>
+                  )}
                 </div>
 
                 <button
                   type="submit"
-                  className={`w-full px-8 py-3 ${buttonPrimary} rounded-lg font-semibold hover:scale-105 transition-transform`}
+                  disabled={formStatus === 'loading'}
+                  className={`w-full px-8 py-3 ${buttonPrimary} rounded-lg font-semibold transition-all duration-200 ${
+                    formStatus === 'loading'
+                      ? 'opacity-50 cursor-not-allowed'
+                      : 'hover:scale-105 hover:shadow-lg'
+                  }`}
                 >
-                  Send Message
+                  {formStatus === 'loading' ? (
+                    <span className="flex items-center justify-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    'Send Message'
+                  )}
                 </button>
               </form>
             </AnimatedCard>
