@@ -73,19 +73,19 @@ const SkillsPage = () => {
     {
       title: "AWS Certified Developer",
       issuer: "Amazon Web Services",
-      year: "2023",
+      year: "2025",
       status: "Active"
     },
     {
       title: "React Professional Certificate",
       issuer: "Meta",
-      year: "2022",
+      year: "2024",
       status: "Active"
     },
     {
       title: "Full Stack Web Development",
       issuer: "freeCodeCamp",
-      year: "2021",
+      year: "2023",
       status: "Completed"
     }
   ];
