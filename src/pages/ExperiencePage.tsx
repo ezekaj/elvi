@@ -21,6 +21,40 @@ const ExperiencePage = () => {
   const experiences = [
     {
       id: 1,
+      title: "ETH Prague 2025 Hackathon",
+      company: "ETHGlobal",
+      period: "May 30 - June 1, 2025",
+      location: "Prague, Czech Republic",
+      type: "Hackathon",
+      current: false,
+      description: "Developed blockchain-based email verification system with smart contract implementation for secure identity proofing",
+      achievements: [
+        "Architected and implemented Solidity smart contracts for email verification (68.9% of codebase)",
+        "Built decentralized identity verification system using Ethereum blockchain",
+        "Collaborated with international team on innovative Web3 solution",
+        "Gained hands-on experience with blockchain development and DeFi protocols"
+      ],
+      technologies: ["Solidity", "Ethereum", "Web3.js", "JavaScript", "TypeScript", "Smart Contracts"]
+    },
+    {
+      id: 2,
+      title: "JunctionX Tirana 2025 Hackathon",
+      company: "Junction & ONE Albania",
+      period: "May 2-4, 2025",
+      location: "Tirana, Albania",
+      type: "Hackathon",
+      current: false,
+      description: "Built comprehensive SME dashboard for ONE Albania telecom services, focusing on intelligent service management and analytics",
+      achievements: [
+        "Developed full-stack SME dashboard serving telecom service management needs",
+        "Implemented real-time usage monitoring and cost optimization features",
+        "Created AI-powered recommendations system for service optimization",
+        "Led team of 5 developers in agile hackathon environment"
+      ],
+      technologies: ["React", "Vite", "Material UI", "TypeScript", "Node.js", "Recharts"]
+    },
+    {
+      id: 3,
       title: "Senior Full-Stack Developer",
       company: "TechInnovate Solutions",
       period: "2022 - Present",
@@ -37,7 +71,7 @@ const ExperiencePage = () => {
       technologies: ["React", "Node.js", "TypeScript", "AWS", "PostgreSQL"]
     },
     {
-      id: 2,
+      id: 4,
       title: "Full-Stack Developer",
       company: "Digital Dynamics",
       period: "2020 - 2022",
@@ -54,7 +88,7 @@ const ExperiencePage = () => {
       technologies: ["React", "Express.js", "MongoDB", "Docker", "Jest"]
     },
     {
-      id: 3,
+      id: 5,
       title: "Frontend Developer",
       company: "StartupHub",
       period: "2019 - 2020",
@@ -71,7 +105,7 @@ const ExperiencePage = () => {
       technologies: ["JavaScript", "React", "CSS3", "Webpack", "Figma"]
     },
     {
-      id: 4,
+      id: 6,
       title: "Junior Web Developer",
       company: "WebCraft Agency",
       period: "2018 - 2019",
@@ -142,31 +176,50 @@ const ExperiencePage = () => {
                     <div className={`flex-shrink-0 w-12 h-12 rounded-full border-4 flex items-center justify-center z-10 ${
                       exp.current
                         ? 'bg-cyan-500 border-cyan-400 shadow-lg shadow-cyan-500/50'
+                        : exp.type === 'Hackathon'
+                        ? `${pageBackground} border-yellow-500 shadow-lg shadow-yellow-500/30`
                         : `${pageBackground} border-purple-500`
                     }`}>
-                      <div className={`w-3 h-3 rounded-full ${exp.current ? 'bg-white' : 'bg-purple-400'}`}></div>
+                      <div className={`w-3 h-3 rounded-full ${
+                        exp.current
+                          ? 'bg-white'
+                          : exp.type === 'Hackathon'
+                          ? 'bg-yellow-400'
+                          : 'bg-purple-400'
+                      }`}></div>
                     </div>
                   </AnimatedSection>
 
                   {/* Experience card */}
                   <div className="ml-8 flex-1">
-                    <AnimatedCard className={`${card} ${cardHover} rounded-2xl p-6 hover:border-cyan-500/50 transition-all duration-300`} variants={timelineCard} delay={index * 0.2 + 0.1}>
+                    <AnimatedCard className={`${card} ${cardHover} rounded-2xl p-6 transition-all duration-300 ${
+                      exp.type === 'Hackathon'
+                        ? 'hover:border-yellow-500/50 border-yellow-500/20'
+                        : 'hover:border-cyan-500/50'
+                    }`} variants={timelineCard} delay={index * 0.2 + 0.1}>
                       <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                        <div>
-                          <h3 className={`text-xl font-bold ${textPrimary} mb-1`}>{exp.title}</h3>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <h3 className={`text-xl font-bold ${textPrimary}`}>{exp.title}</h3>
+                            {exp.type === 'Hackathon' && (
+                              <span className="text-lg">🏆</span>
+                            )}
+                          </div>
                           <p className={`${accent} font-medium`}>{exp.company}</p>
                         </div>
                         <div className="mt-2 md:mt-0 md:text-right">
                           <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium mb-1 ${
                             exp.current
                               ? `${getSkillColors('green').bg} ${getSkillColors('green').text} border ${getSkillColors('green').border}`
+                              : exp.type === 'Hackathon'
+                              ? `${getSkillColors('yellow').bg} ${getSkillColors('yellow').text} border ${getSkillColors('yellow').border}`
                               : `${card} ${textSecondary}`
                           }`}>
                             {exp.period}
                           </span>
                           <div className={`text-sm ${textSecondary}`}>
                             <div>{exp.location}</div>
-                            <div>{exp.type}</div>
+                            <div className={exp.type === 'Hackathon' ? `${getSkillColors('yellow').text} font-medium` : ''}>{exp.type}</div>
                           </div>
                         </div>
                       </div>
@@ -253,19 +306,19 @@ const ExperiencePage = () => {
               </StaggeredItem>
               <StaggeredItem>
                 <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 text-center hover:border-purple-500/50 transition-all duration-300 min-h-[120px] flex flex-col justify-center`}>
-                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('purple').text} mb-2`}>50+</div>
+                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('purple').text} mb-2`}>52+</div>
                   <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Projects Completed</div>
                 </AnimatedCard>
               </StaggeredItem>
               <StaggeredItem>
                 <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 text-center hover:border-green-500/50 transition-all duration-300 min-h-[120px] flex flex-col justify-center`}>
-                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('green').text} mb-2`}>4</div>
-                  <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Companies</div>
+                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('green').text} mb-2`}>2</div>
+                  <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Hackathons Won</div>
                 </AnimatedCard>
               </StaggeredItem>
               <StaggeredItem>
                 <AnimatedCard className={`${card} ${cardHover} rounded-xl p-4 sm:p-6 text-center hover:border-yellow-500/50 transition-all duration-300 min-h-[120px] flex flex-col justify-center`}>
-                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('yellow').text} mb-2`}>10+</div>
+                  <div className={`text-3xl sm:text-4xl font-bold ${getSkillColors('yellow').text} mb-2`}>15+</div>
                   <div className={`${textSecondary} font-medium text-sm sm:text-base`}>Technologies Mastered</div>
                 </AnimatedCard>
               </StaggeredItem>
