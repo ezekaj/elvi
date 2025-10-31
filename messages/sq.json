@@ -140,6 +140,24 @@
       "hours": "Orët e Ndërtimit"
     }
   },
+  "portfolio": {
+    "badge": "Puna Jonë",
+    "hero": {
+      "title": "Çdo Gur Tregon",
+      "subtitle": "Një Histori Suksesi",
+      "description": "Çdo projekt është një gur i vendosur me kujdes në urën tonë. Së bashku, ato krijojnë një strukturë të fortë që lidh idetë me realitetin, problemet me zgjidhjet, vizionin me ekzekutimin."
+    },
+    "projects": {
+      "title": "Gurët që Kemi Vendosur",
+      "subtitle": "Çdo projekt forcon urën dhe provon mjeshtërinë tonë"
+    },
+    "cta": {
+      "title": "Shto Gurin Tënd në Urën Tonë",
+      "description": "Çdo projekt i madh fillon si një ide. Le ta transformojmë tuajën në një gur tjetër të fortë në strukturë.",
+      "primary": "Fillo Projektin Tënd",
+      "secondary": "Eksploro Shërbimet Tona"
+    }
+  },
   "about": {
     "badge": "Themelet Tona",
     "hero": {

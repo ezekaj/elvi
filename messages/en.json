@@ -140,6 +140,24 @@
       "hours": "Building Hours"
     }
   },
+  "portfolio": {
+    "badge": "Our Work",
+    "hero": {
+      "title": "Every Stone Tells",
+      "subtitle": "A Story of Success",
+      "description": "Each project is a carefully placed stone in our bridge. Together, they create a solid structure connecting ideas to reality, problems to solutions, vision to execution."
+    },
+    "projects": {
+      "title": "The Stones We've Laid",
+      "subtitle": "Each project strengthens the bridge and proves our craftsmanship"
+    },
+    "cta": {
+      "title": "Add Your Stone to Our Bridge",
+      "description": "Every great project starts as an idea. Let's transform yours into another strong stone in the structure.",
+      "primary": "Start Your Project",
+      "secondary": "Explore Our Services"
+    }
+  },
   "about": {
     "badge": "Our Foundation",
     "hero": {
