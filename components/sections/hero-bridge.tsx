@@ -199,14 +199,11 @@ export function HeroBridge() {
                 </g>
                 
                 {/* Journey progress indicator */}
-                <motion.circle
+                <circle
                   cx="60"
                   cy="312"
                   r="6"
                   fill="rgb(var(--gold))"
-                  style={{
-                    offsetDistance: bridgeProgress,
-                  }}
                   className="drop-shadow-lg"
                 >
                   <animate
@@ -216,7 +213,7 @@ export function HeroBridge() {
                     dur="3s"
                     repeatCount="indefinite"
                   />
-                </motion.circle>
+                </circle>
               </svg>
               
               {/* Floating service icons around bridge */}
