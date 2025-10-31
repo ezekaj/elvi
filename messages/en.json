@@ -1,0 +1,144 @@
+{
+  "common": {
+    "company": "Z.E DIGITAL TECH",
+    "companyFull": "Z.E DIGITAL TECH SHPK",
+    "tagline": "Digital Solutions for Modern Business",
+    "getQuote": "Get a Quote",
+    "learnMore": "Learn More",
+    "contactUs": "Contact Us",
+    "viewAll": "View All",
+    "readMore": "Read More"
+  },
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  },
+  "homepage": {
+    "hero": {
+      "title": "Professional IT Solutions",
+      "subtitle": "for Modern Business",
+      "description": "Transform your business with cutting-edge technology. We deliver custom software development, AI solutions, and digital services from Albania to the world.",
+      "cta": {
+        "primary": "Explore Our Services",
+        "secondary": "Contact Us Today"
+      }
+    },
+    "stats": {
+      "years": "Years Experience",
+      "projects": "Projects Completed",
+      "clients": "Happy Clients",
+      "countries": "Countries Served"
+    },
+    "services": {
+      "title": "Our Services",
+      "subtitle": "Comprehensive Technology Solutions",
+      "description": "From concept to deployment, we provide end-to-end digital services tailored to your business needs."
+    },
+    "why": {
+      "title": "Why Choose Z.E DIGITAL TECH",
+      "subtitle": "Your Trusted Technology Partner",
+      "points": {
+        "registered": {
+          "title": "Officially Registered Company",
+          "description": "Licensed Albanian LLC (SHPK) with full legal compliance"
+        },
+        "international": {
+          "title": "International Reach",
+          "description": "Based in Albania, serving clients worldwide"
+        },
+        "expertise": {
+          "title": "Technical Expertise",
+          "description": "Modern technologies and industry best practices"
+        },
+        "support": {
+          "title": "Dedicated Support",
+          "description": "Professional team committed to your success"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Transform Your Business?",
+      "description": "Let's discuss how we can help you achieve your digital goals.",
+      "button": "Start Your Project"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "softwareDevelopment": {
+      "title": "Software Development",
+      "description": "Custom web and mobile applications built with modern technologies",
+      "slug": "software-development"
+    },
+    "aiSolutions": {
+      "title": "AI Solutions",
+      "description": "Machine learning, automation, and intelligent chatbots",
+      "slug": "ai-solutions"
+    },
+    "consulting": {
+      "title": "Technology Consulting",
+      "description": "Digital transformation and technical architecture guidance",
+      "slug": "consulting"
+    },
+    "marketing": {
+      "title": "Digital Marketing",
+      "description": "SEO, social media, and content marketing strategies",
+      "slug": "digital-marketing"
+    },
+    "design": {
+      "title": "Design Services",
+      "description": "UI/UX design, branding, and graphic design",
+      "slug": "design"
+    },
+    "training": {
+      "title": "Training & Education",
+      "description": "Workshops and corporate technology training programs",
+      "slug": "training"
+    }
+  },
+  "company": {
+    "registration": "Registration Number (NUIS)",
+    "registrationNumber": "M52231011N",
+    "registrationDate": "Registered: October 31, 2025",
+    "legalForm": "Legal Form: SHPK (Limited Liability Company)",
+    "location": "Based in Albania, Serving Globally",
+    "office": "Tiranë, Albania",
+    "team": {
+      "founder": "Elvi Zekaj",
+      "founderRole": "Owner & Founder",
+      "admin": "Elsa Zekaj",
+      "adminRole": "Administrator"
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Let's Build Something Great Together",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "service": "Service Interested In",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Failed to send message. Please try again."
+    },
+    "info": {
+      "title": "Contact Information",
+      "email": "Email",
+      "location": "Location",
+      "hours": "Business Hours"
+    }
+  },
+  "footer": {
+    "description": "Professional IT services company delivering custom software development, AI solutions, and digital services from Albania to the world.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "copyright": "© 2025 Z.E DIGITAL TECH SHPK. All rights reserved."
+  }
+}

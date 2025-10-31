@@ -1,0 +1,144 @@
+{
+  "common": {
+    "company": "Z.E DIGITAL TECH",
+    "companyFull": "Z.E DIGITAL TECH SHPK",
+    "tagline": "Zgjidhje Dixhitale për Biznese Moderne",
+    "getQuote": "Kërko Ofertë",
+    "learnMore": "Mëso Më Shumë",
+    "contactUs": "Na Kontaktoni",
+    "viewAll": "Shiko Të Gjitha",
+    "readMore": "Lexo Më Shumë"
+  },
+  "navigation": {
+    "home": "Ballina",
+    "services": "Shërbimet",
+    "about": "Rreth Nesh",
+    "portfolio": "Portfoli",
+    "contact": "Kontakt"
+  },
+  "homepage": {
+    "hero": {
+      "title": "Zgjidhje Profesionale IT",
+      "subtitle": "për Bizneset Moderne",
+      "description": "Transformoni biznesin tuaj me teknologji të avancuar. Ofrojmë zhvillim software të personalizuar, zgjidhje AI, dhe shërbime dixhitale nga Shqipëria për botën.",
+      "cta": {
+        "primary": "Eksploro Shërbimet",
+        "secondary": "Na Kontaktoni Sot"
+      }
+    },
+    "stats": {
+      "years": "Vite Përvojë",
+      "projects": "Projekte të Kompletuara",
+      "clients": "Klientë të Kënaqur",
+      "countries": "Vende të Shërbyera"
+    },
+    "services": {
+      "title": "Shërbimet Tona",
+      "subtitle": "Zgjidhje Gjithëpërfshirëse Teknologjike",
+      "description": "Nga koncepti deri te zbatimi, ofrojmë shërbime dixhitale të përshtatura për nevojat e biznesit tuaj."
+    },
+    "why": {
+      "title": "Pse të Zgjedhni Z.E DIGITAL TECH",
+      "subtitle": "Partneri Juaj i Besuar Teknologjik",
+      "points": {
+        "registered": {
+          "title": "Kompani e Regjistruar Zyrtarisht",
+          "description": "SHPK e licencuar shqiptare me përputhshmëri të plotë ligjore"
+        },
+        "international": {
+          "title": "Arritje Ndërkombëtare",
+          "description": "Me bazë në Shqipëri, duke shërbyer klientë në mbarë botën"
+        },
+        "expertise": {
+          "title": "Ekspertizë Teknike",
+          "description": "Teknologji moderne dhe praktikat më të mira të industrisë"
+        },
+        "support": {
+          "title": "Mbështetje e Dedikuar",
+          "description": "Ekip profesional i përkushtuar për suksesin tuaj"
+        }
+      }
+    },
+    "cta": {
+      "title": "Gati për të Transformuar Biznesin Tuaj?",
+      "description": "Le të diskutojmë se si mund t'ju ndihmojmë të arrini qëllimet tuaja dixhitale.",
+      "button": "Filloni Projektin Tuaj"
+    }
+  },
+  "services": {
+    "title": "Shërbimet Tona",
+    "softwareDevelopment": {
+      "title": "Zhvillim Software",
+      "description": "Aplikacione web dhe mobile të personalizuara me teknologji moderne",
+      "slug": "zhvillim-software"
+    },
+    "aiSolutions": {
+      "title": "Zgjidhje AI",
+      "description": "Mësim makinash, automatizim, dhe chatbot-e inteligjentë",
+      "slug": "zgjidhje-ai"
+    },
+    "consulting": {
+      "title": "Këshillim Teknologjik",
+      "description": "Transformim dixhital dhe udhëzim për arkitekturën teknike",
+      "slug": "keshillim"
+    },
+    "marketing": {
+      "title": "Marketing Dixhital",
+      "description": "SEO, media sociale, dhe strategji marketingu të përmbajtjes",
+      "slug": "marketing-dixhital"
+    },
+    "design": {
+      "title": "Shërbime Dizajni",
+      "description": "Dizajn UI/UX, branding, dhe dizajn grafik",
+      "slug": "dizajn"
+    },
+    "training": {
+      "title": "Trajnim & Edukim",
+      "description": "Punëtori dhe programe trajnimi korporativ teknologjik",
+      "slug": "trajnim"
+    }
+  },
+  "company": {
+    "registration": "Numër Regjistrimi (NUIS)",
+    "registrationNumber": "M52231011N",
+    "registrationDate": "E Regjistruar: 31 Tetor 2025",
+    "legalForm": "Forma Ligjore: SHPK (Shoqëri me Përgjegjësi të Kufizuar)",
+    "location": "Me Bazë në Shqipëri, Duke Shërbyer Globalisht",
+    "office": "Tiranë, Shqipëri",
+    "team": {
+      "founder": "Elvi Zekaj",
+      "founderRole": "Pronar & Themelues",
+      "admin": "Elsa Zekaj",
+      "adminRole": "Administratore"
+    }
+  },
+  "contact": {
+    "title": "Na Kontaktoni",
+    "subtitle": "Le të Ndërtojmë Diçka të Madhe Së Bashku",
+    "form": {
+      "name": "Emri i Plotë",
+      "email": "Adresa Email",
+      "service": "Shërbimi që Interesoheni",
+      "message": "Mesazhi Juaj",
+      "submit": "Dërgo Mesazhin",
+      "sending": "Duke Dërguar...",
+      "success": "Mesazhi u dërgua me sukses!",
+      "error": "Dështoi dërgimi i mesazhit. Ju lutem provoni përsëri."
+    },
+    "info": {
+      "title": "Informacion Kontakti",
+      "email": "Email",
+      "location": "Vendndodhja",
+      "hours": "Orari i Punës"
+    }
+  },
+  "footer": {
+    "description": "Kompani profesionale shërbimesh IT që ofron zhvillim software të personalizuar, zgjidhje AI, dhe shërbime dixhitale nga Shqipëria për botën.",
+    "quickLinks": "Lidhje të Shpejta",
+    "services": "Shërbimet",
+    "legal": "Ligjore",
+    "privacy": "Politika e Privatësisë",
+    "terms": "Kushtet e Shërbimit",
+    "copyright": "© 2025 Z.E DIGITAL TECH SHPK. Të gjitha të drejtat e rezervuara."
+  }
+}
