@@ -2,143 +2,151 @@
   "common": {
     "company": "Z.E DIGITAL TECH",
     "companyFull": "Z.E DIGITAL TECH SHPK",
-    "tagline": "Digital Solutions for Modern Business",
-    "getQuote": "Get a Quote",
-    "learnMore": "Learn More",
-    "contactUs": "Contact Us",
-    "viewAll": "View All",
-    "readMore": "Read More"
+    "tagline": "Building Bridges to Digital Success",
+    "getQuote": "Start Your Journey",
+    "learnMore": "Explore This Pillar",
+    "contactUs": "Ready to Cross",
+    "viewAll": "See All Pillars",
+    "readMore": "Continue Reading"
   },
   "navigation": {
-    "home": "Home",
-    "services": "Services",
-    "about": "About",
-    "portfolio": "Portfolio",
-    "contact": "Contact"
+    "home": "The Bridge",
+    "services": "The Six Pillars",
+    "about": "Our Story",
+    "portfolio": "Our Stones",
+    "contact": "Cross With Us"
   },
   "homepage": {
     "hero": {
-      "title": "Professional IT Solutions",
-      "subtitle": "for Modern Business",
-      "description": "Transform your business with cutting-edge technology. We deliver custom software development, AI solutions, and digital services from Albania to the world.",
+      "title": "Every Great Journey",
+      "subtitle": "Needs a Bridge",
+      "description": "We connect Albanian expertise with global opportunities. From Tiranë to the world, we build digital bridges that transform ideas into reality.",
       "cta": {
-        "primary": "Explore Our Services",
-        "secondary": "Contact Us Today"
-      }
+        "primary": "Begin the Crossing",
+        "secondary": "Meet the Builders"
+      },
+      "journey": "Start of Journey → Albania",
+      "destination": "Destination → The World"
     },
     "stats": {
-      "years": "Years Experience",
-      "projects": "Projects Completed",
-      "clients": "Happy Clients",
-      "countries": "Countries Served"
+      "years": "Years Building",
+      "projects": "Stones Laid",
+      "clients": "Crossings Made",
+      "countries": "Bridges Built"
     },
     "services": {
-      "title": "Our Services",
-      "subtitle": "Comprehensive Technology Solutions",
-      "description": "From concept to deployment, we provide end-to-end digital services tailored to your business needs."
+      "title": "The Six Pillars",
+      "subtitle": "Strong foundations for your digital journey",
+      "description": "Each pillar supports a different part of your crossing. Together, they create a bridge strong enough to carry your ambitions from idea to reality."
     },
     "why": {
-      "title": "Why Choose Z.E DIGITAL TECH",
-      "subtitle": "Your Trusted Technology Partner",
-      "points": {
-        "registered": {
-          "title": "Officially Registered Company",
-          "description": "Licensed Albanian LLC (SHPK) with full legal compliance"
-        },
-        "international": {
-          "title": "International Reach",
-          "description": "Based in Albania, serving clients worldwide"
-        },
-        "expertise": {
-          "title": "Technical Expertise",
-          "description": "Modern technologies and industry best practices"
-        },
-        "support": {
-          "title": "Dedicated Support",
-          "description": "Professional team committed to your success"
-        }
+      "title": "Why This Bridge",
+      "subtitle": "Built on Albanian Heritage, Reaching the World",
+      "stone1": {
+        "title": "Solid Foundation",
+        "description": "Officially registered LLC with full legal compliance"
+      },
+      "stone2": {
+        "title": "Connecting Worlds",
+        "description": "Based in Albania, serving clients worldwide"
+      },
+      "stone3": {
+        "title": "Master Craftsmanship",
+        "description": "Modern technology meets traditional quality"
+      },
+      "stone4": {
+        "title": "Proven Structure",
+        "description": "50+ successful crossings completed"
       }
     },
     "cta": {
-      "title": "Ready to Transform Your Business?",
-      "description": "Let's discuss how we can help you achieve your digital goals.",
-      "button": "Start Your Project"
+      "title": "Ready to Cross?",
+      "description": "Every bridge starts with a single stone. Let's lay the first one together.",
+      "button": "Build My Bridge"
     }
   },
   "services": {
-    "title": "Our Services",
+    "title": "The Six Pillars",
+    "subtitle": "Each pillar carries your journey forward",
     "softwareDevelopment": {
       "title": "Software Development",
-      "description": "Custom web and mobile applications built with modern technologies",
-      "slug": "software-development"
+      "description": "Code carved in stone - web and mobile applications built to last",
+      "slug": "software-development",
+      "pillarNumber": "First Pillar"
     },
     "aiSolutions": {
       "title": "AI Solutions",
-      "description": "Machine learning, automation, and intelligent chatbots",
-      "slug": "ai-solutions"
+      "description": "Intelligence woven into the structure - machine learning that supports growth",
+      "slug": "ai-solutions",
+      "pillarNumber": "Second Pillar"
     },
     "consulting": {
       "title": "Technology Consulting",
-      "description": "Digital transformation and technical architecture guidance",
-      "slug": "consulting"
+      "description": "Blueprint for your bridge - strategic guidance from foundation to completion",
+      "slug": "consulting",
+      "pillarNumber": "Third Pillar"
     },
     "marketing": {
       "title": "Digital Marketing",
-      "description": "SEO, social media, and content marketing strategies",
-      "slug": "digital-marketing"
+      "description": "Lighting the path - making your bridge visible to those who need to cross",
+      "slug": "digital-marketing",
+      "pillarNumber": "Fourth Pillar"
     },
     "design": {
       "title": "Design Services",
-      "description": "UI/UX design, branding, and graphic design",
-      "slug": "design"
+      "description": "Beauty in every stone - UI/UX that makes the crossing memorable",
+      "slug": "design",
+      "pillarNumber": "Fifth Pillar"
     },
     "training": {
       "title": "Training & Education",
-      "description": "Workshops and corporate technology training programs",
-      "slug": "training"
+      "description": "Teaching others to build - knowledge transfer that lasts generations",
+      "slug": "training",
+      "pillarNumber": "Sixth Pillar"
     }
   },
   "company": {
-    "registration": "Registration Number (NUIS)",
+    "registration": "Foundation Stone",
     "registrationNumber": "M52231011N",
-    "registrationDate": "Registered: October 31, 2025",
+    "registrationDate": "Laid: October 31, 2025",
     "legalForm": "Legal Form: SHPK (Limited Liability Company)",
-    "location": "Based in Albania, Serving Globally",
+    "location": "Where the Bridge Begins",
     "office": "Tiranë, Albania",
     "team": {
+      "title": "The Master Builders",
       "founder": "Elvi Zekaj",
-      "founderRole": "Owner & Founder",
+      "founderRole": "Chief Architect",
       "admin": "Elsa Zekaj",
-      "adminRole": "Administrator"
+      "adminRole": "Master Engineer"
     }
   },
   "contact": {
-    "title": "Get In Touch",
-    "subtitle": "Let's Build Something Great Together",
+    "title": "Ready to Cross?",
+    "subtitle": "Every bridge connects two sides. Let's connect yours.",
     "form": {
-      "name": "Full Name",
+      "name": "Your Name",
       "email": "Email Address",
-      "service": "Service Interested In",
-      "message": "Your Message",
-      "submit": "Send Message",
-      "sending": "Sending...",
-      "success": "Message sent successfully!",
-      "error": "Failed to send message. Please try again."
+      "service": "Which Pillar Interests You",
+      "message": "Tell Us About Your Journey",
+      "submit": "Begin the Crossing",
+      "sending": "Laying the first stone...",
+      "success": "Bridge connection established!",
+      "error": "Connection failed. Please try again."
     },
     "info": {
-      "title": "Contact Information",
+      "title": "Bridge Entrance",
       "email": "Email",
-      "location": "Location",
-      "hours": "Business Hours"
+      "location": "Starting Point",
+      "hours": "Building Hours"
     }
   },
   "footer": {
-    "description": "Professional IT services company delivering custom software development, AI solutions, and digital services from Albania to the world.",
-    "quickLinks": "Quick Links",
-    "services": "Services",
-    "legal": "Legal",
+    "description": "Building digital bridges from Albania to the world. Every line of code, every pixel, every strategy - another stone in a structure connecting your vision with reality.",
+    "quickLinks": "Quick Crossings",
+    "services": "The Pillars",
+    "legal": "Foundation Documents",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "copyright": "© 2025 Z.E DIGITAL TECH SHPK. All rights reserved."
+    "copyright": "© 2025 Z.E DIGITAL TECH SHPK. Every stone carefully placed."
   }
 }

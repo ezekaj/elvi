@@ -2,143 +2,151 @@
   "common": {
     "company": "Z.E DIGITAL TECH",
     "companyFull": "Z.E DIGITAL TECH SHPK",
-    "tagline": "Zgjidhje Dixhitale për Biznese Moderne",
-    "getQuote": "Kërko Ofertë",
-    "learnMore": "Mëso Më Shumë",
-    "contactUs": "Na Kontaktoni",
-    "viewAll": "Shiko Të Gjitha",
-    "readMore": "Lexo Më Shumë"
+    "tagline": "Ndërtojmë Ura për Sukses Dixhital",
+    "getQuote": "Fillo Udhëtimin",
+    "learnMore": "Eksploro Këtë Shtyllë",
+    "contactUs": "Gati për të Kaluar",
+    "viewAll": "Shiko Të Gjitha Shtyllat",
+    "readMore": "Vazhdo Leximin"
   },
   "navigation": {
-    "home": "Ballina",
-    "services": "Shërbimet",
-    "about": "Rreth Nesh",
-    "portfolio": "Portfoli",
-    "contact": "Kontakt"
+    "home": "Ura",
+    "services": "Gjashtë Shtyllat",
+    "about": "Historia Jonë",
+    "portfolio": "Gurët Tanë",
+    "contact": "Kalo Me Ne"
   },
   "homepage": {
     "hero": {
-      "title": "Zgjidhje Profesionale IT",
-      "subtitle": "për Bizneset Moderne",
-      "description": "Transformoni biznesin tuaj me teknologji të avancuar. Ofrojmë zhvillim software të personalizuar, zgjidhje AI, dhe shërbime dixhitale nga Shqipëria për botën.",
+      "title": "Çdo Udhëtim i Madh",
+      "subtitle": "Ka Nevojë për një Urë",
+      "description": "Ne lidhim ekspertizën shqiptare me mundësitë globale. Nga Tirana në botë, ndërtojmë ura dixhitale që transformojnë idetë në realitet.",
       "cta": {
-        "primary": "Eksploro Shërbimet",
-        "secondary": "Na Kontaktoni Sot"
-      }
+        "primary": "Fillo Kalimin",
+        "secondary": "Takoni Ndërtuesit"
+      },
+      "journey": "Fillimi i Udhëtimit → Shqipëria",
+      "destination": "Destinacioni → Bota"
     },
     "stats": {
-      "years": "Vite Përvojë",
-      "projects": "Projekte të Kompletuara",
-      "clients": "Klientë të Kënaqur",
-      "countries": "Vende të Shërbyera"
+      "years": "Vite Duke Ndërtuar",
+      "projects": "Gurë të Vendosur",
+      "clients": "Kalime të Bëra",
+      "countries": "Ura të Ndërtuara"
     },
     "services": {
-      "title": "Shërbimet Tona",
-      "subtitle": "Zgjidhje Gjithëpërfshirëse Teknologjike",
-      "description": "Nga koncepti deri te zbatimi, ofrojmë shërbime dixhitale të përshtatura për nevojat e biznesit tuaj."
+      "title": "Gjashtë Shtyllat",
+      "subtitle": "Themele të forta për udhëtimin tuaj dixhital",
+      "description": "Çdo shtyllë mbështet një pjesë të ndryshme të kalimit tuaj. Së bashku, krijojnë një urë mjaft të fortë për të mbajtur ambiciet tuaja nga idea në realitet."
     },
     "why": {
-      "title": "Pse të Zgjedhni Z.E DIGITAL TECH",
-      "subtitle": "Partneri Juaj i Besuar Teknologjik",
-      "points": {
-        "registered": {
-          "title": "Kompani e Regjistruar Zyrtarisht",
-          "description": "SHPK e licencuar shqiptare me përputhshmëri të plotë ligjore"
-        },
-        "international": {
-          "title": "Arritje Ndërkombëtare",
-          "description": "Me bazë në Shqipëri, duke shërbyer klientë në mbarë botën"
-        },
-        "expertise": {
-          "title": "Ekspertizë Teknike",
-          "description": "Teknologji moderne dhe praktikat më të mira të industrisë"
-        },
-        "support": {
-          "title": "Mbështetje e Dedikuar",
-          "description": "Ekip profesional i përkushtuar për suksesin tuaj"
-        }
+      "title": "Pse Kjo Urë",
+      "subtitle": "Ndërtuar mbi Trashëgiminë Shqiptare, Duke Arritur Botën",
+      "stone1": {
+        "title": "Themel i Fortë",
+        "description": "SHPK e regjistruar zyrtarisht me përputhshmëri të plotë ligjore"
+      },
+      "stone2": {
+        "title": "Lidhja e Botëve",
+        "description": "Me bazë në Shqipëri, duke shërbyer klientë në mbarë botën"
+      },
+      "stone3": {
+        "title": "Mjeshtëri e Përpiktë",
+        "description": "Teknologji moderne takon cilësinë tradicionale"
+      },
+      "stone4": {
+        "title": "Strukturë e Provuar",
+        "description": "50+ kalime të suksesshme të kompletuara"
       }
     },
     "cta": {
-      "title": "Gati për të Transformuar Biznesin Tuaj?",
-      "description": "Le të diskutojmë se si mund t'ju ndihmojmë të arrini qëllimet tuaja dixhitale.",
-      "button": "Filloni Projektin Tuaj"
+      "title": "Gati për të Kaluar?",
+      "description": "Çdo urë fillon me një gur të vetëm. Le të vendosim të parin së bashku.",
+      "button": "Ndërto Urën Time"
     }
   },
   "services": {
-    "title": "Shërbimet Tona",
+    "title": "Gjashtë Shtyllat",
+    "subtitle": "Çdo shtyllë e çon udhëtimin tuaj përpara",
     "softwareDevelopment": {
       "title": "Zhvillim Software",
-      "description": "Aplikacione web dhe mobile të personalizuara me teknologji moderne",
-      "slug": "zhvillim-software"
+      "description": "Kod i gdhendur në gur - aplikacione web dhe mobile të ndërtuara për t'u qëndruar",
+      "slug": "zhvillim-software",
+      "pillarNumber": "Shtylla e Parë"
     },
     "aiSolutions": {
       "title": "Zgjidhje AI",
-      "description": "Mësim makinash, automatizim, dhe chatbot-e inteligjentë",
-      "slug": "zgjidhje-ai"
+      "description": "Inteligjencë e thurur në strukturë - mësim makinash që mbështet rritjen",
+      "slug": "zgjidhje-ai",
+      "pillarNumber": "Shtylla e Dytë"
     },
     "consulting": {
       "title": "Këshillim Teknologjik",
-      "description": "Transformim dixhital dhe udhëzim për arkitekturën teknike",
-      "slug": "keshillim"
+      "description": "Plan për urën tuaj - udhëzim strategjik nga themeli deri në përfundim",
+      "slug": "keshillim",
+      "pillarNumber": "Shtylla e Tretë"
     },
     "marketing": {
       "title": "Marketing Dixhital",
-      "description": "SEO, media sociale, dhe strategji marketingu të përmbajtjes",
-      "slug": "marketing-dixhital"
+      "description": "Duke ndriçuar rrugën - duke e bërë urën tuaj të dukshme për ata që kanë nevojë të kalojnë",
+      "slug": "marketing-dixhital",
+      "pillarNumber": "Shtylla e Katërt"
     },
     "design": {
       "title": "Shërbime Dizajni",
-      "description": "Dizajn UI/UX, branding, dhe dizajn grafik",
-      "slug": "dizajn"
+      "description": "Bukuri në çdo gur - UI/UX që e bën kalimin të paharrueshëm",
+      "slug": "dizajn",
+      "pillarNumber": "Shtylla e Pestë"
     },
     "training": {
       "title": "Trajnim & Edukim",
-      "description": "Punëtori dhe programe trajnimi korporativ teknologjik",
-      "slug": "trajnim"
+      "description": "Duke mësuar të tjerët të ndërtojnë - transferim njohurish që zgjat breza",
+      "slug": "trajnim",
+      "pillarNumber": "Shtylla e Gjashtë"
     }
   },
   "company": {
-    "registration": "Numër Regjistrimi (NUIS)",
+    "registration": "Guri i Themeleve",
     "registrationNumber": "M52231011N",
-    "registrationDate": "E Regjistruar: 31 Tetor 2025",
+    "registrationDate": "Vendosur: 31 Tetor 2025",
     "legalForm": "Forma Ligjore: SHPK (Shoqëri me Përgjegjësi të Kufizuar)",
-    "location": "Me Bazë në Shqipëri, Duke Shërbyer Globalisht",
+    "location": "Ku Fillon Ura",
     "office": "Tiranë, Shqipëri",
     "team": {
+      "title": "Ndërtuesit Kryesorë",
       "founder": "Elvi Zekaj",
-      "founderRole": "Pronar & Themelues",
+      "founderRole": "Arkitekti Kryesor",
       "admin": "Elsa Zekaj",
-      "adminRole": "Administratore"
+      "adminRole": "Inxhinieri Kryesore"
     }
   },
   "contact": {
-    "title": "Na Kontaktoni",
-    "subtitle": "Le të Ndërtojmë Diçka të Madhe Së Bashku",
+    "title": "Gati për të Kaluar?",
+    "subtitle": "Çdo urë lidh dy anë. Le të lidhim tuajën.",
     "form": {
-      "name": "Emri i Plotë",
+      "name": "Emri Juaj",
       "email": "Adresa Email",
-      "service": "Shërbimi që Interesoheni",
-      "message": "Mesazhi Juaj",
-      "submit": "Dërgo Mesazhin",
-      "sending": "Duke Dërguar...",
-      "success": "Mesazhi u dërgua me sukses!",
-      "error": "Dështoi dërgimi i mesazhit. Ju lutem provoni përsëri."
+      "service": "Cila Shtyllë Ju Intereson",
+      "message": "Na Tregoni Për Udhëtimin Tuaj",
+      "submit": "Fillo Kalimin",
+      "sending": "Duke vendosur gurin e parë...",
+      "success": "Lidhja e urës u vendos!",
+      "error": "Lidhja dështoi. Ju lutem provoni përsëri."
     },
     "info": {
-      "title": "Informacion Kontakti",
+      "title": "Hyrja e Urës",
       "email": "Email",
-      "location": "Vendndodhja",
-      "hours": "Orari i Punës"
+      "location": "Pika e Nisjes",
+      "hours": "Orët e Ndërtimit"
     }
   },
   "footer": {
-    "description": "Kompani profesionale shërbimesh IT që ofron zhvillim software të personalizuar, zgjidhje AI, dhe shërbime dixhitale nga Shqipëria për botën.",
-    "quickLinks": "Lidhje të Shpejta",
-    "services": "Shërbimet",
-    "legal": "Ligjore",
+    "description": "Ndërtojmë ura dixhitale nga Shqipëria në botë. Çdo rresht kodi, çdo pixel, çdo strategji - një gur tjetër në një strukturë që lidh vizionin tuaj me realitetin.",
+    "quickLinks": "Kalimet e Shpejta",
+    "services": "Shtyllat",
+    "legal": "Dokumentet e Themeleve",
     "privacy": "Politika e Privatësisë",
     "terms": "Kushtet e Shërbimit",
-    "copyright": "© 2025 Z.E DIGITAL TECH SHPK. Të gjitha të drejtat e rezervuara."
+    "copyright": "© 2025 Z.E DIGITAL TECH SHPK. Çdo gur i vendosur me kujdes."
   }
 }

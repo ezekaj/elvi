@@ -1,12 +1,12 @@
-import { HeroModern } from '@/components/sections/hero-modern';
-import { ServicesModern } from '@/components/sections/services-modern';
+import { HeroBridge } from '@/components/sections/hero-bridge';
+import { PillarsBridge } from '@/components/sections/pillars-bridge';
 import { CTAModern } from '@/components/sections/cta-modern';
 
 export default function HomePage() {
   return (
     <>
-      <HeroModern />
-      <ServicesModern />
+      <HeroBridge />
+      <PillarsBridge />
       <CTAModern />
     </>
   );
