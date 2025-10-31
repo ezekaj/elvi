@@ -140,6 +140,70 @@
       "hours": "Building Hours"
     }
   },
+  "about": {
+    "badge": "Our Foundation",
+    "hero": {
+      "title": "Every Bridge Tells",
+      "subtitle": "A Story of Connection",
+      "description": "From a vision in Tiranë to bridges spanning the digital world - this is the story of how we connect Albanian craftsmanship with global ambition."
+    },
+    "story": {
+      "title": "The Construction of Our Bridge",
+      "subtitle": "Four stages that built our foundation and vision",
+      "milestone1": {
+        "title": "Laying the Foundation",
+        "description": "October 31, 2025 - The first stone was laid. Z.E DIGITAL TECH SHPK was officially registered, creating a legal foundation strong enough to support our ambitious vision of connecting Albania to the world through technology."
+      },
+      "milestone2": {
+        "title": "Raising the Pillars",
+        "description": "We identified six core services - six pillars that would support our bridge. Software development, AI solutions, consulting, marketing, design, and training. Each pillar carefully designed to carry its part of the load."
+      },
+      "milestone3": {
+        "title": "Building the Arches",
+        "description": "With pillars in place, we began forming the arches - the connections between Albanian expertise and global opportunities. Every project became another stone, every client another successful crossing."
+      },
+      "milestone4": {
+        "title": "Opening the Bridge",
+        "description": "Today, our bridge stands complete and open. From startups to enterprises, from Albania to the world, we facilitate the crossing of ideas into reality, dreams into digital products."
+      }
+    },
+    "team": {
+      "title": "Meet the Master Builders",
+      "subtitle": "The architects and engineers behind every stone",
+      "founderDescription": "The visionary who designed the bridge, planning every arch and calculating every load. With years of experience in software development and a passion for connecting worlds.",
+      "adminDescription": "The structural engineer ensuring every detail meets the highest standards. Managing operations and ensuring the bridge remains strong and safe for every crossing."
+    },
+    "values": {
+      "title": "The Principles We Build Upon",
+      "subtitle": "Four cornerstones that guide every decision and every project",
+      "value1": {
+        "title": "Innovation",
+        "description": "Like ancient bridge builders who pushed the limits of what was possible, we embrace new technologies and creative solutions."
+      },
+      "value2": {
+        "title": "Quality",
+        "description": "Every stone placed with precision, every arch carefully calculated. We build to last generations, not just seasons."
+      },
+      "value3": {
+        "title": "Connection",
+        "description": "A bridge's purpose is to connect. We forge relationships between clients and solutions, between Albania and the world."
+      },
+      "value4": {
+        "title": "Excellence",
+        "description": "The mark of master craftsmen is visible in their work. We take pride in every line of code, every pixel, every strategy."
+      }
+    },
+    "legal": {
+      "title": "Our Legal Foundation",
+      "subtitle": "Built on solid ground with official registration and full compliance"
+    },
+    "cta": {
+      "title": "Cross the Bridge With Us",
+      "description": "Every great project starts with a conversation. Let's discuss how we can build your bridge to success.",
+      "primary": "Start Your Journey",
+      "secondary": "Explore Our Services"
+    }
+  },
   "footer": {
     "description": "Building digital bridges from Albania to the world. Every line of code, every pixel, every strategy - another stone in a structure connecting your vision with reality.",
     "quickLinks": "Quick Crossings",

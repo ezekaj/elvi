@@ -140,6 +140,70 @@
       "hours": "Orët e Ndërtimit"
     }
   },
+  "about": {
+    "badge": "Themelet Tona",
+    "hero": {
+      "title": "Çdo Urë Tregon",
+      "subtitle": "Një Histori Lidhjeje",
+      "description": "Nga një vizion në Tiranë në ura që shtrihen në botën dixhitale - kjo është historia e mënyrës se si ne lidhim mjeshtërinë shqiptare me ambiciet globale."
+    },
+    "story": {
+      "title": "Ndërtimi i Urës Sonë",
+      "subtitle": "Katër faza që ndërtuan themelët dhe vizionin tonë",
+      "milestone1": {
+        "title": "Vendosja e Themeleve",
+        "description": "31 Tetor 2025 - U vendos guri i parë. Z.E DIGITAL TECH SHPK u regjistrua zyrtarisht, duke krijuar një themel ligjor mjaft të fortë për të mbështetur vizionin tonë ambicioz për të lidhur Shqipërinë me botën përmes teknologjisë."
+      },
+      "milestone2": {
+        "title": "Ngritja e Shtyllave",
+        "description": "Ne identifikuam gjashtë shërbime kryesore - gjashtë shtylla që do të mbështesnin urën tonë. Zhvillimi i software-it, zgjidhjet AI, këshillimi, marketingu, dizajni dhe trajnimi. Çdo shtyllë projektuar me kujdes për të mbajtur pjesën e saj të ngarkesës."
+      },
+      "milestone3": {
+        "title": "Ndërtimi i Harqeve",
+        "description": "Me shtyllat në vend, fillojmë të formojmë harqet - lidhjet midis ekspertizës shqiptare dhe mundësive globale. Çdo projekt u bë një gur tjetër, çdo klient një kalim tjetër i suksesshëm."
+      },
+      "milestone4": {
+        "title": "Hapja e Urës",
+        "description": "Sot, ura jonë qëndron e plotë dhe e hapur. Nga startup-et në ndërmarrje, nga Shqipëria në botë, ne lehtësojmë kalimin e ideve në realitet, ëndrrave në produkte dixhitale."
+      }
+    },
+    "team": {
+      "title": "Takoni Ndërtuesit Kryesorë",
+      "subtitle": "Arkitektët dhe inxhinierët pas çdo guri",
+      "founderDescription": "Vizionari që projektoi urën, duke planifikuar çdo hark dhe duke llogaritur çdo ngarkesë. Me vite përvojë në zhvillimin e software-it dhe një pasion për të lidhur botët.",
+      "adminDescription": "Inxhinieri strukturor që siguron që çdo detaj të plotësojë standardet më të larta. Duke menaxhuar operacionet dhe duke siguruar që ura të mbetet e fortë dhe e sigurt për çdo kalim."
+    },
+    "values": {
+      "title": "Parimet Mbi të Cilat Ndërtojmë",
+      "subtitle": "Katër gurë kyç që udhëheqin çdo vendim dhe çdo projekt",
+      "value1": {
+        "title": "Inovacioni",
+        "description": "Si ndërtuesit e urës antike që shtynë kufijtë e asaj që ishte e mundur, ne përqafojmë teknologjitë e reja dhe zgjidhjet kreative."
+      },
+      "value2": {
+        "title": "Cilësia",
+        "description": "Çdo gur i vendosur me përpikëri, çdo hark i llogaritur me kujdes. Ne ndërtojmë për të zgj generations breza, jo vetëm stinë."
+      },
+      "value3": {
+        "title": "Lidhja",
+        "description": "Qëllimi i një ure është të lidhë. Ne krijojmë marrëdhënie midis klientëve dhe zgjidhjeve, midis Shqipërisë dhe botës."
+      },
+      "value4": {
+        "title": "Përsosmëria",
+        "description": "Shenja e zejtarëve kryesorë është e dukshme në punën e tyre. Ne krenohemi me çdo rresht kodi, çdo pixel, çdo strategji."
+      }
+    },
+    "legal": {
+      "title": "Themeli Ynë Ligjor",
+      "subtitle": "Ndërtuar mbi tokë të fortë me regjistrim zyrtar dhe përputhshmëri të plotë"
+    },
+    "cta": {
+      "title": "Kaloni Urën Me Ne",
+      "description": "Çdo projekt i madh fillon me një bisedë. Le të diskutojmë se si mund të ndërtojmë urën tuaj drejt suksesit.",
+      "primary": "Fillo Udhëtimin",
+      "secondary": "Eksploro Shërbimet Tona"
+    }
+  },
   "footer": {
     "description": "Ndërtojmë ura dixhitale nga Shqipëria në botë. Çdo rresht kodi, çdo pixel, çdo strategji - një gur tjetër në një strukturë që lidh vizionin tuaj me realitetin.",
     "quickLinks": "Kalimet e Shpejta",
