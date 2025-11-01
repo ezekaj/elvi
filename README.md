@@ -299,3 +299,4 @@ This is a company website project. For suggestions or issues, please contact the
 ---
 
 **Built with ❤️ using Next.js 15, TypeScript, and Tailwind CSS**
+
