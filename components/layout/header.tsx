@@ -1,98 +1,51 @@
 'use client';
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { Link, usePathname } from '@/i18n/routing';
-import { Button } from '@/components/ui/button';
 import { LanguageSwitcher } from './language-switcher';
-import { Menu, X } from 'lucide-react';
 
 export function Header() {
-  const t = useTranslations('navigation');
-  const pathname = usePathname();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-  const navigation = [
-    { name: t('home'), href: '/' },
-    { name: t('services'), href: '/services' },
-    { name: t('about'), href: '/about' },
-    { name: t('portfolio'), href: '/portfolio' },
-    { name: t('contact'), href: '/contact' },
+  const sections = [
+    { id: 'capabilities', label: 'Capabilities' },
+    { id: 'impact', label: 'Impact' },
+    { id: 'team', label: 'Team' },
+    { id: 'connect', label: 'Connect' },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="container mx-auto flex h-16 items-center justify-between px-4">
-        {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="text-2xl font-bold gradient-text">Z.E</span>
-          <span className="hidden sm:inline text-sm font-semibold text-muted-foreground">
-            DIGITAL TECH
-          </span>
-        </Link>
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-tech-grey-200 bg-tech-white/80 backdrop-blur-md">
+      <nav className="section-container flex h-16 items-center justify-between">
+        {/* Logo - Minimal */}
+        <button
+          onClick={() => scrollToSection('hero')}
+          className="text-xl font-light tracking-tight text-tech-dark hover:text-blue-primary transition-colors"
+        >
+          Z.E DIGITAL TECH
+        </button>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6">
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                pathname === item.href
-                  ? 'text-primary'
-                  : 'text-muted-foreground'
-              }`}
+        {/* Desktop Navigation - Minimal Text Links */}
+        <div className="hidden md:flex items-center gap-8">
+          {sections.map((section) => (
+            <button
+              key={section.id}
+              onClick={() => scrollToSection(section.id)}
+              className="text-sm font-light text-tech-grey-500 hover:text-blue-primary transition-colors uppercase tracking-wider"
             >
-              {item.name}
-            </Link>
+              {section.label}
+            </button>
           ))}
+          <div className="w-px h-6 bg-tech-grey-200" />
+          <LanguageSwitcher />
         </div>
 
-        {/* Right Side */}
-        <div className="flex items-center space-x-4">
+        {/* Mobile - Just Language Switcher */}
+        <div className="md:hidden">
           <LanguageSwitcher />
-          <Button asChild className="hidden md:inline-flex">
-            <Link href="/contact">{t('contact')}</Link>
-          </Button>
-
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
         </div>
       </nav>
-
-      {/* Mobile Navigation */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-b bg-background">
-          <div className="container mx-auto px-4 py-4 space-y-3">
-            {navigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`block py-2 text-sm font-medium ${
-                  pathname === item.href
-                    ? 'text-primary'
-                    : 'text-muted-foreground'
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-            <Button asChild className="w-full">
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                {t('contact')}
-              </Link>
-            </Button>
-          </div>
-        </div>
-      )}
     </header>
   );
 }
