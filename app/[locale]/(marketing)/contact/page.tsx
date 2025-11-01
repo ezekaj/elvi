@@ -392,7 +392,7 @@ export default function ContactPage() {
               Your Journey Starts Here
             </h2>
             <p className="text-xl text-[rgb(var(--stone-dark))] mb-12">
-              Every great bridge starts with the first step at the entrance. Once you cross, there's no limit to where you can go.
+              Every great bridge starts with the first step at the entrance. Once you cross, there&apos;s no limit to where you can go.
             </p>
 
             {/* Simple bridge entrance visualization */}

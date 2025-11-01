@@ -1,6 +1,7 @@
 'use client';
 
 import { LanguageSwitcher } from './language-switcher';
+import { Logo } from '@/components/ui/logo';
 
 export function Header() {
   const scrollToSection = (sectionId: string) => {
@@ -21,9 +22,10 @@ export function Header() {
         {/* Logo - Minimal */}
         <button
           onClick={() => scrollToSection('hero')}
-          className="text-xl font-light tracking-tight text-tech-dark hover:text-blue-primary transition-colors"
+          className="flex items-center gap-3 text-xl font-light tracking-tight text-tech-dark hover:text-blue-primary transition-colors group"
         >
-          Z.E DIGITAL TECH
+          <Logo className="w-8 h-8 text-tech-dark group-hover:text-blue-primary transition-colors" />
+          <span className="hidden sm:inline">Z.E DIGITAL TECH</span>
         </button>
 
         {/* Desktop Navigation - Minimal Text Links */}

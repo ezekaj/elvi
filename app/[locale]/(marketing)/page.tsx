@@ -124,7 +124,7 @@ export default function HomePage() {
           transition={{ duration: 0.8 }}
           className="max-w-4xl text-center space-y-8"
         >
-          <h2 className="text-minimal-section">Building Tomorrow's Solutions</h2>
+          <h2 className="text-minimal-section">Building Tomorrow&apos;s Solutions</h2>
           <p className="text-minimal-body">
             Founded in 2025, we specialize in artificial intelligence, software development,
             and digital transformation. Every line of code, every algorithm, every strategy—crafted
@@ -371,7 +371,7 @@ export default function HomePage() {
           className="w-full max-w-2xl space-y-12"
         >
           <div className="text-center space-y-4">
-            <h2 className="text-minimal-section">Let's Connect</h2>
+            <h2 className="text-minimal-section">Let&apos;s Connect</h2>
             <p className="text-minimal-body">
               Ready to start your digital transformation?
             </p>

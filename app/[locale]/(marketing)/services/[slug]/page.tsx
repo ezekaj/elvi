@@ -1,5 +1,6 @@
 'use client';
 
+import { use } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
@@ -25,8 +26,8 @@ interface ServicePageProps {
   }>;
 }
 
-export default async function ServicePage({ params }: ServicePageProps) {
-  const { slug } = await params;
+export default function ServicePage({ params }: ServicePageProps) {
+  const { slug } = use(params);
   const t = useTranslations('services');
   const tCommon = useTranslations('common');
 
@@ -339,7 +340,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
               Ready to Build This Pillar?
             </h2>
             <p className="text-xl text-[rgb(var(--stone-dark))] mb-8">
-              Every great bridge starts with a conversation. Let's discuss how {t(`${serviceKey}.title`).toLowerCase()} can support your journey.
+              Every great bridge starts with a conversation. Let&apos;s discuss how {t(`${serviceKey}.title`).toLowerCase()} can support your journey.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
