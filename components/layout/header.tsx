@@ -1,6 +1,5 @@
 'use client';
 
-import { LanguageSwitcher } from './language-switcher';
 import { Logo } from '@/components/ui/logo';
 
 export function Header() {
@@ -39,13 +38,6 @@ export function Header() {
               {section.label}
             </button>
           ))}
-          <div className="w-px h-6 bg-tech-grey-200" />
-          <LanguageSwitcher />
-        </div>
-
-        {/* Mobile - Just Language Switcher */}
-        <div className="md:hidden">
-          <LanguageSwitcher />
         </div>
       </nav>
     </header>
