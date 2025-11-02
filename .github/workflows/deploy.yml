@@ -32,9 +32,24 @@ jobs:
 
       - name: Build with Next.js
         run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Copy CNAME to output
+        run: cp CNAME out/ || echo "No CNAME file found"
 
       - name: Add .nojekyll file
         run: touch ./out/.nojekyll
+
+      - name: Verify build output
+        run: |
+          echo "Build completed successfully!"
+          echo "Checking output directory..."
+          ls -la out/
+          echo "Checking for locales..."
+          ls -la out/ | grep -E 'en|sq' || echo "Locale folders not found in root"
+          test -f out/CNAME && echo "✓ CNAME file present" || echo "⚠ CNAME file missing"
+          test -f out/.nojekyll && echo "✓ .nojekyll file present" || echo "⚠ .nojekyll file missing"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
