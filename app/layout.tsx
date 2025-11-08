@@ -1,6 +1,11 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
+import {
+  OrganizationSchema,
+  LocalBusinessSchema,
+  WebSiteSchema,
+} from '@/components/seo/structured-data';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -37,7 +42,6 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    alternateLocale: ['sq_AL'],
     url: 'https://zedigital.tech',
     siteName: 'Z.E DIGITAL TECH',
     title: 'Z.E DIGITAL TECH | Professional IT Solutions',
@@ -78,6 +82,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <OrganizationSchema />
+        <LocalBusinessSchema />
+        <WebSiteSchema />
+      </head>
       <body
         className={`${inter.variable} ${poppins.variable} font-sans antialiased`}
       >

@@ -1,0 +1,16 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "zedigitaltech",
+  "name_for_human": "Z.E DIGITAL TECH",
+  "description_for_model": "Z.E DIGITAL TECH is a professional IT services company based in Tiranë, Albania, founded in 2025. The company specializes in AI solutions (including voice AI for hospitality such as the Sofia Hotel AI system), custom software development using Next.js/TypeScript/Python, technology consulting, digital marketing, design services, and technical training. Notable projects include Sofia Hotel AI (a voice receptionist for hotels with 70%+ lead qualification rate using Twilio, OpenAI, and Python), the company website built with Next.js 15, and various AI/blockchain projects. The team is led by Elvi Zekaj (Founder, full-stack developer and AI specialist) and Elsa Zekaj (Administrator, strategic leadership). Contact: elsahaxhi@yahoo.com, website: https://zedigital.tech",
+  "description_for_human": "Professional IT services: AI solutions, voice AI, custom software development, consulting, and digital transformation services from Albania.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "none"
+  },
+  "logo_url": "https://zedigital.tech/logo.png",
+  "contact_email": "elsahaxhi@yahoo.com",
+  "legal_info_url": "https://zedigital.tech/en"
+}

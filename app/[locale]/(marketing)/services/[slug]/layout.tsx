@@ -1,22 +1,14 @@
-// Generate static params for all service slugs in both locales
+// Generate static params for all service slugs
 
 export async function generateStaticParams() {
-  // All service slugs from both English and Albanian
+  // All service slugs (English only)
   const slugs = [
-    // English slugs
     'software-development',
     'ai-solutions',
     'consulting',
     'digital-marketing',
     'design',
     'training',
-    // Albanian slugs
-    'zhvillim-software',
-    'zgjidhje-ai',
-    'keshillim',
-    'marketing-dixhital',
-    'dizajn',
-    'trajnim',
   ];
 
   return slugs.map((slug) => ({
