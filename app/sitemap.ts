@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { getAllPostSlugs } from '@/lib/blog';
 
 export const dynamic = 'force-static';
 
@@ -15,6 +16,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'design',
     'training',
   ];
+
+  // Blog post slugs
+  const blogPosts = getAllPostSlugs();
 
   return [
     // Homepage
@@ -51,6 +55,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
       priority: 0.9,
+    })),
+    // Blog listing page
+    {
+      url: `${baseUrl}/en/blog`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    // Blog posts
+    ...blogPosts.map((slug) => ({
+      url: `${baseUrl}/en/blog/${slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
     })),
   ];
 }
