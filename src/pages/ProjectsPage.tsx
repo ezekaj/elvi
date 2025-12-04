@@ -1,5 +1,6 @@
 import useScrollToTop from '../hooks/useScrollToTop';
 import { useThemeStyles } from '../hooks/useThemeStyles';
+import { useGitHubProjects } from '../hooks/useGitHubProjects';
 import AnimatedSection from '../components/animations/AnimatedSection';
 import StaggeredContainer, { StaggeredItem } from '../components/animations/StaggeredContainer';
 import AnimatedCard from '../components/animations/AnimatedCard';
@@ -15,59 +16,12 @@ const ProjectsPage = () => {
     card,
     cardHover,
     sectionBackground,
-    getSkillColors
+    getSkillColors,
+    buttonPrimary
   } = useThemeStyles();
 
-  const projects = [
-    {
-      id: 1,
-      title: "Fract_ol - Fractal Explorer",
-      description: "A graphics programming project that creates graphically beautiful fractals using mathematical algorithms and the MiniLibX library",
-      technologies: ["C", "MiniLibX", "Mathematics", "Graphics Programming"],
-      status: "Completed",
-      link: "https://github.com/ezekaj/fract_ol"
-    },
-    {
-      id: 2,
-      title: "Learning Solidity Web Platform",
-      description: "Interactive web platform designed for learning Solidity programming language with hands-on examples and tutorials",
-      technologies: ["TypeScript", "React", "Solidity", "Web3", "Blockchain"],
-      status: "Active",
-      link: "https://github.com/ezekaj/learning_sol"
-    },
-    {
-      id: 3,
-      title: "Auto Scheduling Agent",
-      description: "AI-powered scheduling system using Large Language Models to create intelligent agents that work as digital secretaries",
-      technologies: ["Python", "LLM", "AI Agents", "Natural Language Processing"],
-      status: "Development",
-      link: "https://github.com/ezekaj/auto_scheduling"
-    },
-    {
-      id: 4,
-      title: "Rregullo Tiranen - City Portal",
-      description: "A civic engagement web portal designed to help citizens of Tirana report and track city issues, promoting community involvement",
-      technologies: ["JavaScript", "HTML", "CSS", "Web Development"],
-      status: "Completed",
-      link: "https://github.com/ezekaj/Rregullo_Tiranen"
-    },
-    {
-      id: 5,
-      title: "Push_swap - Sorting Algorithm",
-      description: "Advanced algorithm project implementing efficient sorting techniques with stack operations and optimization strategies",
-      technologies: ["C", "Algorithms", "Data Structures", "Optimization"],
-      status: "Completed",
-      link: "https://github.com/ezekaj/push_swap"
-    },
-    {
-      id: 6,
-      title: "Minitalk - UNIX Signals",
-      description: "Small data exchange program demonstrating inter-process communication using UNIX signals for message transmission",
-      technologies: ["C", "UNIX Signals", "System Programming", "IPC"],
-      status: "Completed",
-      link: "https://github.com/ezekaj/minitalk"
-    }
-  ];
+  // Fetch projects dynamically from GitHub Gist
+  const { projects, isLoading, error, refetch } = useGitHubProjects();
 
   return (
     <div className={`min-h-screen ${pageBackground} ${textPrimary}`}>
@@ -100,7 +54,9 @@ const ProjectsPage = () => {
                 <div className={`${getSkillColors('green').text}`}>
                   <span className={accent}>$</span> ls -la projects/
                 </div>
-                <div className={textSecondary}>{projects.length} real projects found</div>
+                <div className={textSecondary}>
+                  {isLoading ? 'loading...' : `${projects.length} real projects found`}
+                </div>
               </div>
             </AnimatedSection>
           </div>
@@ -110,47 +66,73 @@ const ProjectsPage = () => {
       {/* Projects Grid */}
       <section className={`py-20 px-6 ${sectionBackground}`}>
         <div className="container mx-auto">
-          <StaggeredContainer className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto" staggerDelay={0.2}>
-            {projects.map((project, index) => (
-              <StaggeredItem key={project.id}>
-                <AnimatedCard className={`${card} ${cardHover} rounded-2xl p-4 sm:p-6 hover:border-cyan-500/50 transition-all duration-300 h-full flex flex-col`} index={index}>
-                <div className="mb-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${
-                      project.status === 'Live'
-                        ? `${getSkillColors('green').bg} ${getSkillColors('green').text} border ${getSkillColors('green').border}`
-                        : `${getSkillColors('yellow').bg} ${getSkillColors('yellow').text} border ${getSkillColors('yellow').border}`
-                    }`}>
-                      {project.status}
+          {/* Loading State */}
+          {isLoading && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className={`${card} rounded-2xl p-6 animate-pulse`}>
+                  <div className="h-6 bg-slate-700 rounded w-1/4 mb-4"></div>
+                  <div className="h-5 bg-slate-700 rounded w-3/4 mb-3"></div>
+                  <div className="h-4 bg-slate-700 rounded w-full mb-2"></div>
+                  <div className="h-4 bg-slate-700 rounded w-2/3"></div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Error State */}
+          {error && !isLoading && (
+            <div className={`${card} rounded-2xl p-8 text-center max-w-md mx-auto`}>
+              <div className="text-4xl mb-4">⚠️</div>
+              <p className="text-red-400 mb-4">{error}</p>
+              <button
+                onClick={refetch}
+                className={`${buttonPrimary} px-6 py-2 rounded-lg font-medium hover:scale-105 transition-transform`}
+              >
+                Try Again
+              </button>
+            </div>
+          )}
+
+          {/* Projects List */}
+          {!isLoading && !error && projects.length > 0 && (
+            <StaggeredContainer className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto" staggerDelay={0.2}>
+              {projects.map((project, index) => (
+                <StaggeredItem key={project.id}>
+                  <AnimatedCard className={`${card} ${cardHover} rounded-2xl p-4 sm:p-6 hover:border-cyan-500/50 transition-all duration-300 h-full flex flex-col`} index={index}>
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${
+                          project.status === 'Active'
+                            ? `${getSkillColors('green').bg} ${getSkillColors('green').text} border ${getSkillColors('green').border}`
+                            : project.status === 'Development'
+                            ? `${getSkillColors('purple').bg} ${getSkillColors('purple').text} border ${getSkillColors('purple').border}`
+                            : `${getSkillColors('cyan').bg} ${getSkillColors('cyan').text} border ${getSkillColors('cyan').border}`
+                        }`}>
+                          {project.status}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
 
-                <div className="flex-grow flex flex-col">
-                  <h3 className={`text-lg sm:text-xl font-bold ${textPrimary} mb-3`}>{project.title}</h3>
-                  <p className={`${textSecondary} leading-relaxed mb-4 text-sm sm:text-base flex-grow`}>{project.description}</p>
+                    <div className="flex-grow flex flex-col">
+                      <h3 className={`text-lg sm:text-xl font-bold ${textPrimary} mb-3`}>{project.title}</h3>
+                      <p className={`${textSecondary} leading-relaxed text-sm sm:text-base flex-grow`}>{project.description}</p>
+                    </div>
+                  </AnimatedCard>
+                </StaggeredItem>
+              ))}
+            </StaggeredContainer>
+          )}
 
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span key={techIndex} className={`px-2 sm:px-3 py-1 ${getSkillColors('cyan').bg} ${getSkillColors('cyan').text} rounded-full text-xs sm:text-sm border ${getSkillColors('cyan').border} select-none`}>
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+          {/* Empty State */}
+          {!isLoading && !error && projects.length === 0 && (
+            <div className={`${card} rounded-2xl p-8 text-center max-w-md mx-auto`}>
+              <div className="text-4xl mb-4">📂</div>
+              <p className={textSecondary}>No projects found</p>
+            </div>
+          )}
 
-                  <div className="mt-auto">
-                    <a href={project.link} className={`inline-flex items-center ${accent} hover:opacity-80 font-medium transition-opacity text-sm sm:text-base`}>
-                      View Project
-                      <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-                    </a>
-                  </div>
-                </div>
-                </AnimatedCard>
-              </StaggeredItem>
-            ))}
-          </StaggeredContainer>
-
-          {/* Featured Project */}
+          {/* Featured Project - Portfolio itself (static, no link) */}
           <AnimatedSection className={`mt-12 sm:mt-16 ${card} rounded-2xl p-4 sm:p-6 lg:p-8`} delay={0.6}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
               <div>
@@ -161,16 +143,12 @@ const ProjectsPage = () => {
                   glassmorphism design, responsive layouts, and smooth animations.
                   Built with React, TypeScript, and Framer Motion for optimal performance.
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2">
                   <span className={`px-2 sm:px-3 py-1 ${getSkillColors('purple').bg} ${getSkillColors('purple').text} rounded-full text-xs sm:text-sm border ${getSkillColors('purple').border} select-none`}>React</span>
                   <span className={`px-2 sm:px-3 py-1 ${getSkillColors('blue').bg} ${getSkillColors('blue').text} rounded-full text-xs sm:text-sm border ${getSkillColors('blue').border} select-none`}>TypeScript</span>
                   <span className={`px-2 sm:px-3 py-1 ${getSkillColors('cyan').bg} ${getSkillColors('cyan').text} rounded-full text-xs sm:text-sm border ${getSkillColors('cyan').border} select-none`}>Framer Motion</span>
                   <span className={`px-2 sm:px-3 py-1 ${getSkillColors('green').bg} ${getSkillColors('green').text} rounded-full text-xs sm:text-sm border ${getSkillColors('green').border} select-none`}>Vite</span>
                 </div>
-                <a href="https://github.com/ezekaj/elvi" className={`inline-flex items-center ${accent} hover:opacity-80 font-medium transition-opacity text-sm sm:text-base`}>
-                  View Source Code
-                  <span className="ml-2">→</span>
-                </a>
               </div>
               <div className="mt-6 lg:mt-0">
                 <div className={`${card} rounded-lg p-3 sm:p-4 font-mono text-xs sm:text-sm overflow-hidden`}>
