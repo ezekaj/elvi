@@ -35,6 +35,39 @@ export default function HomePage() {
     target: containerRef,
   });
 
+  // Track active section with Intersection Observer
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-40% 0px -40% 0px', // Trigger when section is in middle 20% of viewport
+      threshold: 0,
+    };
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          const sectionIndex = sections.indexOf(sectionId);
+          if (sectionIndex !== -1) {
+            setActiveSection(sectionIndex);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe all sections
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div ref={containerRef} className="relative pt-16">
       {/* Animated Network Background */}
