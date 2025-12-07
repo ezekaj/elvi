@@ -34,6 +34,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          NEXT_PUBLIC_GIST_RAW_URL: https://gist.githubusercontent.com/ezekaj/313089f7cc6f7a82adf5aa6e6fa10c4f/raw/approved-repos.json
 
       - name: Copy CNAME to output
         run: cp CNAME out/ || echo "No CNAME file found"
