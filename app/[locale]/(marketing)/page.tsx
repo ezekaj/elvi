@@ -14,13 +14,19 @@ import {
   Linkedin,
   Github,
   ArrowRight,
-  X
+  X,
+  RefreshCw,
+  Loader2
 } from 'lucide-react';
+import { useGitHubProjects } from '@/hooks/useGitHubProjects';
 
 export default function HomePage() {
   const [activeSection, setActiveSection] = useState(0);
   const [selectedService, setSelectedService] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Dynamic GitHub projects
+  const { projects: dynamicProjects, isLoading, error, refetch } = useGitHubProjects();
 
   const sections = ['hero', 'vision', 'capabilities', 'impact', 'team', 'connect'];
 
@@ -260,7 +266,7 @@ export default function HomePage() {
 
       <div className="section-divider" />
 
-      {/* IMPACT SECTION */}
+      {/* IMPACT SECTION - Dynamic GitHub Projects */}
       <section
         id="impact"
         className="section-container section-padding bg-tech-white"
@@ -274,38 +280,68 @@ export default function HomePage() {
           <div className="text-center space-y-4">
             <h2 className="text-minimal-section">Impact</h2>
             <p className="text-minimal-body max-w-2xl mx-auto">
-              Solutions deployed across industries
+              Open source projects synced from GitHub
             </p>
+            <button
+              onClick={() => refetch()}
+              disabled={isLoading}
+              className="inline-flex items-center gap-2 text-sm text-blue-primary hover:text-blue-600 transition-colors disabled:opacity-50"
+            >
+              {isLoading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <RefreshCw className="w-4 h-4" />
+              )}
+              Refresh
+            </button>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="geometric-card p-6 space-y-4"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="text-6xl">{project.icon}</div>
-                  <div className="text-minimal-caption text-blue-primary">
-                    {project.year}
+          {isLoading ? (
+            <div className="flex justify-center py-12">
+              <Loader2 className="w-8 h-8 animate-spin text-blue-primary" />
+            </div>
+          ) : error ? (
+            <div className="text-center py-12 text-tech-grey-500">
+              <p>{error}</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {dynamicProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="geometric-card p-6 space-y-4"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 border border-blue-primary flex items-center justify-center">
+                      <Github className="w-6 h-6 text-blue-primary" />
+                    </div>
+                    <div className={`text-xs px-2 py-1 rounded ${
+                      project.status === 'Completed'
+                        ? 'bg-green-100 text-green-700'
+                        : 'bg-blue-100 text-blue-700'
+                    }`}>
+                      {project.status}
+                    </div>
                   </div>
-                </div>
-                <h3 className="text-xl font-light">{project.title}</h3>
-                <p className="text-sm text-tech-grey-500">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.slice(0, 3).map((tech, i) => (
-                    <span key={i} className="text-xs px-2 py-1 bg-tech-grey-100 text-tech-grey-500">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                  <h3 className="text-xl font-light">{project.title}</h3>
+                  <p className="text-sm text-tech-grey-500 line-clamp-2">{project.description}</p>
+                  <a
+                    href={`https://github.com/ezekaj/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-blue-primary hover:text-blue-600 transition-colors"
+                  >
+                    View on GitHub
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </motion.div>
       </section>
 
@@ -481,15 +517,6 @@ const services = [
     icon: <GraduationCap className="w-6 h-6 text-blue-primary" />,
     deliverables: ['Developer Training', 'AI/ML Courses', 'Team Workshops', 'Certification Prep']
   }
-];
-
-const projects = [
-  { id: 1, title: 'Sofia Hotel AI', description: 'Voice AI receptionist for hospitality', icon: '🏨', year: '2025', technologies: ['Python', 'Twilio', 'OpenAI'] },
-  { id: 2, title: 'Z.E Digital Tech', description: 'Modern company website', icon: '🌐', year: '2025', technologies: ['Next.js', 'TypeScript', 'Tailwind'] },
-  { id: 3, title: 'Email Verification', description: 'ZK proof system for Ethereum', icon: '📧', year: '2024', technologies: ['Solidity', 'Hardhat', 'ZK Proofs'] },
-  { id: 4, title: 'AI Chat Platform', description: 'Intelligent chatbot system', icon: '🤖', year: '2024', technologies: ['Python', 'LangChain', 'FastAPI'] },
-  { id: 5, title: 'E-commerce Platform', description: 'Full-stack online store', icon: '🛒', year: '2024', technologies: ['Next.js', 'PostgreSQL', 'Stripe'] },
-  { id: 6, title: 'Analytics Dashboard', description: 'Real-time data visualization', icon: '📊', year: '2024', technologies: ['React', 'D3.js', 'Node.js'] }
 ];
 
 const team = [
