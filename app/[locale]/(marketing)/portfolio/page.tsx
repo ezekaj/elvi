@@ -11,15 +11,19 @@ import {
   Users,
   Code,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  RefreshCw,
+  Loader2
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useGitHubProjects } from '@/hooks/useGitHubProjects';
 
 export default function PortfolioPage() {
   const t = useTranslations('portfolio');
   const tCommon = useTranslations('common');
 
   const projects = getProjects();
+  const { projects: dynamicProjects, isLoading: dynamicLoading, error: dynamicError, refetch } = useGitHubProjects();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[rgb(var(--stone-light))] to-white">
@@ -279,6 +283,86 @@ export default function PortfolioPage() {
           </div>
         </div>
       </section>
+
+      {/* Dynamic GitHub Projects Section */}
+      {(dynamicProjects.length > 0 || dynamicLoading) && (
+        <section className="py-20 bg-gradient-to-b from-white to-[rgb(var(--stone-light))]/30">
+          <div className="container-bridge">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <div className="inline-flex items-center gap-3 px-6 py-3 stone-block rounded-full mb-6">
+                <Github className="w-4 h-4 text-[rgb(var(--sunset-orange))]" />
+                <span className="text-sm font-semibold text-carved tracking-wide">
+                  Auto-Synced from GitHub
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-carved mb-4">
+                Open Source Projects
+              </h2>
+              <p className="text-xl text-[rgb(var(--stone-dark))] max-w-3xl mx-auto mb-6">
+                Projects automatically synced from my GitHub via n8n automation workflow
+              </p>
+              <Button
+                onClick={() => refetch()}
+                variant="outline"
+                size="sm"
+                className="stone-block border-[rgb(var(--stone-mid))]/30"
+                disabled={dynamicLoading}
+              >
+                {dynamicLoading ? (
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                ) : (
+                  <RefreshCw className="w-4 h-4 mr-2" />
+                )}
+                Refresh Projects
+              </Button>
+            </motion.div>
+
+            {dynamicLoading ? (
+              <div className="flex justify-center py-12">
+                <Loader2 className="w-8 h-8 animate-spin text-[rgb(var(--sunset-orange))]" />
+              </div>
+            ) : dynamicError ? (
+              <div className="text-center py-12 text-[rgb(var(--stone-mid))]">
+                <p>{dynamicError}</p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {dynamicProjects.map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                  >
+                    <Card className="group h-full stone-block hover:shadow-xl transition-all border-2 border-[rgb(var(--stone-mid))]/20 hover:border-[rgb(var(--valley-green))]/50 p-6">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="p-3 rounded-lg bg-[rgb(var(--valley-green))]/10">
+                          <Github className="w-6 h-6 text-[rgb(var(--valley-green))]" />
+                        </div>
+                        <span className="px-3 py-1 text-xs font-semibold rounded-full bg-[rgb(var(--valley-green))]/20 text-[rgb(var(--valley-green))] border border-[rgb(var(--valley-green))]">
+                          {project.status}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-bold text-carved mb-2 group-hover:text-[rgb(var(--valley-green))] transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-[rgb(var(--stone-dark))] text-sm line-clamp-3">
+                        {project.description}
+                      </p>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="py-20 bg-gradient-to-b from-[rgb(var(--stone-light))]/30 to-[rgb(var(--sunset-orange))]/10">
