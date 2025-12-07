@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import {
   ExternalLink,
-  Github,
+  Layers,
   Sparkles,
   ArrowRight,
   RefreshCw,
@@ -164,9 +164,9 @@ export default function PortfolioPage() {
             className="text-center mb-16"
           >
             <div className="inline-flex items-center gap-3 px-6 py-3 stone-block rounded-full mb-6">
-              <Github className="w-4 h-4 text-[rgb(var(--sunset-orange))]" />
+              <Sparkles className="w-4 h-4 text-[rgb(var(--sunset-orange))]" />
               <span className="text-sm font-semibold text-carved tracking-wide">
-                Auto-Synced from GitHub
+                Curated Portfolio
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-carved mb-4">
@@ -213,7 +213,7 @@ export default function PortfolioPage() {
                       <div className="absolute inset-0 bridge-texture opacity-20" />
                       <div className="relative z-10 text-center">
                         <div className="p-4 rounded-xl bg-white/10 backdrop-blur-sm mb-3 inline-block">
-                          <Github className="w-10 h-10 text-white" />
+                          <Layers className="w-10 h-10 text-white" />
                         </div>
                         <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold ${
                           project.status === 'Completed'
@@ -236,23 +236,11 @@ export default function PortfolioPage() {
                         </p>
                       </div>
 
-                      {/* Links */}
-                      <div className="flex gap-3 pt-4 border-t border-[rgb(var(--stone-mid))]/20">
-                        <Button
-                          asChild
-                          size="sm"
-                          variant="outline"
-                          className="flex-1 stone-block border-[rgb(var(--stone-mid))]/30"
-                        >
-                          <a
-                            href={`https://github.com/ezekaj/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Github className="w-4 h-4 mr-2" />
-                            View Code
-                          </a>
-                        </Button>
+                      {/* Professional badge */}
+                      <div className="pt-4 border-t border-[rgb(var(--stone-mid))]/20">
+                        <div className="text-center py-2 text-sm font-medium text-[rgb(var(--sunset-orange))]">
+                          Professional Project
+                        </div>
                       </div>
                     </div>
                   </Card>

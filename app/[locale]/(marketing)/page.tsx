@@ -317,7 +317,7 @@ export default function HomePage() {
                 >
                   <div className="flex items-center justify-between">
                     <div className="w-12 h-12 border border-blue-primary flex items-center justify-center">
-                      <Github className="w-6 h-6 text-blue-primary" />
+                      <Code className="w-6 h-6 text-blue-primary" />
                     </div>
                     <div className={`text-xs px-2 py-1 rounded ${
                       project.status === 'Completed'
@@ -329,15 +329,9 @@ export default function HomePage() {
                   </div>
                   <h3 className="text-xl font-light">{project.title}</h3>
                   <p className="text-sm text-tech-grey-500 line-clamp-2">{project.description}</p>
-                  <a
-                    href={`https://github.com/ezekaj/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm text-blue-primary hover:text-blue-600 transition-colors"
-                  >
-                    View on GitHub
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
+                  <div className="text-xs text-blue-primary font-medium">
+                    Professional Project
+                  </div>
                 </motion.div>
               ))}
             </div>
