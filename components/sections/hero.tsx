@@ -51,7 +51,7 @@ export function Hero() {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link href="/contact">{t('cta.secondary')}</Link>
+                <Link href="/#connect">{t('cta.secondary')}</Link>
               </Button>
             </div>
 

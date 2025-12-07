@@ -116,7 +116,7 @@ export function HeroBridge() {
                 variant="outline"
                 className="stone-block px-8 py-6 text-base rounded-xl border-2 border-[rgb(var(--stone-mid))] hover:border-[rgb(var(--stone-dark))]"
               >
-                <Link href="/about">{t('cta.secondary')}</Link>
+                <Link href="/">{t('cta.secondary')}</Link>
               </Button>
             </motion.div>
           </motion.div>

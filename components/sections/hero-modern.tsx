@@ -95,7 +95,7 @@ export function HeroModern() {
               variant="outline"
               className="px-8 py-6 text-base rounded-xl border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 interactive-scale"
             >
-              <Link href="/contact">{t('cta.secondary')}</Link>
+              <Link href="/#connect">{t('cta.secondary')}</Link>
             </Button>
           </motion.div>
 

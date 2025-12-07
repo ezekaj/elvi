@@ -125,7 +125,7 @@ export default function ServicePage({ params }: ServicePageProps) {
                   size="lg"
                   className="bg-[rgb(var(--sunset-orange))] hover:bg-[rgb(var(--sunset-amber))] text-white px-8"
                 >
-                  <Link href="/contact">
+                  <Link href="/#connect">
                     {tCommon('getQuote')}
                   </Link>
                 </Button>
@@ -348,7 +348,7 @@ export default function ServicePage({ params }: ServicePageProps) {
                 size="lg"
                 className="bg-[rgb(var(--sunset-orange))] hover:bg-[rgb(var(--sunset-amber))] text-white px-8"
               >
-                <Link href="/contact">Start Your Journey</Link>
+                <Link href="/#connect">Start Your Journey</Link>
               </Button>
               <Button
                 asChild

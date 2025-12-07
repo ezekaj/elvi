@@ -1,0 +1,47 @@
+{
+  "lastUpdated": "2025-12-07T00:00:00Z",
+  "approvedRepos": [
+    {
+      "name": "auto_scheduling",
+      "description": "LLM-powered intelligent scheduling system with autonomous agents for task optimization",
+      "approvedAt": "2025-12-07T00:00:00Z"
+    },
+    {
+      "name": "sofia-phone",
+      "description": "Real-time voice AI receptionist with natural language understanding and hotel booking integration",
+      "approvedAt": "2025-12-07T00:00:00Z"
+    },
+    {
+      "name": "elo-outboud",
+      "description": "AI-powered outbound calling system for healthcare appointment scheduling and patient engagement",
+      "approvedAt": "2025-12-07T00:00:00Z"
+    },
+    {
+      "name": "fract_ol",
+      "description": "GPU-accelerated fractal visualization with real-time zoom, featuring Mandelbrot, Julia, and Burning Ship sets",
+      "approvedAt": "2025-12-07T00:00:00Z"
+    },
+    {
+      "name": "push_swap",
+      "description": "Highly optimized sorting algorithm achieving sub-optimal moves using custom stack manipulation techniques",
+      "approvedAt": "2025-12-07T00:00:00Z"
+    },
+    {
+      "name": "ft_irc",
+      "description": "Fully compliant IRC server implementation with multi-client support, channels, and operator commands",
+      "approvedAt": "2025-12-07T00:00:00Z"
+    },
+    {
+      "name": "Rregullo_Tiranen",
+      "description": "Civic technology platform enabling citizens to report urban issues with geolocation and municipal tracking",
+      "approvedAt": "2025-12-07T00:00:00Z"
+    },
+    {
+      "name": "forex",
+      "description": "Real-time forex trading platform with technical analysis indicators and automated strategy execution",
+      "approvedAt": "2025-12-07T00:00:00Z"
+    }
+  ],
+  "pendingRepos": [],
+  "rejectedRepos": []
+}
