@@ -7,9 +7,6 @@ import { Card } from '@/components/ui/card';
 import {
   ExternalLink,
   Github,
-  Calendar,
-  Users,
-  Code,
   Sparkles,
   ArrowRight,
   RefreshCw,
@@ -20,10 +17,8 @@ import { useGitHubProjects } from '@/hooks/useGitHubProjects';
 
 export default function PortfolioPage() {
   const t = useTranslations('portfolio');
-  const tCommon = useTranslations('common');
 
-  const projects = getProjects();
-  const { projects: dynamicProjects, isLoading: dynamicLoading, error: dynamicError, refetch } = useGitHubProjects();
+  const { projects, isLoading, error, refetch } = useGitHubProjects();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[rgb(var(--stone-light))] to-white">
@@ -111,7 +106,7 @@ export default function PortfolioPage() {
               className="text-center"
             >
               <div className="text-4xl font-bold text-carved mb-2">
-                {projects.length}
+                {isLoading ? '...' : projects.length}
               </div>
               <div className="text-sm text-[rgb(var(--stone-mid))] carved-text">
                 Stones Laid
@@ -126,10 +121,10 @@ export default function PortfolioPage() {
               className="text-center"
             >
               <div className="text-4xl font-bold text-carved mb-2">
-                {new Set(projects.flatMap(p => p.technologies)).size}
+                {isLoading ? '...' : projects.filter(p => p.status === 'Completed').length}
               </div>
               <div className="text-sm text-[rgb(var(--stone-mid))] carved-text">
-                Technologies Used
+                Crossings Completed
               </div>
             </motion.div>
 
@@ -140,18 +135,26 @@ export default function PortfolioPage() {
               transition={{ delay: 0.2 }}
               className="text-center"
             >
-              <div className="text-4xl font-bold text-carved mb-2">
-                {projects.filter(p => p.status === 'completed').length}
-              </div>
-              <div className="text-sm text-[rgb(var(--stone-mid))] carved-text">
-                Crossings Completed
-              </div>
+              <Button
+                onClick={() => refetch()}
+                variant="outline"
+                size="sm"
+                className="stone-block border-[rgb(var(--stone-mid))]/30"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                ) : (
+                  <RefreshCw className="w-4 h-4 mr-2" />
+                )}
+                Refresh
+              </Button>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Projects Grid - Each as a Stone */}
+      {/* Projects Grid */}
       <section className="py-20">
         <div className="container-bridge">
           <motion.div
@@ -160,6 +163,12 @@ export default function PortfolioPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
+            <div className="inline-flex items-center gap-3 px-6 py-3 stone-block rounded-full mb-6">
+              <Github className="w-4 h-4 text-[rgb(var(--sunset-orange))]" />
+              <span className="text-sm font-semibold text-carved tracking-wide">
+                Auto-Synced from GitHub
+              </span>
+            </div>
             <h2 className="text-4xl md:text-5xl font-bold text-carved mb-4">
               {t('projects.title')}
             </h2>
@@ -168,201 +177,91 @@ export default function PortfolioPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card className="group h-full stone-block hover:shadow-2xl transition-all border-2 border-[rgb(var(--stone-mid))]/30 hover:border-[rgb(var(--sunset-orange))]/50 overflow-hidden">
-                  {/* Stone number badge */}
-                  <div className="absolute top-4 right-4 z-10">
-                    <div className="w-10 h-10 rounded-full stone-block flex items-center justify-center border-2 border-[rgb(var(--sunset-orange))] shadow-lg">
-                      <span className="text-sm font-bold text-[rgb(var(--sunset-orange))]">
-                        #{index + 1}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Project visual */}
-                  <div className="relative h-48 bg-gradient-to-br from-[rgb(var(--stone-mid))] to-[rgb(var(--stone-dark))] p-8 flex items-center justify-center overflow-hidden">
-                    <div className="absolute inset-0 bridge-texture opacity-20" />
-                    <div className="relative z-10">
-                      <div className="text-6xl mb-2">{project.icon}</div>
-                      <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold ${
-                        project.status === 'completed'
-                          ? 'bg-[rgb(var(--valley-green))]/20 text-[rgb(var(--valley-green))] border border-[rgb(var(--valley-green))]'
-                          : 'bg-[rgb(var(--sunset-orange))]/20 text-[rgb(var(--sunset-orange))] border border-[rgb(var(--sunset-orange))]'
-                      }`}>
-                        {project.status === 'completed' ? 'Completed' : 'In Progress'}
+          {isLoading ? (
+            <div className="flex justify-center py-12">
+              <Loader2 className="w-8 h-8 animate-spin text-[rgb(var(--sunset-orange))]" />
+            </div>
+          ) : error ? (
+            <div className="text-center py-12">
+              <p className="text-[rgb(var(--stone-mid))] mb-4">{error}</p>
+              <Button onClick={() => refetch()} variant="outline">
+                Try Again
+              </Button>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Card className="group h-full stone-block hover:shadow-2xl transition-all border-2 border-[rgb(var(--stone-mid))]/30 hover:border-[rgb(var(--sunset-orange))]/50 overflow-hidden">
+                    {/* Stone number badge */}
+                    <div className="absolute top-4 right-4 z-10">
+                      <div className="w-10 h-10 rounded-full stone-block flex items-center justify-center border-2 border-[rgb(var(--sunset-orange))] shadow-lg">
+                        <span className="text-sm font-bold text-[rgb(var(--sunset-orange))]">
+                          #{index + 1}
+                        </span>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Project details */}
-                  <div className="p-6 space-y-4">
-                    <div>
-                      <h3 className="text-2xl font-bold text-carved mb-2 group-hover:text-[rgb(var(--sunset-orange))] transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-[rgb(var(--stone-dark))]">
-                        {project.description}
-                      </p>
-                    </div>
-
-                    {/* Meta info */}
-                    <div className="flex flex-wrap gap-4 text-sm text-[rgb(var(--stone-mid))]">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        <span>{project.year}</span>
-                      </div>
-                      {project.team && (
-                        <div className="flex items-center gap-1">
-                          <Users className="w-4 h-4" />
-                          <span>{project.team}</span>
+                    {/* Project visual */}
+                    <div className="relative h-48 bg-gradient-to-br from-[rgb(var(--stone-mid))] to-[rgb(var(--stone-dark))] p-8 flex items-center justify-center overflow-hidden">
+                      <div className="absolute inset-0 bridge-texture opacity-20" />
+                      <div className="relative z-10 text-center">
+                        <div className="p-4 rounded-xl bg-white/10 backdrop-blur-sm mb-3 inline-block">
+                          <Github className="w-10 h-10 text-white" />
                         </div>
-                      )}
-                      <div className="flex items-center gap-1">
-                        <Code className="w-4 h-4" />
-                        <span>{project.technologies.length} techs</span>
+                        <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold ${
+                          project.status === 'Completed'
+                            ? 'bg-[rgb(var(--valley-green))]/20 text-[rgb(var(--valley-green))] border border-[rgb(var(--valley-green))]'
+                            : 'bg-[rgb(var(--sunset-orange))]/20 text-[rgb(var(--sunset-orange))] border border-[rgb(var(--sunset-orange))]'
+                        }`}>
+                          {project.status}
+                        </div>
                       </div>
                     </div>
 
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.slice(0, 4).map((tech, i) => (
-                        <span
-                          key={i}
-                          className="px-2 py-1 text-xs font-medium stone-block rounded border border-[rgb(var(--stone-mid))]/30"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {project.technologies.length > 4 && (
-                        <span className="px-2 py-1 text-xs font-medium text-[rgb(var(--stone-mid))]">
-                          +{project.technologies.length - 4}
-                        </span>
-                      )}
-                    </div>
+                    {/* Project details */}
+                    <div className="p-6 space-y-4">
+                      <div>
+                        <h3 className="text-2xl font-bold text-carved mb-2 group-hover:text-[rgb(var(--sunset-orange))] transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="text-[rgb(var(--stone-dark))] line-clamp-3">
+                          {project.description}
+                        </p>
+                      </div>
 
-                    {/* Links */}
-                    <div className="flex gap-3 pt-4 border-t border-[rgb(var(--stone-mid))]/20">
-                      {project.github && (
+                      {/* Links */}
+                      <div className="flex gap-3 pt-4 border-t border-[rgb(var(--stone-mid))]/20">
                         <Button
                           asChild
                           size="sm"
                           variant="outline"
                           className="flex-1 stone-block border-[rgb(var(--stone-mid))]/30"
                         >
-                          <a href={project.github} target="_blank" rel="noopener noreferrer">
+                          <a
+                            href={`https://github.com/ezekaj/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             <Github className="w-4 h-4 mr-2" />
-                            Code
+                            View Code
                           </a>
                         </Button>
-                      )}
-                      {project.demo && (
-                        <Button
-                          asChild
-                          size="sm"
-                          className="flex-1 bg-[rgb(var(--sunset-orange))] hover:bg-[rgb(var(--sunset-amber))] text-white"
-                        >
-                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="w-4 h-4 mr-2" />
-                            Demo
-                          </a>
-                        </Button>
-                      )}
+                      </div>
                     </div>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
-
-      {/* Dynamic GitHub Projects Section */}
-      {(dynamicProjects.length > 0 || dynamicLoading) && (
-        <section className="py-20 bg-gradient-to-b from-white to-[rgb(var(--stone-light))]/30">
-          <div className="container-bridge">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <div className="inline-flex items-center gap-3 px-6 py-3 stone-block rounded-full mb-6">
-                <Github className="w-4 h-4 text-[rgb(var(--sunset-orange))]" />
-                <span className="text-sm font-semibold text-carved tracking-wide">
-                  Auto-Synced from GitHub
-                </span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-carved mb-4">
-                Open Source Projects
-              </h2>
-              <p className="text-xl text-[rgb(var(--stone-dark))] max-w-3xl mx-auto mb-6">
-                Projects automatically synced from my GitHub via n8n automation workflow
-              </p>
-              <Button
-                onClick={() => refetch()}
-                variant="outline"
-                size="sm"
-                className="stone-block border-[rgb(var(--stone-mid))]/30"
-                disabled={dynamicLoading}
-              >
-                {dynamicLoading ? (
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                ) : (
-                  <RefreshCw className="w-4 h-4 mr-2" />
-                )}
-                Refresh Projects
-              </Button>
-            </motion.div>
-
-            {dynamicLoading ? (
-              <div className="flex justify-center py-12">
-                <Loader2 className="w-8 h-8 animate-spin text-[rgb(var(--sunset-orange))]" />
-              </div>
-            ) : dynamicError ? (
-              <div className="text-center py-12 text-[rgb(var(--stone-mid))]">
-                <p>{dynamicError}</p>
-              </div>
-            ) : (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {dynamicProjects.map((project, index) => (
-                  <motion.div
-                    key={project.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    <Card className="group h-full stone-block hover:shadow-xl transition-all border-2 border-[rgb(var(--stone-mid))]/20 hover:border-[rgb(var(--valley-green))]/50 p-6">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="p-3 rounded-lg bg-[rgb(var(--valley-green))]/10">
-                          <Github className="w-6 h-6 text-[rgb(var(--valley-green))]" />
-                        </div>
-                        <span className="px-3 py-1 text-xs font-semibold rounded-full bg-[rgb(var(--valley-green))]/20 text-[rgb(var(--valley-green))] border border-[rgb(var(--valley-green))]">
-                          {project.status}
-                        </span>
-                      </div>
-                      <h3 className="text-xl font-bold text-carved mb-2 group-hover:text-[rgb(var(--valley-green))] transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-[rgb(var(--stone-dark))] text-sm line-clamp-3">
-                        {project.description}
-                      </p>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
-      )}
 
       {/* CTA */}
       <section className="py-20 bg-gradient-to-b from-[rgb(var(--stone-light))]/30 to-[rgb(var(--sunset-orange))]/10">
@@ -404,82 +303,4 @@ export default function PortfolioPage() {
       </section>
     </div>
   );
-}
-
-// Project data
-function getProjects() {
-  return [
-    {
-      id: 1,
-      title: 'Sofia Hotel AI',
-      description: 'Voice AI receptionist for hospitality - qualifying leads and connecting with booking managers via Twilio integration.',
-      icon: '🏨',
-      year: '2025',
-      team: 'Solo',
-      status: 'completed' as const,
-      technologies: ['Python', 'Twilio', 'OpenAI', 'FastAPI', 'WebRTC'],
-      github: 'https://github.com/ezekaj/sofia-hotel-ai',
-      demo: null,
-    },
-    {
-      id: 2,
-      title: 'Z.E Digital Tech',
-      description: 'Modern company website with Albanian bridge metaphor - Next.js 15, full i18n support, and glassmorphism design.',
-      icon: '🌉',
-      year: '2025',
-      team: 'Solo',
-      status: 'in-progress' as const,
-      technologies: ['Next.js', 'TypeScript', 'Tailwind', 'Framer Motion', 'next-intl'],
-      github: 'https://github.com/ezekaj/ze-digital-tech',
-      demo: 'https://zedigital.tech',
-    },
-    {
-      id: 3,
-      title: 'Personal Portfolio',
-      description: 'Interactive portfolio with React 19, Framer Motion animations, and mobile-first design showcasing projects and skills.',
-      icon: '💼',
-      year: '2025',
-      team: 'Solo',
-      status: 'completed' as const,
-      technologies: ['React', 'TypeScript', 'Vite', 'Framer Motion', 'React Router'],
-      github: 'https://github.com/ezekaj/elvi',
-      demo: 'https://zedigital.tech',
-    },
-    {
-      id: 4,
-      title: 'Email Verification System',
-      description: 'Zero-knowledge email proof system for Ethereum - built during ETHGlobal hackathon with Scaffold-ETH 2.',
-      icon: '📧',
-      year: '2024',
-      team: 'Hackathon Team',
-      status: 'completed' as const,
-      technologies: ['Solidity', 'Hardhat', 'Next.js', 'TypeScript', 'ZK Proofs'],
-      github: 'https://github.com/ezekaj/eth-global-project',
-      demo: null,
-    },
-    {
-      id: 5,
-      title: 'AI Chat Application',
-      description: 'Intelligent chatbot with natural language processing and context-aware responses powered by modern LLMs.',
-      icon: '🤖',
-      year: '2024',
-      team: 'Solo',
-      status: 'completed' as const,
-      technologies: ['Python', 'OpenAI', 'LangChain', 'FastAPI', 'React'],
-      github: null,
-      demo: null,
-    },
-    {
-      id: 6,
-      title: 'E-commerce Platform',
-      description: 'Full-stack online store with payment integration, inventory management, and admin dashboard.',
-      icon: '🛒',
-      year: '2024',
-      team: 'Team of 3',
-      status: 'completed' as const,
-      technologies: ['Next.js', 'PostgreSQL', 'Stripe', 'Prisma', 'TypeScript'],
-      github: null,
-      demo: null,
-    },
-  ];
 }
